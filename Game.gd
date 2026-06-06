@@ -19,4 +19,4 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
 	var dp: Vector2 = %Minimap.level.pick_random() * 2
-	duch.position = Vector3(dp.x, 0.5, dp.y)
+	duch.position = Vector3(dp.x + 1, 0.5, dp.y + 1)

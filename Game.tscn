@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b5hp5r2gpuwqx"]
 
 [ext_resource type="Script" uid="uid://ds1avvrty5dnh" path="res://Game.gd" id="1_u44n3"]
-[ext_resource type="PackedScene" path="res://Levels/Mosaic.tscn" id="2_t88pq"]
+[ext_resource type="PackedScene" uid="uid://bx7gpljnxkffx" path="res://Levels/Mosaic.tscn" id="2_t88pq"]
 [ext_resource type="PackedScene" uid="uid://c36s3q3kmioys" path="res://Player.tscn" id="3_t88pq"]
 [ext_resource type="Script" uid="uid://bvnh68cf5qw5d" path="res://Scanner/ray_draw.gd" id="4_r0x5m"]
 [ext_resource type="Script" uid="uid://c1alsqdsejge6" path="res://Minimap.gd" id="4_sb48q"]
@@ -20,9 +20,10 @@ environment = SubResource("Environment_0xref")
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yebci"]
 bg_color = Color(0, 0.3290106, 0.013159549, 1)
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_cauhl"]
 [sub_resource type="ViewportTexture" id="ViewportTexture_r0x5m"]
 viewport_path = NodePath("RayDraw/SubViewport")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_cauhl"]
 
 [node name="Game" type="Node3D" unique_id=1578990498]
 script = ExtResource("1_u44n3")
@@ -83,17 +84,6 @@ player = NodePath("../../Player")
 position = Vector2(101, 113)
 texture = ExtResource("5_t88pq")
 
-[node name="Ghost" type="CharacterBody3D" parent="." unique_id=2062454181]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.5422952)
-script = ExtResource("6_3mrqo")
-
-[node name="Sprite3D" type="Sprite3D" parent="Ghost" unique_id=2081870197]
-billboard = 2
-texture = ExtResource("6_r0x5m")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ghost" unique_id=201535296]
-shape = SubResource("SphereShape3D_cauhl")
-
 [node name="DetectorDisplay" type="TextureRect" parent="UI" unique_id=608293155]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(384, 216)
@@ -107,3 +97,14 @@ offset_right = 408.0
 offset_bottom = -29.0
 grow_vertical = 0
 texture = SubResource("ViewportTexture_r0x5m")
+
+[node name="Ghost" type="CharacterBody3D" parent="." unique_id=2062454181]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.5422952)
+script = ExtResource("6_3mrqo")
+
+[node name="Sprite3D" type="Sprite3D" parent="Ghost" unique_id=2081870197]
+billboard = 2
+texture = ExtResource("6_r0x5m")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ghost" unique_id=201535296]
+shape = SubResource("SphereShape3D_cauhl")
