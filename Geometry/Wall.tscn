@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://yj6kr7b8hjyc"]
+
+[ext_resource type="Texture2D" uid="uid://dip2nn0cbf6ll" path="res://Wall.png" id="2_dldoj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uvg8f"]
+albedo_texture = ExtResource("2_dldoj")
+
+[node name="Wall" type="Node3D" unique_id=430100447]
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="." unique_id=711116764]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_uvg8f")
+use_collision = true
+size = Vector3(0.1, 3, 2)

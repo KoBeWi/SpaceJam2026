@@ -27,7 +27,7 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-func _unhandled_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	var mm := event as InputEventMouseMotion
 	if mm:
 		rotation.y -= mm.relative.x * (1.0 / TAU ** 3)

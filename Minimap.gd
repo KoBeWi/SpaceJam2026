@@ -1,6 +1,6 @@
 extends Panel
 
-@export var geometry: Node
+var geometry: Node
 
 func _draw() -> void:
 	draw_set_transform(Vector2(size.x * 0.5, size.y * 0.5))

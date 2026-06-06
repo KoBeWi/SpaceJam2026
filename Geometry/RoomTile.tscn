@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dxm2rnp1ecis7"]
+
+[ext_resource type="Texture2D" uid="uid://wveit13gt0cn" path="res://Floor.png" id="1_oufri"]
+[ext_resource type="Texture2D" uid="uid://dip2nn0cbf6ll" path="res://Wall.png" id="2_st36f"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r247h"]
+albedo_texture = ExtResource("1_oufri")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6gmal"]
+albedo_texture = ExtResource("2_st36f")
+
+[node name="RoomTile" type="Node3D" unique_id=430100447]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=437384226]
+material_override = SubResource("StandardMaterial3D_r247h")
+use_collision = true
+size = Vector3(2, 0.1, 2)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="." unique_id=1690802149]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+material_override = SubResource("StandardMaterial3D_6gmal")
+use_collision = true
+size = Vector3(2, 0.1, 2)
