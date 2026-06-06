@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://cvffxayhsqiiu"]
+
+[ext_resource type="Script" uid="uid://bvnh68cf5qw5d" path="res://ray_draw.gd" id="1_nigug"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_5l23l"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="BoxMesh" id="BoxMesh_5l23l"]
+size = Vector3(0.25, 0.25, 0.25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nigug"]
+size = Vector3(0.25, 0.25, 0.25)
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_5l23l"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_nigug"]
+points = PackedVector3Array(-1.92, 0, -1.08, -1.92, 0, 1.08, 1.92, 0, -1.08, 1.92, 0, 1.08)
+
+[sub_resource type="Environment" id="Environment_0xref"]
+background_mode = 1
+
+[sub_resource type="World3D" id="World3D_nigug"]
+environment = SubResource("Environment_0xref")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nigug"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_5l23l"]
+size = Vector2(20, 20)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0xref"]
+points = PackedVector3Array(-10, 0, -10, -10, 0, 10, 10, 0, -10, 10, 0, 10)
+
+[node name="RayDraw" type="Node3D" unique_id=821747396]
+script = ExtResource("1_nigug")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=815062634]
+
+[node name="Sprite3D" type="Sprite3D" parent="Camera3D" unique_id=1293980627]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.42124426, -0.17819548, -0.41159195)
+texture = SubResource("ViewportTexture_5l23l")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1556377774]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.5483983)
+mesh = SubResource("BoxMesh_5l23l")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" unique_id=220622979]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" unique_id=546520126]
+shape = SubResource("BoxShape3D_nigug")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=286833248]
+transform = Transform3D(0.70710677, 0.49999997, -0.49999997, 0, 0.7071068, 0.7071068, 0.7071068, -0.5, 0.5, 0, 2, 0)
+
+[node name="TrailMeshInstance" type="MeshInstance3D" parent="." unique_id=1726540071]
+cast_shadow = 0
+mesh = SubResource("ImmediateMesh_5l23l")
+
+[node name="Detector" type="StaticBody3D" parent="." unique_id=391817132]
+transform = Transform3D(1, 0, -8.4703295e-22, 4.2351647e-22, -4.3711385e-08, 0.99999994, 0, -1.0000001, -4.3711392e-08, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Detector" unique_id=1341259481]
+shape = SubResource("ConvexPolygonShape3D_nigug")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1521101797]
+unique_name_in_owner = true
+own_world_3d = true
+world_3d = SubResource("World3D_nigug")
+size = Vector2i(192, 108)
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport" unique_id=384909071]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+projection = 1
+size = 2.16
+far = 1.0
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=286621825]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -4.969369)
+material_override = SubResource("StandardMaterial3D_nigug")
+mesh = SubResource("PlaneMesh_5l23l")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1377479277]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=674040709]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -4.969369)
+shape = SubResource("ConvexPolygonShape3D_0xref")

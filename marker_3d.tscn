@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://l6fp8ikvswv2"]
+
+[ext_resource type="Script" uid="uid://b08qf7vgbxd75" path="res://marker_3d.gd" id="1_uywx6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nigug"]
+resource_local_to_scene = true
+transparency = 1
+no_depth_test = true
+shading_mode = 0
+
+[sub_resource type="SphereMesh" id="SphereMesh_5l23l"]
+radius = 0.025
+height = 0.05
+radial_segments = 6
+rings = 3
+
+[node name="Marker3D" type="MeshInstance3D" unique_id=1769093220]
+material_override = SubResource("StandardMaterial3D_nigug")
+cast_shadow = 0
+mesh = SubResource("SphereMesh_5l23l")
+script = ExtResource("1_uywx6")
