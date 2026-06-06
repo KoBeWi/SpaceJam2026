@@ -49,12 +49,17 @@ func make_level() -> void:
 	var root := Node3D.new()
 	root.name = &\"Level\"
 	
+	var geometry := Node3D.new()
+	geometry.name = &\"Geometry\"
+	root.add_child(geometry)
+	geometry.owner = root
+	
 	for coords in level:
 		var world_coords: Vector2 = coords * 2
 		
 		var tile: Node3D = tile_scene.instantiate()
 		tile.position = Vector3(world_coords.x + 1, 0, world_coords.y + 1)
-		root.add_child(tile, true)
+		geometry.add_child(tile, true)
 		tile.owner = root
 		
 		for i in 4:
@@ -65,8 +70,15 @@ func make_level() -> void:
 			var wall: Node3D = wall_scene.instantiate()
 			wall.position = Vector3(world_coords.x + 1 + fw.x * 1, 0, world_coords.y + 1 + fw.y * 1)
 			wall.rotation.y = i % 2 * (PI/2)
-			root.add_child(wall, true)
+			geometry.add_child(wall, true)
 			wall.owner = root
+	
+	var start := Marker3D.new()
+	start.name = &\"Start\"
+	start.position.x = level[0].x * 2 + 0.5
+	start.position.z = level[0].y * 2 + 0.5
+	root.add_child(start)
+	start.owner = root
 	
 	var ps := PackedScene.new()
 	ps.pack(root)

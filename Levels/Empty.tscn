@@ -1,0 +1,74 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://Geometry/RoomTile.tscn" id="1_njov2"]
+[ext_resource type="PackedScene" path="res://Geometry/Wall.tscn" id="2_2au82"]
+
+[node name="Level" type="Node3D" unique_id=1641033129]
+
+[node name="Geometry" type="Node3D" parent="." unique_id=1352270318]
+
+[node name="RoomTile" type="Node3D" parent="Geometry" unique_id=430100447 instance=ExtResource("1_njov2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
+
+[node name="Wall" type="Node3D" parent="Geometry" unique_id=1790852084 instance=ExtResource("2_2au82")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="Wall2" type="Node3D" parent="Geometry" unique_id=515709473 instance=ExtResource("2_2au82")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1, 0, 0)
+
+[node name="RoomTile2" type="Node3D" parent="Geometry" unique_id=977298258 instance=ExtResource("1_njov2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 3)
+
+[node name="Wall3" type="Node3D" parent="Geometry" unique_id=748655001 instance=ExtResource("2_2au82")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+
+[node name="RoomTile3" type="Node3D" parent="Geometry" unique_id=2095358406 instance=ExtResource("1_njov2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 3)
+
+[node name="RoomTile4" type="Node3D" parent="Geometry" unique_id=131523917 instance=ExtResource("1_njov2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 1)
+
+[node name="Wall4" type="Node3D" parent="Geometry" unique_id=2005636311 instance=ExtResource("2_2au82")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 3, 0, 0)
+
+[node name="RoomTile5" type="Node3D" parent="Geometry" unique_id=430659330 instance=ExtResource("1_njov2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 1)
+
+[node name="Wall5" type="Node3D" parent="Geometry" unique_id=175670976 instance=ExtResource("2_2au82")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 1)
+
+[node name="Wall6" type="Node3D" parent="Geometry" unique_id=214740388 instance=ExtResource("2_2au82")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 5, 0, 0)
+
+[node name="RoomTile6" type="Node3D" parent="Geometry" unique_id=2098260814 instance=ExtResource("1_njov2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 3)
+
+[node name="Wall7" type="Node3D" parent="Geometry" unique_id=389612857 instance=ExtResource("2_2au82")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 3)
+
+[node name="RoomTile7" type="Node3D" parent="Geometry" unique_id=1872781879 instance=ExtResource("1_njov2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 5)
+
+[node name="Wall8" type="Node3D" parent="Geometry" unique_id=1828237857 instance=ExtResource("2_2au82")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1, 0, 6)
+
+[node name="Wall9" type="Node3D" parent="Geometry" unique_id=2145489849 instance=ExtResource("2_2au82")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+
+[node name="RoomTile8" type="Node3D" parent="Geometry" unique_id=1975726241 instance=ExtResource("1_njov2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 5)
+
+[node name="Wall10" type="Node3D" parent="Geometry" unique_id=1194030602 instance=ExtResource("2_2au82")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 3, 0, 6)
+
+[node name="RoomTile9" type="Node3D" parent="Geometry" unique_id=1302273928 instance=ExtResource("1_njov2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 5)
+
+[node name="Wall11" type="Node3D" parent="Geometry" unique_id=682928107 instance=ExtResource("2_2au82")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 5)
+
+[node name="Wall12" type="Node3D" parent="Geometry" unique_id=1647713461 instance=ExtResource("2_2au82")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 5, 0, 6)
+
+[node name="Start" type="Marker3D" parent="." unique_id=1762661135]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)

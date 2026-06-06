@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://b5hp5r2gpuwqx"]
 
 [ext_resource type="Script" uid="uid://ds1avvrty5dnh" path="res://Game.gd" id="1_u44n3"]
-[ext_resource type="PackedScene" uid="uid://dpr57u8qugtoy" path="res://Levels/Test.tscn" id="2_sb48q"]
+[ext_resource type="PackedScene" uid="uid://b4mbktsmprh1p" path="res://Levels/Eggplant.tscn" id="2_sb48q"]
 [ext_resource type="Script" uid="uid://qqorxc4ygjct" path="res://Player.gd" id="2_xkndl"]
 [ext_resource type="Script" uid="uid://c1alsqdsejge6" path="res://Minimap.gd" id="4_sb48q"]
+[ext_resource type="Texture2D" uid="uid://lgk6ix81ofsd" path="res://PlayerIcon.png" id="5_t88pq"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yebci"]
 
@@ -15,7 +16,6 @@ script = ExtResource("1_u44n3")
 level = ExtResource("2_sb48q")
 
 [node name="Player" type="CharacterBody3D" parent="." unique_id=1096630611]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6414821, 0)
 script = ExtResource("2_xkndl")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player" unique_id=1567644368]
@@ -34,18 +34,24 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Minimap" type="Panel" parent="UI" unique_id=36183961]
+[node name="Minimap" type="Panel" parent="UI" unique_id=36183961 node_paths=PackedStringArray("player")]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -117.0
-offset_top = -117.0
-offset_right = -17.0
-offset_bottom = -17.0
+offset_left = -224.0
+offset_top = -229.0
+offset_right = -24.0
+offset_bottom = -29.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_yebci")
 script = ExtResource("4_sb48q")
+player = NodePath("../../Player")
+
+[node name="PlayerIcon" type="Sprite2D" parent="UI/Minimap" unique_id=2138041697]
+position = Vector2(101, 113)
+texture = ExtResource("5_t88pq")
