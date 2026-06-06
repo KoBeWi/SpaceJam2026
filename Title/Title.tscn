@@ -29,7 +29,9 @@ func start_level(plik: String):
 	var game: Node = preload(\"uid://b5hp5r2gpuwqx\").instantiate()
 	game.level = load(\"res://Levels/%s.tscn\" % plik)
 	get_tree().change_scene_to_node(game)
-	
+
+func quit() -> void:
+	get_tree().quit()
 "
 
 [node name="Title" type="Control" unique_id=1237606815]
@@ -75,3 +77,5 @@ layout_mode = 2
 modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 text = "QUIT"
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="quit"]
