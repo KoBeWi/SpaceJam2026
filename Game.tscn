@@ -257,15 +257,12 @@ texture_under = ExtResource("12_yyih5")
 texture_progress = ExtResource("12_yyih5")
 tint_progress = Color(1, 0.7301085, 0, 1)
 
-[node name="Ghost" type="CharacterBody3D" parent="." unique_id=2062454181]
 [node name="Ghost" type="CharacterBody3D" parent="." unique_id=2062454181 node_paths=PackedStringArray("player_handle")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.5422952)
-collision_layer = 4
+collision_layer = 0
 script = ExtResource("6_3mrqo")
 player_handle = NodePath("../Player")
 
 [node name="Sprite3D" type="Sprite3D" parent="Ghost" unique_id=2081870197]
-visible = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
 billboard = 2
 texture = ExtResource("6_r0x5m")
@@ -278,6 +275,7 @@ shape = SubResource("SphereShape3D_cauhl")
 [node name="DuchOrbital" type="Marker3D" parent="Ghost/Orbit" unique_id=1859760827]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Ghost" unique_id=846318902]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
@@ -287,8 +285,8 @@ collision_mask = 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ghost/StaticBody3D" unique_id=678966686]
 shape = SubResource("BoxShape3D_5l23l")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=174042842]
-environment = SubResource("Environment_5l23l")
-
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Ghost" unique_id=66383543]
 stream = ExtResource("15_qjyg3")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=174042842]
+environment = SubResource("Environment_5l23l")
