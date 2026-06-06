@@ -3,6 +3,10 @@ extends Node3D
 @export var level: PackedScene
 
 @onready var duch: Node3D = $Ghost
+@onready var proximer: TextureProgressBar = %Proximer
+
+@onready var player: CharacterBody3D = $Player
+@onready var duch_orbital: Marker3D = %DuchOrbital
 
 func _enter_tree() -> void:
 	var level_instance: Node3D = level.instantiate()
@@ -20,3 +24,21 @@ func _ready() -> void:
 	
 	var dp: Vector2 = %Minimap.level.pick_random() * 2
 	duch.position = Vector3(dp.x + 1, 0.5, dp.y + 1)
+
+func _process(delta: float) -> void:
+	var dist := player.global_position.distance_to(duch_orbital.global_position)
+	if dist < 3:
+		proximer.value = 5
+	elif dist < 7:
+		proximer.value = 4
+	elif dist < 10:
+		proximer.value = 4
+	elif dist < 14:
+		proximer.value = 3
+	elif dist < 18:
+		proximer.value = 2
+	elif dist < 24:
+		proximer.value = 1
+	else:
+		proximer.value = 0
+	
