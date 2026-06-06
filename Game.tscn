@@ -2,33 +2,56 @@
 
 [ext_resource type="Script" uid="uid://ds1avvrty5dnh" path="res://Game.gd" id="1_u44n3"]
 [ext_resource type="PackedScene" path="res://Levels/Mosaic.tscn" id="2_t88pq"]
-[ext_resource type="Script" uid="uid://qqorxc4ygjct" path="res://Player.gd" id="2_xkndl"]
+[ext_resource type="PackedScene" uid="uid://c36s3q3kmioys" path="res://Player.tscn" id="3_t88pq"]
+[ext_resource type="Script" uid="uid://bvnh68cf5qw5d" path="res://Scanner/ray_draw.gd" id="4_r0x5m"]
 [ext_resource type="Script" uid="uid://c1alsqdsejge6" path="res://Minimap.gd" id="4_sb48q"]
 [ext_resource type="Texture2D" uid="uid://lgk6ix81ofsd" path="res://PlayerIcon.png" id="5_t88pq"]
 [ext_resource type="Script" uid="uid://bk2kju0g38ox2" path="res://👻.gd" id="6_3mrqo"]
 [ext_resource type="Texture2D" uid="uid://dt3fnvecekspq" path="res://Ghost.png" id="6_r0x5m"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yebci"]
+[sub_resource type="Environment" id="Environment_0xref"]
+background_mode = 1
+
+[sub_resource type="World3D" id="World3D_r0x5m"]
+environment = SubResource("Environment_0xref")
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_t88pq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yebci"]
 bg_color = Color(0, 0.3290106, 0.013159549, 1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_cauhl"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_r0x5m"]
+viewport_path = NodePath("RayDraw/SubViewport")
 
 [node name="Game" type="Node3D" unique_id=1578990498]
 script = ExtResource("1_u44n3")
 level = ExtResource("2_t88pq")
+metadata/_edit_horizontal_guides_ = [1051.0]
 
-[node name="Player" type="CharacterBody3D" parent="." unique_id=1096630611]
-script = ExtResource("2_xkndl")
+[node name="Player" parent="." unique_id=1441229512 instance=ExtResource("3_t88pq")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player" unique_id=1567644368]
-shape = SubResource("CapsuleShape3D_yebci")
-
-[node name="Camera3D" type="Camera3D" parent="Player" unique_id=251927925]
+[node name="RayDraw" type="Node3D" parent="." unique_id=1062892962 node_paths=PackedStringArray("trail_mesh_instance", "player_handle")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37548137, 0)
+script = ExtResource("4_r0x5m")
+trail_mesh_instance = NodePath("../TrailMeshInstance")
+player_handle = NodePath("../Player")
 
-[node name="SpotLight3D" type="SpotLight3D" parent="Player" unique_id=754934594]
+[node name="SubViewport" type="SubViewport" parent="RayDraw" unique_id=2141227969]
+unique_name_in_owner = true
+own_world_3d = true
+world_3d = SubResource("World3D_r0x5m")
+size = Vector2i(192, 108)
+
+[node name="Camera3D" type="Camera3D" parent="RayDraw/SubViewport" unique_id=176856894]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+projection = 1
+size = 2.16
+far = 1.0
+
+[node name="TrailMeshInstance" type="MeshInstance3D" parent="." unique_id=1066208773]
+cast_shadow = 0
+mesh = SubResource("ImmediateMesh_t88pq")
 
 [node name="UI" type="Control" parent="." unique_id=1508642237]
 layout_mode = 3
@@ -70,3 +93,17 @@ texture = ExtResource("6_r0x5m")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ghost" unique_id=201535296]
 shape = SubResource("SphereShape3D_cauhl")
+
+[node name="DetectorDisplay" type="TextureRect" parent="UI" unique_id=608293155]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(384, 216)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = -245.0
+offset_right = 408.0
+offset_bottom = -29.0
+grow_vertical = 0
+texture = SubResource("ViewportTexture_r0x5m")

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cvffxayhsqiiu"]
 
-[ext_resource type="Script" uid="uid://bvnh68cf5qw5d" path="res://ray_draw.gd" id="1_nigug"]
+[ext_resource type="Script" uid="uid://bvnh68cf5qw5d" path="res://Scanner/ray_draw.gd" id="1_nigug"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_5l23l"]
 viewport_path = NodePath("SubViewport")

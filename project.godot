@@ -45,6 +45,13 @@ backward={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="Player"
+3d_physics/layer_2="Walls"
+3d_physics/layer_3="Ghost"
+3d_physics/layer_4="Detector"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

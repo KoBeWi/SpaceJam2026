@@ -1,16 +1,19 @@
 extends Node3D
 
-const MARKER_3D = preload("res://marker_3d.tscn")
+const MARKER_3D = preload("res://Scanner/marker_3d.tscn")
 
 @export var ray_length: float = 10.0
 @export var trail_fade_seconds: float = 1.5
-@onready var trail_mesh_instance: MeshInstance3D = $TrailMeshInstance
-@onready var trail_mesh:ImmediateMesh = trail_mesh_instance.mesh
+
+@export var trail_mesh_instance:MeshInstance3D
+@export var player_handle:CharacterBody3D
+var trail_mesh:ImmediateMesh
 
 var trail_segments: Array[Dictionary] = []
 var trail_material: StandardMaterial3D
 
 func _ready() -> void:
+	trail_mesh = trail_mesh_instance.mesh
 	_setup_material()
 
 func _physics_process(delta: float) -> void:
@@ -20,9 +23,13 @@ func _physics_process(delta: float) -> void:
 
 
 func _fire_ray_and_record() -> void:
-	var ray_start := Vector3.UP * randf_range(-0.1, 0.1) + Vector3.RIGHT * randf_range(-0.1, 0.1)
+	var vector_forward := -player_handle.global_basis.z
+	#print(vector_forward)
+	#var ray_start := player_handle.global_position + Vector3.UP * randf_range(-0.1, 0.1) + Vector3.RIGHT * randf_range(-0.1, 0.1)
+	var ray_start := player_handle.global_position
 	#var ray_end := Vector3.FORWARD.rotated(Vector3.UP, randf_range(-0.1, 0.1)).rotated(Vector3.RIGHT, randf_range(-0.1, 0.1)) 
-	var ray_end := Vector3.FORWARD * 15.0 + Vector3.UP.rotated(Vector3.FORWARD, randf() * TAU) * randf()
+	var ray_end := vector_forward * 15.0 + Vector3.UP.rotated(vector_forward, randf() * TAU) * randf()
+	#var ray_end := vector_forward * 15.0
 	
 	ray_end *= 15.0
 	var ray := Vector3.FORWARD
@@ -30,7 +37,7 @@ func _fire_ray_and_record() -> void:
 	var bounce := 0
 	while bounce < 5 :
 		ray = ray_end - ray_start
-		var query := PhysicsRayQueryParameters3D.create(ray_start, ray_end)
+		var query := PhysicsRayQueryParameters3D.create(ray_start, ray_end, 14)
 		var collision := get_world_3d().direct_space_state.intersect_ray(query)
 		var segment_end := ray_end
 
