@@ -1,6 +1,6 @@
 extends Panel
 
-const TILE_SIZE = 20
+const TILE_SIZE = 10
 
 @export var player: Node3D
 

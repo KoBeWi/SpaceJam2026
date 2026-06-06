@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b5hp5r2gpuwqx"]
 
 [ext_resource type="Script" uid="uid://ds1avvrty5dnh" path="res://Game.gd" id="1_u44n3"]
-[ext_resource type="PackedScene" uid="uid://b4mbktsmprh1p" path="res://Levels/Eggplant.tscn" id="2_sb48q"]
+[ext_resource type="PackedScene" path="res://Levels/Mosaic.tscn" id="2_t88pq"]
 [ext_resource type="Script" uid="uid://qqorxc4ygjct" path="res://Player.gd" id="2_xkndl"]
 [ext_resource type="Script" uid="uid://c1alsqdsejge6" path="res://Minimap.gd" id="4_sb48q"]
 [ext_resource type="Texture2D" uid="uid://lgk6ix81ofsd" path="res://PlayerIcon.png" id="5_t88pq"]
@@ -13,7 +13,7 @@ bg_color = Color(0, 0.3290106, 0.013159549, 1)
 
 [node name="Game" type="Node3D" unique_id=1578990498]
 script = ExtResource("1_u44n3")
-level = ExtResource("2_sb48q")
+level = ExtResource("2_t88pq")
 
 [node name="Player" type="CharacterBody3D" parent="." unique_id=1096630611]
 script = ExtResource("2_xkndl")

@@ -43,6 +43,12 @@ func get_cursor_coords() -> Vector2i:
 	return (panel.get_local_mouse_position() - Vector2.ONE * TILE_SIZE / 2).snappedf(TILE_SIZE) / TILE_SIZE
 
 func make_level() -> void:
+	if $LineEdit.text.is_empty():
+		$LineEdit.modulate = Color.RED
+		return
+	
+	$LineEdit.modulate = Color.WHITE
+	
 	var tile_scene: PackedScene = load(\"uid://dxm2rnp1ecis7\")
 	var wall_scene: PackedScene = load(\"uid://yj6kr7b8hjyc\")
 	
@@ -82,7 +88,7 @@ func make_level() -> void:
 	
 	var ps := PackedScene.new()
 	ps.pack(root)
-	ResourceSaver.save(ps, \"res://Test.tscn\")
+	ResourceSaver.save(ps, \"res://Levels/%s.tscn\" % $LineEdit.text)
 "
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1bqyp"]
