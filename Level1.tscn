@@ -1,32 +1,50 @@
 [gd_scene format=3 uid="uid://6mvwrwt0bv8w"]
 
+[ext_resource type="Texture2D" uid="uid://wveit13gt0cn" path="res://Floor.png" id="1_mc20k"]
+[ext_resource type="Texture2D" uid="uid://dip2nn0cbf6ll" path="res://Wall.png" id="2_cove1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dwyiq"]
+albedo_texture = ExtResource("1_mc20k")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dn5ey"]
+albedo_texture = ExtResource("2_cove1")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lmyl5"]
+albedo_texture = ExtResource("2_cove1")
+
 [node name="Node3D" type="Node3D" unique_id=1907770063]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1109804466]
+material_override = SubResource("StandardMaterial3D_dwyiq")
 use_collision = true
 size = Vector3(20, 1, 20)
 
 [node name="CSGBox3D6" type="CSGBox3D" parent="." unique_id=749477457]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+material_override = SubResource("StandardMaterial3D_dn5ey")
 use_collision = true
 size = Vector3(20, 1, 20)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=576890663]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 2, 0)
+material_override = SubResource("StandardMaterial3D_dn5ey")
 use_collision = true
 size = Vector3(1, 4, 20)
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="." unique_id=1504843317]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2, 0)
+material_override = SubResource("StandardMaterial3D_dn5ey")
 use_collision = true
 size = Vector3(1, 4, 20)
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="." unique_id=1947814457]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 10)
+material_override = SubResource("StandardMaterial3D_lmyl5")
 use_collision = true
 size = Vector3(20, 4, 1)
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="." unique_id=1814394089]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -10)
+material_override = SubResource("StandardMaterial3D_dn5ey")
 use_collision = true
 size = Vector3(20, 4, 1)

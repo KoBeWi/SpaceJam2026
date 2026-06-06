@@ -4,29 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://6mvwrwt0bv8w" path="res://Level1.tscn" id="1_wbfu4"]
 [ext_resource type="Script" uid="uid://qqorxc4ygjct" path="res://Player.gd" id="2_xkndl"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xkndl"]
-sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-
-[sub_resource type="Sky" id="Sky_u44n3"]
-sky_material = SubResource("ProceduralSkyMaterial_xkndl")
-
-[sub_resource type="Environment" id="Environment_sb48q"]
-background_mode = 2
-sky = SubResource("Sky_u44n3")
-glow_enabled = true
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yebci"]
 
 [node name="Game" type="Node3D" unique_id=1578990498]
 script = ExtResource("1_u44n3")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1935624974]
-transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
-shadow_enabled = true
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=670120382]
-environment = SubResource("Environment_sb48q")
 
 [node name="Node3D" parent="." unique_id=1907770063 instance=ExtResource("1_wbfu4")]
 
