@@ -22,9 +22,11 @@ func catch():
 	
 	$Sprite3D.show()
 	$AudioStreamPlayer3D.play()
+	%Timer.set_process(false)
 	
 	var tween := create_tween()
 	tween.tween_interval(0.5)
 	tween.tween_property($Sprite3D, "modulate:a", 0.0, 0.5)
 	tween.tween_interval(0.5)
 	tween.tween_callback(queue_free)
+	tween.tween_callback(owner.win)

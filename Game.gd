@@ -75,6 +75,11 @@ func _process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	var k := event as InputEventKey
 	if k and k.pressed and not k.echo:
+		if %Winlabel.visible:
+			if k.keycode == KEY_ESCAPE:
+				get_tree().change_scene_to_file("uid://bvsjr5kk2hsxi")
+			return
+		
 		match k.keycode:
 			KEY_1:
 				current_item = 0
@@ -102,3 +107,14 @@ func _input(event: InputEvent) -> void:
 		box.position = player.position
 		box.velocity = -player.global_basis.z * 3 + Vector3.UP * 4
 		add_child(box)
+
+func win():
+	proximer.hide()
+	detector_display.hide()
+	catcher.hide()
+	
+	set_process(false)
+	player.set_physics_process(false)
+	%Winlabel.show()
+	%Timer.hide()
+	%Winlabel.text %= [%Timer.time / 60, fmod(%Timer.time, 60)]
