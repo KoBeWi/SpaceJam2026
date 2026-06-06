@@ -4,11 +4,14 @@ extends Node3D
 
 @onready var duch: Node3D = $Ghost
 @onready var proximer: TextureProgressBar = %Proximer
+@onready var detector_display: TextureRect = %DetectorDisplay
 
 @onready var player: CharacterBody3D = $Player
 @onready var duch_orbital: Marker3D = %DuchOrbital
 @onready var beeper: AudioStreamPlayer = %Beeper
 @onready var proximanimator: AnimationPlayer = %Proximanimator
+
+var current_item: int
 
 func _enter_tree() -> void:
 	var level_instance: Node3D = level.instantiate()
@@ -26,11 +29,16 @@ func _ready() -> void:
 	
 	var dp: Vector2 = %Minimap.level.pick_random() * 2
 	duch.position = Vector3(dp.x + 1, 0.5, dp.y + 1)
+	
+	detector_display.hide()
 
 var beeper_max: float
 var beeper_current: float
 
 func _process(delta: float) -> void:
+	if not proximer.visible:
+		return
+	
 	var dist := player.global_position.distance_to(duch_orbital.global_position)
 	if dist < 3:
 		proximer.value = 5
@@ -58,3 +66,19 @@ func _process(delta: float) -> void:
 	if beeper_current >= beeper_max:
 		proximanimator.play(&"Beep")
 		beeper_current = 0
+
+func _input(event: InputEvent) -> void:
+	var k := event as InputEventKey
+	if k and k.pressed and not k.echo:
+		match k.keycode:
+			KEY_1:
+				current_item = 0
+			KEY_2:
+				current_item = 1
+			KEY_3:
+				current_item = 2
+			_:
+				return
+		
+		proximer.visible = current_item == 0
+		detector_display.visible = current_item == 1

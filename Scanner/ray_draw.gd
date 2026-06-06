@@ -2,6 +2,9 @@ extends Node3D
 
 const MARKER_3D = preload("res://Scanner/marker_3d.tscn")
 
+@onready var ray_sound: AudioStreamPlayer = %RaySound
+@onready var detector_display: TextureRect = %DetectorDisplay
+
 @export var ray_length: float = 10.0
 @export var trail_fade_seconds: float = 1.5
 
@@ -103,6 +106,10 @@ func _rebuild_trail_mesh() -> void:
 	trail_mesh.surface_end()
 
 func spawn_marker(in_position: Vector3, in_distance:float) -> void:
+	if detector_display.visible:
+		ray_sound.pitch_scale = 40.0 / in_distance
+		ray_sound.play()
+	
 	var marker = MARKER_3D.instantiate()
 	marker.position = Vector3( in_position.x, in_position.z,0.0)
 	marker.setup(in_distance)
