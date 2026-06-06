@@ -2,10 +2,13 @@
 
 [ext_resource type="PackedScene" uid="uid://dxm2rnp1ecis7" path="res://Geometry/RoomTile.tscn" id="1_uetnu"]
 [ext_resource type="PackedScene" uid="uid://yj6kr7b8hjyc" path="res://Geometry/Wall.tscn" id="2_rmj83"]
+[ext_resource type="VoxelGIData" uid="uid://wvlxa3rx6rs5" path="res://Levels/Mosaic.VoxelGI_data.res" id="3_rmj83"]
+[ext_resource type="PackedScene" uid="uid://b1mxpq4vryceb" path="res://AreaLight.tscn" id="4_aso0v"]
 
 [node name="Level" type="Node3D" unique_id=833097790]
 
 [node name="Geometry" type="Node3D" parent="." unique_id=952379820]
+metadata/_edit_group_ = true
 
 [node name="RoomTile" parent="Geometry" unique_id=430100447 instance=ExtResource("1_uetnu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 11)
@@ -801,3 +804,71 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 0, 23)
 
 [node name="Start" type="Marker3D" parent="." unique_id=1147150417]
 transform = Transform3D(-0.62739885, 0, -0.7786981, 0, 1, 0, 0.7786981, 0, -0.62739885, 10.5, 0, 10.5)
+
+[node name="VoxelGI" type="VoxelGI" parent="." unique_id=5124202]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 2, 20)
+subdiv = 2
+size = Vector3(28.614197, 5, 29.243896)
+data = ExtResource("3_rmj83")
+
+[node name="Light" type="Node3D" parent="." unique_id=1233316681]
+
+[node name="AreaLight3D" parent="Light" unique_id=1557519219 instance=ExtResource("4_aso0v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 2, 13.85)
+
+[node name="AreaLight3D2" parent="Light" unique_id=432900795 instance=ExtResource("4_aso0v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 2, 13.849999)
+
+[node name="AreaLight3D3" parent="Light" unique_id=882007438 instance=ExtResource("4_aso0v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 2, 9.85)
+
+[node name="AreaLight3D4" parent="Light" unique_id=568999795 instance=ExtResource("4_aso0v")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 27, 2, 18.15)
+
+[node name="AreaLight3D5" parent="Light" unique_id=969006288 instance=ExtResource("4_aso0v")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 12, 2, 22.15)
+
+[node name="AreaLight3D6" parent="Light" unique_id=724223815 instance=ExtResource("4_aso0v")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 18, 2, 22.15)
+
+[node name="AreaLight3D7" parent="Light" unique_id=765843734 instance=ExtResource("4_aso0v")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 20, 2, 32.15)
+
+[node name="AreaLight3D18" parent="Light" unique_id=1249093482 instance=ExtResource("4_aso0v")]
+transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 20, 2, 27.85)
+
+[node name="AreaLight3D19" parent="Light" unique_id=1590155273 instance=ExtResource("4_aso0v")]
+transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 14, 2, 27.85)
+
+[node name="AreaLight3D20" parent="Light" unique_id=999580038 instance=ExtResource("4_aso0v")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 25.85, 2, 27)
+
+[node name="AreaLight3D8" parent="Light" unique_id=1368613518 instance=ExtResource("4_aso0v")]
+transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 14, 2, 33.85)
+
+[node name="AreaLight3D9" parent="Light" unique_id=211295863 instance=ExtResource("4_aso0v")]
+transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 28, 2, 23.85)
+
+[node name="AreaLight3D10" parent="Light" unique_id=1311089379 instance=ExtResource("4_aso0v")]
+transform = Transform3D(-1, 0, 2.6226832e-07, 0, 1, 0, -2.6226832e-07, 0, -1, 28, 2, 30.15)
+
+[node name="AreaLight3D11" parent="Light" unique_id=1774625897 instance=ExtResource("4_aso0v")]
+transform = Transform3D(3.059797e-07, 0, 1, 0, 1, 0, -1, 0, 3.059797e-07, 11.85, 2, 30)
+
+[node name="AreaLight3D12" parent="Light" unique_id=1223194826 instance=ExtResource("4_aso0v")]
+transform = Transform3D(-3.934025e-07, 0, -1, 0, 1, 0, 1, 0, -3.934025e-07, 6.15, 2, 26)
+
+[node name="AreaLight3D16" parent="Light" unique_id=1254076048 instance=ExtResource("4_aso0v")]
+transform = Transform3D(-3.934025e-07, 0, -1, 0, 1, 0, 1, 0, -3.934025e-07, 6.15, 2, 18)
+
+[node name="AreaLight3D17" parent="Light" unique_id=929249018 instance=ExtResource("4_aso0v")]
+transform = Transform3D(-3.934025e-07, 0, -1, 0, 1, 0, 1, 0, -3.934025e-07, 6.15, 2, 10)
+
+[node name="AreaLight3D13" parent="Light" unique_id=667390991 instance=ExtResource("4_aso0v")]
+transform = Transform3D(-1, 0, 4.371139e-07, 0, 1, 0, -4.371139e-07, 0, -1, 15, 2, 6.15)
+
+[node name="AreaLight3D14" parent="Light" unique_id=14483181 instance=ExtResource("4_aso0v")]
+transform = Transform3D(4.808253e-07, 0, 1, 0, 1, 0, -1, 0, 4.808253e-07, 33.85, 2, 14)
+
+[node name="AreaLight3D15" parent="Light" unique_id=1064371981 instance=ExtResource("4_aso0v")]
+transform = Transform3D(4.808253e-07, 0, 1, 0, 1, 0, -1, 0, 4.808253e-07, 33.85, 2, 27)
