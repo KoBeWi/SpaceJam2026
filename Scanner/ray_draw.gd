@@ -9,6 +9,9 @@ const MARKER_3D = preload("res://Scanner/marker_3d.tscn")
 @export var player_handle:CharacterBody3D
 var trail_mesh:ImmediateMesh
 
+var ray_max_distance := 40.0
+var ray_dispersion := 0.1
+var ray_spread := 0.1
 var trail_segments: Array[Dictionary] = []
 var trail_material: StandardMaterial3D
 
@@ -24,14 +27,13 @@ func _physics_process(delta: float) -> void:
 
 func _fire_ray_and_record() -> void:
 	var vector_forward := -player_handle.global_basis.z
-	#print(vector_forward)
-	#var ray_start := player_handle.global_position + Vector3.UP * randf_range(-0.1, 0.1) + Vector3.RIGHT * randf_range(-0.1, 0.1)
-	var ray_start := player_handle.global_position
-	#var ray_end := Vector3.FORWARD.rotated(Vector3.UP, randf_range(-0.1, 0.1)).rotated(Vector3.RIGHT, randf_range(-0.1, 0.1)) 
-	var ray_end := vector_forward * 15.0 + Vector3.UP.rotated(vector_forward, randf() * TAU) * randf()
-	#var ray_end := vector_forward * 15.0
-	
-	ray_end *= 15.0
+	var ray_start :Vector3= player_handle.camera_3d.global_position 
+	ray_start += player_handle.global_basis.x * randf_range(-ray_spread, ray_spread) 
+	ray_start += player_handle.global_basis.y * randf_range(-ray_spread, ray_spread)
+
+	var direction:= vector_forward + Vector3.UP.rotated(vector_forward, randf() * TAU) * randf() * ray_dispersion
+	var ray_end := ray_start + direction.normalized() * ray_max_distance
+
 	var ray := Vector3.FORWARD
 	var distance := 0.0
 	var bounce := 0
@@ -43,6 +45,8 @@ func _fire_ray_and_record() -> void:
 
 		if not collision.is_empty():
 			distance += ray_start.distance_to(collision.position)
+			if distance > ray_max_distance:
+				return
 			if collision.collider.name == "Detector":
 				
 				spawn_marker(collision.collider.to_local(collision.position), distance)
