@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://bvsjr5kk2hsxi"]
 
+[ext_resource type="Script" uid="uid://xvfnss6lmsgj" path="res://title.gd" id="1_jiqn2"]
+
 [node name="Title" type="Control" unique_id=1237606815]
 layout_mode = 3
 anchors_preset = 15
@@ -7,4 +9,41 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_jiqn2")
 metadata/_edit_lock_ = true
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=343702904]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=2017508624]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=2039286999]
+layout_mode = 2
+theme_override_font_sizes/font_size = 52
+text = "STREFA PROMIENIOWANIA"
+horizontal_alignment = 1
+
+[node name="SubtitleLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1964772882]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Unikaj goracych stref, chowaj sie w schronie i zbieraj tabletki jodowe."
+horizontal_alignment = 1
+
+[node name="StartButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=99072498]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "START"
+
+[node name="HintLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=923900943]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Sterowanie: strzalki / WSAD
+W grze: R - restart, P - pauza, M - audio, ESC - menu"
+horizontal_alignment = 1
