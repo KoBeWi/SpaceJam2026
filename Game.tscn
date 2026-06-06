@@ -100,6 +100,7 @@ texture = SubResource("ViewportTexture_r0x5m")
 
 [node name="Ghost" type="CharacterBody3D" parent="." unique_id=2062454181]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.5422952)
+collision_layer = 0
 script = ExtResource("6_3mrqo")
 
 [node name="Sprite3D" type="Sprite3D" parent="Ghost" unique_id=2081870197]

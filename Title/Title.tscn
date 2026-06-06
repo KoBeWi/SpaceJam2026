@@ -11,7 +11,8 @@ script/source = "extends Control
 func _ready() -> void:
 	add_level(\"Mosaic\", \"Open Space\")
 	add_level(\"Maze\", \"Abandoned Corridors\")
-	add_level(\"Worm\", \"Medium Basement\")
+	add_level(\"Worm\", \"Common Basement\")
+	add_level(\"Rings\", \"Underground Spiral\")
 
 func _process(delta: float) -> void:
 	label.position = label_original + Vector2(randf_range(-1, 1), randf_range(-1, 1))
