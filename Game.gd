@@ -5,6 +5,8 @@ extends Node3D
 @onready var duch: Node3D = $Ghost
 @onready var proximer: TextureProgressBar = %Proximer
 @onready var detector_display: TextureRect = %DetectorDisplay
+@onready var catcher: HBoxContainer = %Catcher
+@onready var catcher_timeout: TextureProgressBar = %CatcherTimeout
 
 @onready var player: CharacterBody3D = $Player
 @onready var duch_orbital: Marker3D = %DuchOrbital
@@ -31,11 +33,14 @@ func _ready() -> void:
 	duch.position = Vector3(dp.x + 1, 0.5, dp.y + 1)
 	
 	detector_display.hide()
+	catcher.hide()
 
 var beeper_max: float
 var beeper_current: float
 
 func _process(delta: float) -> void:
+	catcher_timeout.value += delta
+	
 	if not proximer.visible:
 		return
 	
@@ -82,3 +87,18 @@ func _input(event: InputEvent) -> void:
 		
 		proximer.visible = current_item == 0
 		detector_display.visible = current_item == 1
+		catcher.visible = current_item == 2
+	
+	if current_item != 2:
+		return
+	
+	var mb := event as InputEventMouseButton
+	if mb and mb.pressed and mb.button_index == MOUSE_BUTTON_LEFT:
+		if not is_equal_approx(catcher_timeout.value, catcher_timeout.max_value):
+			return
+		
+		catcher_timeout.value = 0
+		var box := preload("uid://btypyodrftaco").instantiate()
+		box.position = player.position
+		box.velocity = -player.global_basis.z * 3 + Vector3.UP * 4
+		add_child(box)

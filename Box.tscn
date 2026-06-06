@@ -1,0 +1,182 @@
+[gd_scene format=3 uid="uid://btypyodrftaco"]
+
+[ext_resource type="Texture2D" uid="uid://dg7qbv3lr6typ" path="res://Box.png" id="1_0bkxv"]
+
+[sub_resource type="GDScript" id="GDScript_jm3vu"]
+script/source = "extends StaticBody3D
+
+var velocity: Vector3
+
+func _physics_process(delta: float) -> void:
+	velocity += Vector3.DOWN * 9.8 * delta
+	var col := move_and_collide(velocity * delta)
+	if col and col.get_normal().y > 0:
+		$AnimationPlayer.play(&\"Unwrap\")
+		set_physics_process(false)
+
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	body.catch()
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == &\"Unwrap\":
+		queue_free()
+"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yebci"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jm3vu"]
+albedo_texture = ExtResource("1_0bkxv")
+
+[sub_resource type="BoxMesh" id="BoxMesh_yebci"]
+
+[sub_resource type="Animation" id="Animation_speaj"]
+resource_name = "Disable"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -0.45, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 0.100000024, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Area3D/CollisionShape3D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_jm3vu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Area3D/CollisionShape3D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_0bkxv"]
+resource_name = "Unwrap"
+length = 2.5000000000000004
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector3(0, -0.45, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6, 1.5, 2.5),
+"transitions": PackedFloat32Array(0.5, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 0.1, 1), Vector3(1, 1, 1), Vector3(1, 1, 1), Vector3(0, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Area3D/CollisionShape3D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.6, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jm3vu"]
+_data = {
+&"Disable": SubResource("Animation_speaj"),
+&"RESET": SubResource("Animation_jm3vu"),
+&"Unwrap": SubResource("Animation_0bkxv")
+}
+
+[node name="Box" type="StaticBody3D" unique_id=1661716638]
+collision_layer = 0
+script = SubResource("GDScript_jm3vu")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1336147264]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=288969794]
+shape = SubResource("BoxShape3D_yebci")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2105569490]
+shape = SubResource("BoxShape3D_yebci")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1092651089]
+material_override = SubResource("StandardMaterial3D_jm3vu")
+mesh = SubResource("BoxMesh_yebci")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1870756575]
+libraries/ = SubResource("AnimationLibrary_jm3vu")
+autoplay = &"Disable"
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

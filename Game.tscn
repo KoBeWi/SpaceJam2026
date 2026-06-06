@@ -12,6 +12,9 @@
 [ext_resource type="Texture2D" uid="uid://d3gklk5vbw11" path="res://ProximerPanel.png" id="7_yx171"]
 [ext_resource type="Texture2D" uid="uid://cwihnrx7s5fgr" path="res://Proximer.png" id="8_yhmtn"]
 [ext_resource type="AudioStream" uid="uid://bk5gi0ae1q6h" path="res://Beeper.wav" id="9_yhmtn"]
+[ext_resource type="Texture2D" uid="uid://c4dct0i4fupm4" path="res://Mouse_Left_Key_Light.png" id="11_lvtmh"]
+[ext_resource type="Texture2D" uid="uid://dvaebj72pr1pf" path="res://Timer.png" id="12_yyih5"]
+[ext_resource type="AudioStream" uid="uid://bt1h6q4w5i7mt" path="res://Disappear.wav" id="15_qjyg3"]
 
 [sub_resource type="Environment" id="Environment_0xref"]
 background_mode = 1
@@ -131,6 +134,7 @@ level = ExtResource("2_t88pq")
 metadata/_edit_horizontal_guides_ = [1051.0]
 
 [node name="Player" parent="." unique_id=1441229512 instance=ExtResource("3_t88pq")]
+collision_layer = 0
 
 [node name="RayDraw" type="Node3D" parent="." unique_id=1062892962 node_paths=PackedStringArray("trail_mesh_instance", "player_handle")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37548137, 0)
@@ -225,10 +229,38 @@ max_polyphony = 2
 unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_lvtmh")
 
+[node name="Catcher" type="HBoxContainer" parent="UI" unique_id=373025646]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 992.49347
+offset_top = 890.71155
+offset_right = 1032.4934
+offset_bottom = 930.71155
+
+[node name="TextureRect" type="TextureRect" parent="UI/Catcher" unique_id=439839680]
+layout_mode = 2
+texture = ExtResource("11_lvtmh")
+
+[node name="Label" type="Label" parent="UI/Catcher" unique_id=338775860]
+layout_mode = 2
+text = "Throw Box"
+
+[node name="CatcherTimeout" type="TextureProgressBar" parent="UI/Catcher" unique_id=1190019846]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 10.0
+step = 0.0
+value = 10.0
+fill_mode = 4
+texture_under = ExtResource("12_yyih5")
+texture_progress = ExtResource("12_yyih5")
+tint_progress = Color(1, 0.7301085, 0, 1)
+
 [node name="Ghost" type="CharacterBody3D" parent="." unique_id=2062454181]
 [node name="Ghost" type="CharacterBody3D" parent="." unique_id=2062454181 node_paths=PackedStringArray("player_handle")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.5422952)
-collision_layer = 0
+collision_layer = 4
 script = ExtResource("6_3mrqo")
 player_handle = NodePath("../Player")
 
@@ -257,3 +289,6 @@ shape = SubResource("BoxShape3D_5l23l")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=174042842]
 environment = SubResource("Environment_5l23l")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Ghost" unique_id=66383543]
+stream = ExtResource("15_qjyg3")
