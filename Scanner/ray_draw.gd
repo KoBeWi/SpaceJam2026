@@ -18,15 +18,24 @@ var ray_spread := 0.1
 var trail_segments: Array[Dictionary] = []
 var trail_material: StandardMaterial3D
 
+var pitch_array :PackedInt32Array
+var array_iterator := 0
+
 func _ready() -> void:
 	trail_mesh = trail_mesh_instance.mesh
+	pitch_array.resize(40)
+	pitch_array.fill(0)
 	_setup_material()
 
 func _physics_process(delta: float) -> void:
-	_update_trail(delta)
-
-	_fire_ray_and_record()
-
+	#_update_trail(delta)
+	for i in 3:
+		array_iterator = (array_iterator+1) % 40
+		pitch_array[array_iterator] = 0
+		_fire_ray_and_record()
+		
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		pitch_array.fill(0)
 
 func _fire_ray_and_record() -> void:
 	var vector_forward := -player_handle.global_basis.z
@@ -57,12 +66,12 @@ func _fire_ray_and_record() -> void:
 			ray = ray.bounce(collision.normal)
 			
 
-		trail_segments.append({
-			"start": ray_start,
-			"end": segment_end,
-			"age": 0.0,
-			"idx": bounce
-		})
+		#trail_segments.append({
+			#"start": ray_start,
+			#"end": segment_end,
+			#"age": 0.0,
+			#"idx": bounce
+		#})
 		ray_start = segment_end
 		ray_end = ray_start + ray
 		bounce += 1
@@ -107,8 +116,11 @@ func _rebuild_trail_mesh() -> void:
 
 func spawn_marker(in_position: Vector3, in_distance:float) -> void:
 	if detector_display.visible:
-		ray_sound.pitch_scale = 40.0 / in_distance
-		ray_sound.play()
+		var idx :int = floori(in_distance)
+		if not pitch_array[idx]:
+			pitch_array[idx] = 1
+			ray_sound.pitch_scale = 20.0 / in_distance
+			ray_sound.play()
 	
 	var marker = MARKER_3D.instantiate()
 	marker.position = Vector3( in_position.x, in_position.z,0.0)
