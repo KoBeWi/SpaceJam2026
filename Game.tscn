@@ -5,11 +5,15 @@
 [ext_resource type="Script" uid="uid://qqorxc4ygjct" path="res://Player.gd" id="2_xkndl"]
 [ext_resource type="Script" uid="uid://c1alsqdsejge6" path="res://Minimap.gd" id="4_sb48q"]
 [ext_resource type="Texture2D" uid="uid://lgk6ix81ofsd" path="res://PlayerIcon.png" id="5_t88pq"]
+[ext_resource type="Script" uid="uid://bk2kju0g38ox2" path="res://👻.gd" id="6_3mrqo"]
+[ext_resource type="Texture2D" uid="uid://dt3fnvecekspq" path="res://Ghost.png" id="6_r0x5m"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yebci"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yebci"]
 bg_color = Color(0, 0.3290106, 0.013159549, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_cauhl"]
 
 [node name="Game" type="Node3D" unique_id=1578990498]
 script = ExtResource("1_u44n3")
@@ -55,3 +59,14 @@ player = NodePath("../../Player")
 [node name="PlayerIcon" type="Sprite2D" parent="UI/Minimap" unique_id=2138041697]
 position = Vector2(101, 113)
 texture = ExtResource("5_t88pq")
+
+[node name="Ghost" type="CharacterBody3D" parent="." unique_id=2062454181]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.5422952)
+script = ExtResource("6_3mrqo")
+
+[node name="Sprite3D" type="Sprite3D" parent="Ghost" unique_id=2081870197]
+billboard = 2
+texture = ExtResource("6_r0x5m")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ghost" unique_id=201535296]
+shape = SubResource("SphereShape3D_cauhl")
