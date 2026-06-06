@@ -3,13 +3,17 @@
 [ext_resource type="Script" uid="uid://ds1avvrty5dnh" path="res://Game.gd" id="1_u44n3"]
 [ext_resource type="PackedScene" uid="uid://6mvwrwt0bv8w" path="res://Level1.tscn" id="1_wbfu4"]
 [ext_resource type="Script" uid="uid://qqorxc4ygjct" path="res://Player.gd" id="2_xkndl"]
+[ext_resource type="Script" uid="uid://c1alsqdsejge6" path="res://Minimap.gd" id="4_sb48q"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yebci"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yebci"]
+bg_color = Color(0, 0.3290106, 0.013159549, 1)
 
 [node name="Game" type="Node3D" unique_id=1578990498]
 script = ExtResource("1_u44n3")
 
-[node name="Node3D" parent="." unique_id=1907770063 instance=ExtResource("1_wbfu4")]
+[node name="Level" parent="." unique_id=1907770063 instance=ExtResource("1_wbfu4")]
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=1096630611]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6414821, 0)
@@ -20,3 +24,30 @@ shape = SubResource("CapsuleShape3D_yebci")
 
 [node name="Camera3D" type="Camera3D" parent="CharacterBody3D" unique_id=251927925]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37548137, 0)
+
+[node name="UI" type="Control" parent="." unique_id=1508642237]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Minimap" type="Panel" parent="UI" unique_id=36183961 node_paths=PackedStringArray("geometry")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -117.0
+offset_top = -117.0
+offset_right = -17.0
+offset_bottom = -17.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_yebci")
+script = ExtResource("4_sb48q")
+geometry = NodePath("../../Level/Geometry")
+
+[editable path="Level"]
