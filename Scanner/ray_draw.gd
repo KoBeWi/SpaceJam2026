@@ -20,6 +20,7 @@ var trail_material: StandardMaterial3D
 
 var pitch_array :PackedInt32Array
 var array_iterator := 0
+var is_in_face_pressed :bool = false
 
 func _ready() -> void:
 	trail_mesh = trail_mesh_instance.mesh
@@ -29,14 +30,21 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	_update_trail(delta)
-	for i in 3:
-		array_iterator = (array_iterator+1) % 40
-		pitch_array[array_iterator] = 0
-		_fire_ray_and_record()
-		
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		if not is_in_face_pressed:
+			is_in_face_pressed = true
+	else:
+		is_in_face_pressed = false
+	
+	if is_in_face_pressed:
 		pitch_array.fill(0)
-
+		for i in 6:
+			_fire_ray_and_record()
+	else:
+		for i in 3:
+			array_iterator = (array_iterator+1) % 40
+			pitch_array[array_iterator] = 0
+			_fire_ray_and_record()
 func _fire_ray_and_record() -> void:
 	var vector_forward := -player_handle.global_basis.z
 	var ray_start :Vector3= player_handle.camera_3d.global_position 

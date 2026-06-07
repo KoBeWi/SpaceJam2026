@@ -61,13 +61,7 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
-		if not is_scaner_in_face:
-			is_scaner_in_face = true
-			%AnimationPlayer.play("in_face")
-	elif is_scaner_in_face:
-		is_scaner_in_face = false
-		%AnimationPlayer.play("rest_pose")
+
 		
 	
 
@@ -123,3 +117,13 @@ func _input(event: InputEvent) -> void:
 	var mm := event as InputEventMouseMotion
 	if mm:
 		rotation.y -= mm.relative.x * (1.0 / TAU ** 3)
+		
+	var mb := event as InputEventMouseButton
+	if mb and mb.button_index == MOUSE_BUTTON_RIGHT:
+		if mb.pressed:
+			is_scaner_in_face = not is_scaner_in_face
+	
+		if is_scaner_in_face:
+			%AnimationPlayer.play("in_face")
+		else:
+			%AnimationPlayer.play("rest_pose")
