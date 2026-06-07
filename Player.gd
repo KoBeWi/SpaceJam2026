@@ -13,14 +13,16 @@ var pk_emiter_mat2:Material
 var has_box: bool = true
 var cranging: bool
 
-@onready var radar: MeshInstance3D = $Camera3D/Scanner/Radar
+@onready var radar: MeshInstance3D = $ItemViewport/GlobalNode/Scanner/Radar
+@onready var scanner: Node3D = %Scanner
+@onready var global_node: Node3D = $ItemViewport/GlobalNode
 
-@onready var pk_detector: MeshInstance3D = $Camera3D/Scanner/PK_Detector
+@onready var pk_detector: MeshInstance3D = $ItemViewport/GlobalNode/Scanner/PK_Detector
 
-@onready var pk_l_arm: MeshInstance3D = $Camera3D/Scanner/PK_Detector/PK_L_arm
-@onready var pk_r_arm: MeshInstance3D = $Camera3D/Scanner/PK_Detector/PK_R_arm
-@onready var trap: MeshInstance3D = $Camera3D/Scanner/Trap
-@onready var trap_handle: MeshInstance3D = $Camera3D/Scanner/Trap/Trap_handle
+@onready var pk_l_arm: MeshInstance3D = $ItemViewport/GlobalNode/Scanner/PK_Detector/PK_L_arm
+@onready var pk_r_arm: MeshInstance3D = $ItemViewport/GlobalNode/Scanner/PK_Detector/PK_R_arm
+@onready var trap: MeshInstance3D = $ItemViewport/GlobalNode/Scanner/Trap
+@onready var trap_handle: MeshInstance3D = $ItemViewport/GlobalNode/Scanner/Trap/Trap_handle
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 
 @export var detector_vp:SubViewport
@@ -133,6 +135,8 @@ func _physics_process(delta: float) -> void:
 	pk_emiter_mat2.uv1_offset.x -= pk_emiter_lights_value * delta * 1.0
 	pk_l_arm.rotation.z = -min(pk_emiter_lights_value*0.2, 1.5)
 	pk_r_arm.rotation.z = pk_l_arm.rotation.z
+		
+	global_node.global_transform = camera_3d.global_transform
 	
 func set_lights(in_value:float):
 	pk_emiter_lights_value = in_value

@@ -12,6 +12,285 @@
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_nigug"]
 points = PackedVector3Array(-1.92, 0, -1.08, -1.92, 0, 1.08, 1.92, 0, -1.08, 1.92, 0, 1.08)
 
+[sub_resource type="Environment" id="Environment_xhfnw"]
+background_mode = 1
+
+[sub_resource type="World3D" id="World3D_nigug"]
+environment = SubResource("Environment_xhfnw")
+
+[sub_resource type="Animation" id="Animation_5ncpa"]
+resource_name = "ChargeTrap"
+length = 5.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ItemViewport/GlobalNode/Scanner/Trap/Trap_handle:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5, 8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 37.699112, 0), Vector3(0, 62.831852, 0)]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ItemViewport/GlobalNode/Scanner/AudioStreamPlayer3D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_tdg3f")
+}],
+"times": PackedFloat32Array(0.033333335)
+}
+tracks/1/use_blend = true
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ItemViewport/GlobalNode/Scanner/AudioStreamPlayer3D2")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("6_dtqjt")
+}],
+"times": PackedFloat32Array(0.033333335)
+}
+tracks/2/use_blend = true
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ItemViewport/GlobalNode/Scanner/Trap:surface_material_override/1:emission_energy_multiplier")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2.6999993, 3.2999997, 3.6999993, 4.1, 4.2999997, 4.4999995, 4.6999993, 4.8, 4.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0, 2.0, 0.0, 4.0, 1.0, 4.0, 1.0, 4.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ItemViewport/GlobalNode/Scanner/Trap:surface_material_override/5:uv1_offset")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.8, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_kne1u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ItemViewport/GlobalNode/Scanner:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.25840718, 0.7230692, 0.026903654)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ItemViewport/GlobalNode/Scanner:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.5093568, -0.25812227, -0.61227757)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera3D/Flashlight:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Camera3D/Flashlight:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.2617994, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ItemViewport/GlobalNode/Scanner/Trap/Trap_handle:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ItemViewport/GlobalNode/Scanner/Trap:surface_material_override/1:emission_energy_multiplier")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("ItemViewport/GlobalNode/Scanner/Trap:surface_material_override/5:uv1_offset")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_e80uo"]
+resource_name = "in_face"
+length = 0.3
+capture_included = true
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ItemViewport/GlobalNode/Scanner:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"update": 2,
+"values": [Vector3(-0.08726646, 0.21293017, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ItemViewport/GlobalNode/Scanner:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"update": 2,
+"values": [Vector3(-0.11, -0.085, -0.262)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera3D/Flashlight:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"update": 2,
+"values": [Vector3(0.28446048, 0, -0.37773725)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Camera3D/Flashlight:rotation")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"update": 2,
+"values": [Vector3(-0.26179937, 0.07504636, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_cxr5p"]
+resource_name = "rest_pose"
+length = 0.5
+step = 0.1
+capture_included = true
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ItemViewport/GlobalNode/Scanner:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 2,
+"values": [Vector3(-0.25840718, 0.7230692, 0.026903654)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ItemViewport/GlobalNode/Scanner:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 2,
+"values": [Vector3(-0.5093568, -0.25812227, -0.61227757)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera3D/Flashlight:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 2,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Camera3D/Flashlight:rotation")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 2,
+"values": [Vector3(-0.2617994, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tdg3f"]
+_data = {
+&"ChargeTrap": SubResource("Animation_5ncpa"),
+&"RESET": SubResource("Animation_kne1u"),
+&"in_face": SubResource("Animation_e80uo"),
+&"rest_pose": SubResource("Animation_cxr5p")
+}
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e80uo"]
 resource_name = "Screen"
 cull_mode = 2
@@ -95,284 +374,8 @@ emission_operator = 1
 emission_texture = ExtResource("4_e80uo")
 metadata/_gltf_primary_texture_coord = 0
 
-[sub_resource type="Environment" id="Environment_xhfnw"]
-background_mode = 1
-
-[sub_resource type="World3D" id="World3D_nigug"]
-environment = SubResource("Environment_xhfnw")
-
-[sub_resource type="Animation" id="Animation_5ncpa"]
-resource_name = "ChargeTrap"
-length = 5.0
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera3D/Scanner/Trap/Trap_handle:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 5, 8),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 37.699112, 0), Vector3(0, 62.831852, 0)]
-}
-tracks/1/type = "audio"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Camera3D/Scanner/AudioStreamPlayer3D")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("5_tdg3f")
-}],
-"times": PackedFloat32Array(0.033333335)
-}
-tracks/1/use_blend = true
-tracks/2/type = "audio"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Camera3D/Scanner/AudioStreamPlayer3D2")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("6_dtqjt")
-}],
-"times": PackedFloat32Array(0.033333335)
-}
-tracks/2/use_blend = true
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Camera3D/Scanner/Trap:surface_material_override/1:emission_energy_multiplier")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 2.6999993, 3.2999997, 3.6999993, 4.1, 4.2999997, 4.4999995, 4.6999993, 4.8, 4.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 1.0, 0.0, 2.0, 0.0, 4.0, 1.0, 4.0, 1.0, 4.0]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Camera3D/Scanner/Trap:surface_material_override/5:uv1_offset")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0.8, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_kne1u"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera3D/Scanner:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.25840718, 0.7230692, 0.026903654)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Camera3D/Scanner:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.5093568, -0.25812227, -0.61227757)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Camera3D/Flashlight:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Camera3D/Flashlight:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.2617994, 0, 0)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Camera3D/Scanner/Trap/Trap_handle:rotation")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Camera3D/Scanner/Trap:surface_material_override/1:emission_energy_multiplier")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [2.0]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Camera3D/Scanner/Trap:surface_material_override/5:uv1_offset")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_e80uo"]
-resource_name = "in_face"
-length = 0.3
-capture_included = true
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera3D/Scanner:rotation")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.3),
-"transitions": PackedFloat32Array(1),
-"update": 2,
-"values": [Vector3(-0.08726646, 0.21293017, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Camera3D/Scanner:position")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.3),
-"transitions": PackedFloat32Array(1),
-"update": 2,
-"values": [Vector3(-0.11, -0.085, -0.262)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Camera3D/Flashlight:position")
-tracks/2/interp = 2
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.3),
-"transitions": PackedFloat32Array(1),
-"update": 2,
-"values": [Vector3(0.28446048, 0, -0.37773725)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Camera3D/Flashlight:rotation")
-tracks/3/interp = 2
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.3),
-"transitions": PackedFloat32Array(1),
-"update": 2,
-"values": [Vector3(-0.26179937, 0.07504636, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_cxr5p"]
-resource_name = "rest_pose"
-length = 0.5
-step = 0.1
-capture_included = true
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera3D/Scanner:rotation")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.5),
-"transitions": PackedFloat32Array(1),
-"update": 2,
-"values": [Vector3(-0.25840718, 0.7230692, 0.026903654)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Camera3D/Scanner:position")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.5),
-"transitions": PackedFloat32Array(1),
-"update": 2,
-"values": [Vector3(-0.5093568, -0.25812227, -0.61227757)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Camera3D/Flashlight:position")
-tracks/2/interp = 2
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.5),
-"transitions": PackedFloat32Array(1),
-"update": 2,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Camera3D/Flashlight:rotation")
-tracks/3/interp = 2
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.5),
-"transitions": PackedFloat32Array(1),
-"update": 2,
-"values": [Vector3(-0.2617994, 0, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_tdg3f"]
-_data = {
-&"ChargeTrap": SubResource("Animation_5ncpa"),
-&"RESET": SubResource("Animation_kne1u"),
-&"in_face": SubResource("Animation_e80uo"),
-&"rest_pose": SubResource("Animation_cxr5p")
-}
+[sub_resource type="ViewportTexture" id="ViewportTexture_tdg3f"]
+viewport_path = NodePath("ItemViewport")
 
 [node name="Player" type="CharacterBody3D" unique_id=1441229512]
 script = ExtResource("1_xhfnw")
@@ -401,39 +404,6 @@ shadow_enabled = true
 spot_range = 10.384294
 spot_angle = 33.09
 
-[node name="Scanner" parent="Camera3D" unique_id=2038585642 instance=ExtResource("3_kne1u")]
-unique_name_in_owner = true
-transform = Transform3D(0.07449585, -0.018919678, 0.06397199, 0.002600727, 0.09664484, 0.0255541, -0.06666037, -0.017373003, 0.072488464, -0.5093568, -0.25812227, -0.61227757)
-
-[node name="Radar" parent="Camera3D/Scanner" index="0" unique_id=1388820251]
-visible = false
-surface_material_override/1 = SubResource("StandardMaterial3D_e80uo")
-
-[node name="PK_Detector" parent="Camera3D/Scanner" index="1" unique_id=316539085]
-surface_material_override/1 = SubResource("StandardMaterial3D_dtqjt")
-surface_material_override/2 = SubResource("StandardMaterial3D_5ncpa")
-
-[node name="PK_L_arm" parent="Camera3D/Scanner/PK_Detector" index="0" unique_id=249519150]
-surface_material_override/0 = SubResource("StandardMaterial3D_cxr5p")
-
-[node name="PK_R_arm" parent="Camera3D/Scanner/PK_Detector" index="1" unique_id=206274361]
-surface_material_override/0 = SubResource("StandardMaterial3D_tdg3f")
-
-[node name="Trap" parent="Camera3D/Scanner" index="2" unique_id=1385612159]
-transform = Transform3D(0.91348046, -0.17479554, -0.36742324, -0.05433032, 0.84253377, -0.5358965, 0.4032386, 0.50949293, 0.76014143, 0.9172628, -1.0183592, 0.6721616)
-visible = false
-surface_material_override/1 = SubResource("StandardMaterial3D_wi0c6")
-surface_material_override/5 = SubResource("StandardMaterial3D_hp6x6")
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Camera3D/Scanner" unique_id=1861691340]
-volume_db = -30.0
-pitch_scale = 1.61
-bus = &"LessSFX"
-
-[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="Camera3D/Scanner" unique_id=1103285117]
-volume_db = -30.0
-bus = &"LessSFX"
-
 [node name="SubViewport" type="SubViewport" parent="." unique_id=1521101797]
 unique_name_in_owner = true
 own_world_3d = true
@@ -450,4 +420,55 @@ far = 1.0
 unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_tdg3f")
 
-[editable path="Camera3D/Scanner"]
+[node name="ItemViewport" type="SubViewport" parent="." unique_id=1870538814]
+transparent_bg = true
+size = Vector2i(1920, 1080)
+
+[node name="GlobalNode" type="Node3D" parent="ItemViewport" unique_id=1221355353]
+
+[node name="Scanner" parent="ItemViewport/GlobalNode" unique_id=2038585642 instance=ExtResource("3_kne1u")]
+unique_name_in_owner = true
+transform = Transform3D(0.07449585, -0.018919678, 0.06397199, 0.002600727, 0.09664484, 0.0255541, -0.06666037, -0.017373003, 0.072488464, -0.5093568, -0.25812227, -0.61227757)
+
+[node name="Radar" parent="ItemViewport/GlobalNode/Scanner" index="0" unique_id=1388820251]
+visible = false
+surface_material_override/1 = SubResource("StandardMaterial3D_e80uo")
+
+[node name="PK_Detector" parent="ItemViewport/GlobalNode/Scanner" index="1" unique_id=316539085]
+surface_material_override/1 = SubResource("StandardMaterial3D_dtqjt")
+surface_material_override/2 = SubResource("StandardMaterial3D_5ncpa")
+
+[node name="PK_L_arm" parent="ItemViewport/GlobalNode/Scanner/PK_Detector" index="0" unique_id=249519150]
+surface_material_override/0 = SubResource("StandardMaterial3D_cxr5p")
+
+[node name="PK_R_arm" parent="ItemViewport/GlobalNode/Scanner/PK_Detector" index="1" unique_id=206274361]
+surface_material_override/0 = SubResource("StandardMaterial3D_tdg3f")
+
+[node name="Trap" parent="ItemViewport/GlobalNode/Scanner" index="2" unique_id=1385612159]
+transform = Transform3D(0.91348046, -0.17479554, -0.36742324, -0.05433032, 0.84253377, -0.5358965, 0.4032386, 0.50949293, 0.76014143, 0.9172628, -1.0183592, 0.6721616)
+visible = false
+surface_material_override/1 = SubResource("StandardMaterial3D_wi0c6")
+surface_material_override/5 = SubResource("StandardMaterial3D_hp6x6")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="ItemViewport/GlobalNode/Scanner" unique_id=1861691340]
+volume_db = -30.0
+pitch_scale = 1.61
+bus = &"LessSFX"
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="ItemViewport/GlobalNode/Scanner" unique_id=1103285117]
+volume_db = -30.0
+bus = &"LessSFX"
+
+[node name="Camera3D" type="Camera3D" parent="ItemViewport" unique_id=1119105102]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1617305897]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer" unique_id=1725078593]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ViewportTexture_tdg3f")
+
+[editable path="ItemViewport/GlobalNode/Scanner"]
