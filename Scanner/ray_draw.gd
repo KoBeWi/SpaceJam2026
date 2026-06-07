@@ -56,7 +56,7 @@ func _fire_ray_and_record() -> void:
 		var segment_end := ray_end
 
 		if not collision.is_empty():
-			if detector_display.visible:
+			if owner.current_item == 1:
 				var collider: Node = collision["collider"]
 				collider = collider.get_parent()
 				if collider:
@@ -123,7 +123,7 @@ func _rebuild_trail_mesh() -> void:
 	trail_mesh.surface_end()
 
 func spawn_marker(in_position: Vector3, in_distance:float) -> void:
-	if detector_display.visible:
+	if owner.current_item == 1:
 		var idx :int = floori(in_distance)
 		if not pitch_array[idx]:
 			pitch_array[idx] = 1

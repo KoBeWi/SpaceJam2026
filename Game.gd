@@ -45,7 +45,7 @@ var beeper_current: float
 func _process(delta: float) -> void:
 	catcher_timeout.value += delta
 	
-	if not proximer.visible:
+	if current_item != 0:
 		%Noiser.stop()
 		return
 	if not %Noiser.playing:
@@ -103,9 +103,9 @@ func _input(event: InputEvent) -> void:
 				return
 		player.set_item(current_item)
 		
-		proximer.visible = current_item == 0
-		detector_display.visible = current_item == 1
-		catcher.visible = current_item == 2
+		#proximer.visible = current_item == 0
+		#detector_display.visible = current_item == 1
+		#catcher.visible = current_item == 2
 	
 	if current_item != 2:
 		return
