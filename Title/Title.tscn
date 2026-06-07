@@ -29,7 +29,7 @@ func _ready() -> void:
 	add_level(\"Radiation\", \"Waste Storage\")
 	#add_level(\"Rings\", \"Underground Spiral\")
 	#add_level(\"Tworooms\", \"Double Rooms\")
-	#add_level(\"Mess\", \"Cave\")
+	add_level(\"Mess\", \"Ghost Cave\")
 	#add_level(\"Eggplant\", \"( ͡° ͜ʖ ͡°)\")
 	#add_level(\"Empty\", \"Isolation\")
 
@@ -62,8 +62,21 @@ func quit() -> void:
 	get_tree().quit()
 "
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0we2p"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.45, 0.45, 0.45, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
 [sub_resource type="Theme" id="Theme_kne1u"]
 default_font_size = 24
+Button/styles/normal = SubResource("StyleBoxFlat_0we2p")
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_kpjcp"]
 blend_mode = 1
