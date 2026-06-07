@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://c7x2bwkqkmdds"]
 
 [ext_resource type="Texture2D" uid="uid://b221lku3skr24" path="res://Decon.png" id="1_8uy55"]
+[ext_resource type="AudioStream" uid="uid://b475n88ro231i" path="res://Throw.wav" id="2_foauw"]
+[ext_resource type="AudioStream" uid="uid://ccgq50hr02tiv" path="res://Boximpact.wav" id="3_v3le7"]
 
 [sub_resource type="GDScript" id="GDScript_bvhbk"]
-script/source = "extends RigidBody3D
+script/source = "extends \"res://GhostBox.gd\"
 
 @onready var player: Node3D = owner.get_parent().get_node(\"Player\")
 
@@ -27,6 +29,8 @@ size = Vector3(0.5, 0.5, 0.5)
 
 [node name="Deco" type="RigidBody3D" unique_id=823489778]
 collision_layer = 3
+contact_monitor = true
+max_contacts_reported = 1
 script = SubResource("GDScript_bvhbk")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1239838832]
@@ -35,3 +39,13 @@ mesh = SubResource("BoxMesh_yebci")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1607445049]
 shape = SubResource("BoxShape3D_yebci")
+
+[node name="ShootSFX" type="AudioStreamPlayer3D" parent="." unique_id=654505113]
+stream = ExtResource("2_foauw")
+bus = &"SFX"
+
+[node name="HitSFX" type="AudioStreamPlayer3D" parent="." unique_id=258460347]
+stream = ExtResource("3_v3le7")
+volume_db = -10.0
+max_distance = 5.0
+bus = &"SFX"

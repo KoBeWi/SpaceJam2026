@@ -434,7 +434,6 @@ bodies = [NodePath("Shapes/StaticBody3D"), NodePath("Shapes/StaticBody3D2"), Nod
 
 [node name="Sprite3D" type="Sprite3D" parent="Ghost" unique_id=2081870197]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
-visible = false
 billboard = 2
 texture = ExtResource("6_r0x5m")
 

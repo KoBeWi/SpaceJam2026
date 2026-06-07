@@ -69,4 +69,4 @@ func scanned():
 		for box in poltergowalne:
 			var dist := box.global_position.distance_to(player_handle.global_position)
 			var dir := box.global_position.direction_to(player_handle.global_position) + Vector3.UP
-			box.apply_impulse(dir * (10.0 / dist))
+			box.shoot(dir * (10.0 / dist))

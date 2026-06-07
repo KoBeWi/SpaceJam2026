@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://bon12i5rrigud"]
 
 [ext_resource type="Texture2D" uid="uid://davfbv7yyefkm" path="res://Deco.png" id="1_thb8l"]
+[ext_resource type="Script" uid="uid://bb60qqfr1qco6" path="res://GhostBox.gd" id="1_up5np"]
+[ext_resource type="AudioStream" uid="uid://b475n88ro231i" path="res://Throw.wav" id="3_up5np"]
+[ext_resource type="AudioStream" uid="uid://ccgq50hr02tiv" path="res://Boximpact.wav" id="4_ynabd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ibkt"]
 albedo_texture = ExtResource("1_thb8l")
@@ -13,6 +16,9 @@ size = Vector3(0.5, 0.5, 0.5)
 
 [node name="Deco" type="RigidBody3D" unique_id=823489778]
 collision_layer = 3
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_up5np")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1239838832]
 material_override = SubResource("StandardMaterial3D_2ibkt")
@@ -20,3 +26,15 @@ mesh = SubResource("BoxMesh_yebci")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1607445049]
 shape = SubResource("BoxShape3D_yebci")
+
+[node name="ShootSFX" type="AudioStreamPlayer3D" parent="." unique_id=19023721]
+stream = ExtResource("3_up5np")
+bus = &"SFX"
+
+[node name="HitSFX" type="AudioStreamPlayer3D" parent="." unique_id=769114183]
+stream = ExtResource("4_ynabd")
+volume_db = -10.0
+max_distance = 5.0
+bus = &"SFX"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
