@@ -3,7 +3,11 @@
 [ext_resource type="Texture2D" uid="uid://davfbv7yyefkm" path="res://Deco.png" id="1_thb8l"]
 [ext_resource type="Script" uid="uid://bb60qqfr1qco6" path="res://GhostBox.gd" id="1_up5np"]
 [ext_resource type="AudioStream" uid="uid://b475n88ro231i" path="res://Throw.wav" id="3_up5np"]
-[ext_resource type="AudioStream" uid="uid://ccgq50hr02tiv" path="res://Boximpact.wav" id="4_ynabd"]
+[ext_resource type="AudioStream" uid="uid://qeo27s3ia0eq" path="res://Sfx/CrateDrop-01.wav" id="5_1g6a7"]
+[ext_resource type="AudioStream" uid="uid://bgp1s4nlsnjr4" path="res://Sfx/CrateDrop-02.wav" id="6_jnlr3"]
+[ext_resource type="AudioStream" uid="uid://dufso3ux2fx3m" path="res://Sfx/CrateDrop-03.wav" id="7_x34ab"]
+[ext_resource type="AudioStream" uid="uid://c2roj72ushisp" path="res://Sfx/CrateDrop-04.wav" id="8_2ddg3"]
+[ext_resource type="AudioStream" uid="uid://1v0glluc3aoh" path="res://Sfx/CrateDrop-05.wav" id="9_71rgy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ibkt"]
 albedo_texture = ExtResource("1_thb8l")
@@ -13,6 +17,105 @@ size = Vector3(0.5, 0.5, 0.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yebci"]
 size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="Animation" id="Animation_jnlr3"]
+resource_name = "Hit_1"
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HitSFX")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_1g6a7")
+}],
+"times": PackedFloat32Array(0.06666667)
+}
+tracks/0/use_blend = true
+
+[sub_resource type="Animation" id="Animation_x34ab"]
+resource_name = "Hit_2"
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HitSFX")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("6_jnlr3")
+}],
+"times": PackedFloat32Array(0.06666666)
+}
+tracks/0/use_blend = true
+
+[sub_resource type="Animation" id="Animation_2ddg3"]
+resource_name = "Hit_3"
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HitSFX")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("7_x34ab")
+}],
+"times": PackedFloat32Array(0.06666667)
+}
+tracks/0/use_blend = true
+
+[sub_resource type="Animation" id="Animation_71rgy"]
+resource_name = "Hit_4"
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HitSFX")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("8_2ddg3")
+}],
+"times": PackedFloat32Array(0.06666667)
+}
+tracks/0/use_blend = true
+
+[sub_resource type="Animation" id="Animation_rait5"]
+resource_name = "Hit_5"
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HitSFX")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("9_71rgy")
+}],
+"times": PackedFloat32Array(0.03333333)
+}
+tracks/0/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x34ab"]
+_data = {
+&"Hit_1": SubResource("Animation_jnlr3"),
+&"Hit_2": SubResource("Animation_x34ab"),
+&"Hit_3": SubResource("Animation_2ddg3"),
+&"Hit_4": SubResource("Animation_71rgy"),
+&"Hit_5": SubResource("Animation_rait5")
+}
 
 [node name="Deco" type="RigidBody3D" unique_id=823489778]
 collision_layer = 3
@@ -29,12 +132,16 @@ shape = SubResource("BoxShape3D_yebci")
 
 [node name="ShootSFX" type="AudioStreamPlayer3D" parent="." unique_id=19023721]
 stream = ExtResource("3_up5np")
+volume_db = -15.0
 bus = &"SFX"
 
 [node name="HitSFX" type="AudioStreamPlayer3D" parent="." unique_id=769114183]
-stream = ExtResource("4_ynabd")
-volume_db = -10.0
+pitch_scale = 0.87
 max_distance = 5.0
-bus = &"SFX"
+bus = &"MidSFX"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=292985509]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_x34ab")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

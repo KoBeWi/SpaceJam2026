@@ -13,7 +13,7 @@ const MARKER_3D = preload("res://Scanner/marker_3d.tscn")
 var trail_mesh:ImmediateMesh
 
 var ray_max_distance := 40.0
-var ray_dispersion := 0.025
+var ray_dispersion := 0.015
 var ray_spread := 1.0
 var trail_segments: Array[Dictionary] = []
 var trail_material: StandardMaterial3D
@@ -64,6 +64,7 @@ func _fire_ray_and_record() -> void:
 		var segment_end := ray_end
 
 		if not collision.is_empty():
+			var is_ghost_hit := false
 			if owner.current_item == 1:
 				var collider: Node = collision["collider"]
 				if collider.get_meta(&"erase", false):
@@ -74,6 +75,8 @@ func _fire_ray_and_record() -> void:
 					collider = collider.get_parent()
 					if collider and collider.has_method(&"scanned"):
 						collider.scanned()
+						if not is_instance_valid(collider.bodies[2]):
+							is_ghost_hit = true
 			
 			distance += ray_start.distance_to(collision.position)
 			if distance > ray_max_distance:
@@ -82,7 +85,10 @@ func _fire_ray_and_record() -> void:
 				
 				spawn_marker(collision.collider.to_local(collision.position), distance)
 			segment_end = collision.position
-			ray = ray.bounce(collision.normal)
+			if is_ghost_hit:
+				ray = -ray
+			else:
+				ray = ray.bounce(collision.normal)
 			
 		if trail_mesh_instance.visible:
 			trail_segments.append({

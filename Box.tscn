@@ -203,10 +203,10 @@ collision_mode = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_speaj"]
 transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
 albedo_color = Color(0.53333336, 1, 0.9764706, 1)
-emission_enabled = true
-emission = Color(0.5328826, 1, 0.9772138, 1)
-emission_energy_multiplier = 3.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_wybss"]
 material = SubResource("StandardMaterial3D_speaj")

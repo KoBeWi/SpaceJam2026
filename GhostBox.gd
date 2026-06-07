@@ -11,4 +11,6 @@ func shoot(vel: Vector3):
 
 func _on_body_entered(body: Node) -> void:
 	if linear_velocity.length() > 0.1:
-		hit_sfx.play()
+		#hit_sfx.play()
+		%AnimationPlayer.play(str("Hit_",randi()%5+1))
+		

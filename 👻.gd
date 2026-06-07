@@ -62,7 +62,7 @@ func _physics_process(delta: float) -> void:
 	elif is_instance_valid(bodies[3]):
 		bodies[3].rotation.y = -Vector2(global_position.x, global_position.z).angle_to_point(player_v2)
 	elif is_instance_valid(bodies[2]):
-		bodies[2].rotation.y += PI * delta
+		bodies[2].rotation.y += PI * 1.0 * delta
 
 func catch():
 	if złapan:

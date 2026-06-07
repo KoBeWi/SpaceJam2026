@@ -57,7 +57,7 @@ step = 0.1
 tracks/0/type = "audio"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("%Beeper")
+tracks/0/path = NodePath("Beeper")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -96,7 +96,7 @@ tracks/2/keys = {
 tracks/3/type = "audio"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("%Beeper2")
+tracks/3/path = NodePath("Beeper2")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -160,20 +160,22 @@ func _ready() -> void:
 		return
 	
 	await get_tree().process_frame
-	texture = $\"../../Ghost/Sprite3D\".texture
+	texture = $\"../../../Ghost/Sprite3D\".texture
 "
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_cauhl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cpsxm"]
+size = Vector3(1.2, 1.2, 1.2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5l23l"]
 size = Vector3(1.5, 1.5, 1.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yebci"]
-size = Vector3(1, 0.25439453, 1)
+size = Vector3(1, 0.4, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bvhbk"]
+size = Vector3(1.2, 1.2, 1.2)
 
 [node name="Game" type="Node3D" unique_id=1578990498]
 script = ExtResource("1_u44n3")
@@ -189,8 +191,6 @@ duch = NodePath("../Ghost")
 [node name="RayDraw" type="Node3D" parent="." unique_id=1062892962 node_paths=PackedStringArray("trail_mesh_instance", "player_handle")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37548137, 0)
 script = ExtResource("4_r0x5m")
-ray_length = null
-trail_fade_seconds = null
 trail_mesh_instance = NodePath("../TrailMeshInstance")
 player_handle = NodePath("../Player")
 
@@ -247,7 +247,11 @@ player = NodePath("../../Player")
 position = Vector2(101, 113)
 texture = ExtResource("5_t88pq")
 
-[node name="UI" type="Control" parent="." unique_id=1508642237]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=531190363]
+layer = 2
+
+[node name="UI" type="Control" parent="CanvasLayer" unique_id=1508642237]
+z_index = 91
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -255,7 +259,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="DetectorDisplay" type="TextureRect" parent="UI" unique_id=608293155]
+[node name="DetectorDisplay" type="TextureRect" parent="CanvasLayer/UI" unique_id=608293155]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(384, 216)
@@ -270,12 +274,12 @@ offset_bottom = -29.0
 grow_vertical = 0
 texture = SubResource("ViewportTexture_r0x5m")
 
-[node name="RaySound" type="AudioStreamPlayer" parent="UI/DetectorDisplay" unique_id=1326528882]
+[node name="RaySound" type="AudioStreamPlayer" parent="CanvasLayer/UI/DetectorDisplay" unique_id=1326528882]
 unique_name_in_owner = true
 stream = ExtResource("7_gwjdr")
 max_polyphony = 1024
 
-[node name="Proximer" type="TextureProgressBar" parent="UI" unique_id=2044026025]
+[node name="Proximer" type="TextureProgressBar" parent="CanvasLayer/UI" unique_id=2044026025]
 unique_name_in_owner = true
 visible = false
 material = SubResource("ShaderMaterial_yhmtn")
@@ -289,31 +293,31 @@ value = 5.0
 texture_under = ExtResource("7_yx171")
 texture_progress = ExtResource("8_yhmtn")
 
-[node name="Beeper" type="AudioStreamPlayer" parent="UI/Proximer" unique_id=1436811264]
+[node name="Beeper" type="AudioStreamPlayer" parent="CanvasLayer/UI/Proximer" unique_id=1436811264]
 unique_name_in_owner = true
 volume_db = -30.0
 pitch_scale = 0.49
 max_polyphony = 4
 bus = &"LessSFX"
 
-[node name="Beeper2" type="AudioStreamPlayer" parent="UI/Proximer" unique_id=1858238200]
+[node name="Beeper2" type="AudioStreamPlayer" parent="CanvasLayer/UI/Proximer" unique_id=1858238200]
 unique_name_in_owner = true
 volume_db = -30.0
 pitch_scale = 0.49
 max_polyphony = 4
 bus = &"LessSFX"
 
-[node name="Noiser" type="AudioStreamPlayer" parent="UI/Proximer" unique_id=362488870]
+[node name="Noiser" type="AudioStreamPlayer" parent="CanvasLayer/UI/Proximer" unique_id=362488870]
 unique_name_in_owner = true
 stream = ExtResource("10_wuoie")
 volume_db = -20.0
 bus = &"SFX"
 
-[node name="Proximanimator" type="AnimationPlayer" parent="UI/Proximer" unique_id=145594384]
+[node name="Proximanimator" type="AnimationPlayer" parent="CanvasLayer/UI/Proximer" unique_id=145594384]
 unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_lvtmh")
 
-[node name="Catcher" type="HBoxContainer" parent="UI" unique_id=373025646]
+[node name="Catcher" type="HBoxContainer" parent="CanvasLayer/UI" unique_id=373025646]
 unique_name_in_owner = true
 visible = false
 layout_mode = 0
@@ -322,28 +326,28 @@ offset_top = 890.71155
 offset_right = 1032.4934
 offset_bottom = 930.71155
 
-[node name="CTextureRect" type="TextureRect" parent="UI/Catcher" unique_id=439839680]
+[node name="CTextureRect" type="TextureRect" parent="CanvasLayer/UI/Catcher" unique_id=439839680]
 unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("11_lvtmh")
 
-[node name="CLabel" type="Label" parent="UI/Catcher" unique_id=338775860]
+[node name="CLabel" type="Label" parent="CanvasLayer/UI/Catcher" unique_id=338775860]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Throw Trap"
 
-[node name="CLabel2" type="Label" parent="UI/Catcher" unique_id=1953764411]
+[node name="CLabel2" type="Label" parent="CanvasLayer/UI/Catcher" unique_id=1953764411]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 text = "Pickup Trap"
 
-[node name="Throw" type="AudioStreamPlayer" parent="UI/Catcher" unique_id=211149654]
+[node name="Throw" type="AudioStreamPlayer" parent="CanvasLayer/UI/Catcher" unique_id=211149654]
 unique_name_in_owner = true
 stream = ExtResource("13_0yprl")
 volume_db = -10.0
 
-[node name="Timer" type="Label" parent="UI" unique_id=1635287469]
+[node name="Timer" type="Label" parent="CanvasLayer/UI" unique_id=1635287469]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 10
@@ -356,7 +360,7 @@ text = "Timer"
 horizontal_alignment = 1
 script = SubResource("GDScript_qjyg3")
 
-[node name="Winlabel" type="Label" parent="UI" unique_id=1094956388]
+[node name="Winlabel" type="Label" parent="CanvasLayer/UI" unique_id=1094956388]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
@@ -373,7 +377,7 @@ text = "Duch złapany!
 Twój czas: %02d:%02d"
 horizontal_alignment = 1
 
-[node name="Trup" type="Label" parent="UI" unique_id=1415898111]
+[node name="Trup" type="Label" parent="CanvasLayer/UI" unique_id=1415898111]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
@@ -389,7 +393,7 @@ theme_override_font_sizes/font_size = 40
 text = "Nie żyjesz 💀"
 horizontal_alignment = 1
 
-[node name="Radiation" type="Label" parent="UI" unique_id=1526787785]
+[node name="Radiation" type="Label" parent="CanvasLayer/UI" unique_id=1526787785]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
@@ -402,7 +406,7 @@ theme_override_font_sizes/font_size = 30
 text = "Radiation Level"
 horizontal_alignment = 1
 
-[node name="Menu" type="VBoxContainer" parent="UI" unique_id=653233338]
+[node name="Menu" type="VBoxContainer" parent="CanvasLayer/UI" unique_id=653233338]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
@@ -418,17 +422,17 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Button" type="Button" parent="UI/Menu" unique_id=269701306]
+[node name="Button" type="Button" parent="CanvasLayer/UI/Menu" unique_id=269701306]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Kontynuuj"
 
-[node name="Button2" type="Button" parent="UI/Menu" unique_id=594984486]
+[node name="Button2" type="Button" parent="CanvasLayer/UI/Menu" unique_id=594984486]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Wyjdź"
 
-[node name="ProgressBar" type="ProgressBar" parent="UI" unique_id=285901546]
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/UI" unique_id=285901546]
 visible = false
 layout_mode = 1
 anchors_preset = 10
@@ -440,8 +444,8 @@ offset_bottom = 115.0
 grow_horizontal = 2
 max_value = 200.0
 
-[node name="TextureRect" type="TextureRect" parent="UI" unique_id=1314775972]
-custom_minimum_size = Vector2(8, 8)
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/UI" unique_id=1314775972]
+custom_minimum_size = Vector2(16, 16)
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -458,7 +462,7 @@ collision_layer = 0
 script = ExtResource("6_3mrqo")
 player_handle = NodePath("../Player")
 bodies = [NodePath("Shapes/StaticBody3D"), NodePath("Shapes/StaticBody3D2"), NodePath("Shapes/StaticBody3D3"), NodePath("Shapes/StaticBody3D4")]
-angrygress = NodePath("../UI/ProgressBar")
+angrygress = NodePath("../CanvasLayer/UI/ProgressBar")
 
 [node name="Sprite3D" type="Sprite3D" parent="Ghost" unique_id=2081870197]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
@@ -480,6 +484,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
 [node name="StaticBody3D" type="StaticBody3D" parent="Ghost/Shapes" unique_id=846318902]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+visible = false
 collision_layer = 4
 collision_mask = 0
 
@@ -489,11 +494,13 @@ shape = SubResource("BoxShape3D_cpsxm")
 [node name="StaticBody3D4" type="StaticBody3D" parent="Ghost/Shapes" unique_id=1443361867]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+visible = false
 collision_layer = 4
 collision_mask = 0
 metadata/erase = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ghost/Shapes/StaticBody3D4" unique_id=1661241416]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 shape = SubResource("BoxShape3D_5l23l")
 debug_color = Color(0.70196074, 0, 0.04221668, 0.41960785)
 
@@ -504,20 +511,22 @@ collision_layer = 4
 collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ghost/Shapes/StaticBody3D2" unique_id=1524415462]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.36984786, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
 shape = SubResource("BoxShape3D_yebci")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Ghost/Shapes/StaticBody3D2" unique_id=276581397]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3705109, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 shape = SubResource("BoxShape3D_yebci")
 
 [node name="StaticBody3D3" type="StaticBody3D" parent="Ghost/Shapes" unique_id=1072586906]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+visible = false
 collision_layer = 4
 collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ghost/Shapes/StaticBody3D3" unique_id=191261844]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
 shape = SubResource("BoxShape3D_bvhbk")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Ghost" unique_id=66383543]
@@ -532,5 +541,5 @@ volume_db = -20.0
 autoplay = true
 
 [connection signal="gotbox" from="Player" to="." method="_on_player_gotbox"]
-[connection signal="pressed" from="UI/Menu/Button" to="." method="contineu"]
-[connection signal="pressed" from="UI/Menu/Button2" to="." method="quot"]
+[connection signal="pressed" from="CanvasLayer/UI/Menu/Button" to="." method="contineu"]
+[connection signal="pressed" from="CanvasLayer/UI/Menu/Button2" to="." method="quot"]
