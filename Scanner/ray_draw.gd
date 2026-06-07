@@ -13,7 +13,7 @@ const MARKER_3D = preload("res://Scanner/marker_3d.tscn")
 var trail_mesh:ImmediateMesh
 
 var ray_max_distance := 40.0
-var ray_dispersion := 0.015
+var ray_dispersion := 0.005
 var ray_spread := 1.0
 var trail_segments: Array[Dictionary] = []
 var trail_material: StandardMaterial3D
