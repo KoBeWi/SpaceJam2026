@@ -144,6 +144,8 @@ func win():
 	%Winlabel.show()
 	%Timer.hide()
 	%Winlabel.text %= [%Timer.time / 60, fmod(%Timer.time, 60)]
+	if old_best > %Timer.time:
+		%Winlabel.text += "\nNowy best!"
 
 func over_game():
 	%Trup.show()
