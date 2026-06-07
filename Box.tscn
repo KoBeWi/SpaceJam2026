@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://btypyodrftaco"]
 
-[ext_resource type="Texture2D" uid="uid://dg7qbv3lr6typ" path="res://Box.png" id="1_0bkxv"]
+[ext_resource type="AudioStream" uid="uid://bee2f1t4ohkj3" path="res://Trap.wav" id="2_bybq8"]
 [ext_resource type="AudioStream" uid="uid://dkq3e5lcqtfa0" path="res://Cratefall.wav" id="2_jm3vu"]
 [ext_resource type="AudioStream" uid="uid://cjq4lq1k5pvb3" path="res://CrankyCrank.wav" id="3_speaj"]
+[ext_resource type="PackedScene" uid="uid://dtugd4ujp1uc" path="res://Scanner.blend" id="4_bybq8"]
 
 [sub_resource type="GDScript" id="GDScript_jm3vu"]
 script/source = "extends StaticBody3D
@@ -40,77 +41,17 @@ func pickup():
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yebci"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jm3vu"]
-transparency = 1
-shading_mode = 0
-albedo_color = Color(0, 1, 0.99215686, 0.8235294)
-albedo_texture = ExtResource("1_0bkxv")
-
-[sub_resource type="BoxMesh" id="BoxMesh_yebci"]
-
-[sub_resource type="Animation" id="Animation_speaj"]
-resource_name = "Disable"
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, -0.45, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MeshInstance3D:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1, 0.100000024, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Area3D/CollisionShape3D:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
 [sub_resource type="Animation" id="Animation_bybq8"]
 resource_name = "Pickup"
 length = 2.0
 step = 0.1
-tracks/0/type = "value"
+tracks/0/type = "audio"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D:scale")
+tracks/0/path = NodePath("AudioStreamPlayer3D2")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0.100000024, 1, 0.100000024), Vector3(1.345, 1, 1.645)]
-}
-tracks/1/type = "audio"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AudioStreamPlayer3D2")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
@@ -118,38 +59,38 @@ tracks/1/keys = {
 }],
 "times": PackedFloat32Array(0)
 }
-tracks/1/use_blend = true
+tracks/0/use_blend = true
 
 [sub_resource type="Animation" id="Animation_jm3vu"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/path = NodePath("Area3D/CollisionShape3D:disabled")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
+"update": 1,
+"values": [true]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MeshInstance3D:scale")
+tracks/1/path = NodePath("GPUParticles3D:amount_ratio")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(1, 1, 1)]
+"values": [0.0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Area3D/CollisionShape3D:disabled")
+tracks/2/path = NodePath("GPUParticles3D:emitting")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -166,47 +107,81 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/path = NodePath("Area3D/CollisionShape3D:disabled")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.6),
-"transitions": PackedFloat32Array(0.5, 1),
-"update": 0,
-"values": [Vector3(0, -0.45, 0), Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MeshInstance3D:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.6, 1.5, 2.5),
-"transitions": PackedFloat32Array(0.5, 1, 1, 1),
-"update": 0,
-"values": [Vector3(1, 0.1, 1), Vector3(1, 1, 1), Vector3(1, 1, 1), Vector3(0.1, 1, 0.1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Area3D/CollisionShape3D:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0.6, 1.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GPUParticles3D:amount_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6, 1.5, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 1.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GPUParticles3D:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer3D2")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_bybq8")
+}],
+"times": PackedFloat32Array(0.4)
+}
+tracks/3/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jm3vu"]
 _data = {
-&"Disable": SubResource("Animation_speaj"),
 &"Pickup": SubResource("Animation_bybq8"),
 &"RESET": SubResource("Animation_jm3vu"),
 &"Unwrap": SubResource("Animation_0bkxv")
 }
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yebci"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(0, -1, 0)
+spread = 0.0
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_speaj"]
+transparency = 1
+albedo_color = Color(0.24000001, 1, 0.9239999, 0.7058824)
+emission_enabled = true
+emission = Color(0.5328826, 1, 0.9772138, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_06q6m"]
+material = SubResource("StandardMaterial3D_speaj")
+radius = 0.02
+height = 0.4
 
 [node name="Box" type="StaticBody3D" unique_id=1661716638]
 collision_layer = 0
@@ -219,23 +194,48 @@ collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=288969794]
 shape = SubResource("BoxShape3D_yebci")
+disabled = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2105569490]
-visible = false
 shape = SubResource("BoxShape3D_yebci")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1092651089]
-material_override = SubResource("StandardMaterial3D_jm3vu")
-mesh = SubResource("BoxMesh_yebci")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1870756575]
 libraries/ = SubResource("AnimationLibrary_jm3vu")
-autoplay = &"Disable"
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1449945325]
 stream = ExtResource("2_jm3vu")
 
 [node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="." unique_id=1846857002]
+bus = &"SFX"
+
+[node name="Scanner" parent="." unique_id=93882829 instance=ExtResource("4_bybq8")]
+transform = Transform3D(0.193, 0, 0, 0, 0.193, 0, 0, 0, 0.193, 0, -0.2647299, 0)
+
+[node name="Radar" parent="Scanner" index="0" unique_id=502753039]
+visible = false
+
+[node name="PK_Detector" parent="Scanner" index="1" unique_id=1387790739]
+visible = false
+
+[node name="Trap_handle" parent="Scanner/Trap" parent_id_path=PackedInt32Array(93882829, 1719639026) index="0" unique_id=2108653865]
+transform = Transform3D(1, 0, 3.496911e-07, 0, 1, 0, -3.496911e-07, 0, 1, 1.1092055, 0.5352556, 0.0015350599)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=959687660]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.28746957, 3.6706057, 0)
+emitting = false
+amount = 20
+amount_ratio = 0.0
+lifetime = 2.0
+speed_scale = 8.0
+process_material = SubResource("ParticleProcessMaterial_yebci")
+draw_pass_1 = SubResource("CapsuleMesh_06q6m")
+
+[node name="GPUParticlesAttractorSphere3D" type="GPUParticlesAttractorSphere3D" parent="." unique_id=1690049165]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.29050344, 0.6972704, 0)
+strength = 4.0
+radius = 2.2404084
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+
+[editable path="Scanner"]

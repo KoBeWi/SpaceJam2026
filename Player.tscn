@@ -330,22 +330,23 @@ spot_angle = 33.09
 unique_name_in_owner = true
 transform = Transform3D(0.07449585, -0.018919678, 0.06397199, 0.002600727, 0.09664484, 0.0255541, -0.06666037, -0.017373003, 0.072488464, -0.5093568, -0.25812227, -0.61227757)
 
-[node name="Radar" parent="Camera3D/Scanner" index="0" unique_id=912114505]
+[node name="Radar" parent="Camera3D/Scanner" index="0" unique_id=502753039]
 visible = false
 surface_material_override/1 = SubResource("StandardMaterial3D_e80uo")
 
-[node name="PK_Detector" parent="Camera3D/Scanner" index="1" unique_id=1041488149]
+[node name="PK_Detector" parent="Camera3D/Scanner" index="1" unique_id=1387790739]
 surface_material_override/1 = SubResource("StandardMaterial3D_dtqjt")
 surface_material_override/2 = SubResource("StandardMaterial3D_5ncpa")
 
-[node name="PK_L_arm" parent="Camera3D/Scanner/PK_Detector" index="0" unique_id=141147897]
+[node name="PK_L_arm" parent="Camera3D/Scanner/PK_Detector" index="0" unique_id=570124216]
 surface_material_override/0 = SubResource("StandardMaterial3D_cxr5p")
 
-[node name="PK_R_arm" parent="Camera3D/Scanner/PK_Detector" index="1" unique_id=922976198]
+[node name="PK_R_arm" parent="Camera3D/Scanner/PK_Detector" index="1" unique_id=1504595088]
 surface_material_override/0 = SubResource("StandardMaterial3D_tdg3f")
 
-[node name="Trap" parent="Camera3D/Scanner" index="2" unique_id=1148729363]
+[node name="Trap" parent="Camera3D/Scanner" index="2" unique_id=1719639026]
 transform = Transform3D(0.91348046, -0.17479554, -0.36742324, -0.05433032, 0.84253377, -0.5358965, 0.4032386, 0.50949293, 0.76014143, 0.9172628, -1.0183592, 0.6721616)
+visible = false
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Camera3D/Scanner" unique_id=1861691340]
 volume_db = -10.0

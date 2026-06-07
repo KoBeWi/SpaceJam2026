@@ -57,7 +57,7 @@ func set_item(in_id:int)->void:
 			pk_l_arm.hide()
 			pk_r_arm.hide()
 		2:
-			trap.show()
+			trap.visible = has_box
 			radar.hide()
 			pk_detector.hide()
 			pk_l_arm.hide()
@@ -117,6 +117,8 @@ func _physics_process(delta: float) -> void:
 			await box.pickup()
 			set_physics_process(true)
 			has_box = true
+			if owner.current_item == 2:
+				trap.show()
 			gotbox.emit()
 	
 	pk_emiter_mat1.uv1_offset.x -= pk_emiter_lights_value * delta * 1.0
@@ -142,3 +144,7 @@ func _input(event: InputEvent) -> void:
 			%AnimationPlayer.play("in_face")
 		else:
 			%AnimationPlayer.play("rest_pose")
+
+func throwbox():
+	has_box = false
+	trap.hide()
