@@ -25,7 +25,13 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 [sub_resource type="BoxShape3D" id="BoxShape3D_yebci"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jm3vu"]
+transparency = 1
+albedo_color = Color(0, 1, 0.99215686, 0.91764706)
 albedo_texture = ExtResource("1_0bkxv")
+emission_enabled = true
+emission = Color(0, 1, 0.99215686, 1)
+emission_energy_multiplier = 0.1
+emission_texture = ExtResource("1_0bkxv")
 
 [sub_resource type="BoxMesh" id="BoxMesh_yebci"]
 
@@ -161,6 +167,7 @@ collision_layer = 0
 script = SubResource("GDScript_jm3vu")
 
 [node name="Area3D" type="Area3D" parent="." unique_id=1336147264]
+visible = false
 collision_layer = 0
 collision_mask = 4
 
@@ -168,6 +175,7 @@ collision_mask = 4
 shape = SubResource("BoxShape3D_yebci")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2105569490]
+visible = false
 shape = SubResource("BoxShape3D_yebci")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1092651089]
