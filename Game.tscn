@@ -152,6 +152,17 @@ func _process(delta: float) -> void:
 	text = \"%02d:%02d\" % [time / 60, fmod(time, 60)]
 "
 
+[sub_resource type="GDScript" id="GDScript_hmewc"]
+script/source = "extends TextureRect
+
+func _ready() -> void:
+	if not OS.has_feature(\"editor\"):
+		return
+	
+	await get_tree().process_frame
+	texture = $\"../../Ghost/Sprite3D\".texture
+"
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_cauhl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cpsxm"]
@@ -437,6 +448,19 @@ offset_right = -61.0
 offset_bottom = 115.0
 grow_horizontal = 2
 max_value = 200.0
+
+[node name="TextureRect" type="TextureRect" parent="UI" unique_id=1314775972]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -8.0
+offset_bottom = 8.0
+grow_horizontal = 0
+expand_mode = 1
+stretch_mode = 5
+script = SubResource("GDScript_hmewc")
 
 [node name="Ghost" type="CharacterBody3D" parent="." unique_id=2062454181 node_paths=PackedStringArray("player_handle", "bodies", "angrygress")]
 collision_layer = 0

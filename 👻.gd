@@ -3,6 +3,9 @@ extends CharacterBody3D
 @export var player_handle:CharacterBody3D
 @export var bodies: Array[Node3D]
 @export var angrygress: ProgressBar
+
+static var ostatni_duch: int = -1
+
 var angryness_buffores := 5.0
 var max_angrygress := 200.0
 var poltergowalne: Array[RigidBody3D]
@@ -14,8 +17,25 @@ func _ready() -> void:
 	var tween := create_tween().set_loops()
 	tween.tween_property($Orbit, ^"rotation:y", TAU, 10.0).from(0)
 	
+	var levelname: String = owner.level.resource_path.get_file()
+	
 	var mybody = bodies.pick_random()
-	$Sprite3D.texture = [preload("uid://dt3fnvecekspq"), preload("uid://bfnoffvme3xhb"), preload("uid://i57ofe5h800m"), preload("uid://12frpuotdemc")][bodies.find(mybody)]
+	var idx := bodies.find(mybody)
+	
+	if levelname.begins_with("Tutorial"):
+		mybody = bodies[0]
+		idx = 0
+	elif idx == ostatni_duch:
+		for i in 1000:
+			mybody = bodies.pick_random()
+			idx = bodies.find(mybody)
+			
+			if idx != ostatni_duch:
+				break
+	
+	ostatni_duch = idx
+	
+	$Sprite3D.texture = [preload("uid://dt3fnvecekspq"), preload("uid://bfnoffvme3xhb"), preload("uid://i57ofe5h800m"), preload("uid://12frpuotdemc")][idx]
 	
 	for body in bodies:
 		if body != mybody:
