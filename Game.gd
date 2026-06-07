@@ -102,6 +102,7 @@ func _input(event: InputEvent) -> void:
 		if not is_equal_approx(catcher_timeout.value, catcher_timeout.max_value):
 			return
 		
+		%Throw.play()
 		catcher_timeout.value = 0
 		var box := preload("uid://btypyodrftaco").instantiate()
 		box.position = player.position

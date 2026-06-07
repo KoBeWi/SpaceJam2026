@@ -14,6 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://bk5gi0ae1q6h" path="res://Beeper.wav" id="9_yhmtn"]
 [ext_resource type="Texture2D" uid="uid://c4dct0i4fupm4" path="res://Mouse_Left_Key_Light.png" id="11_lvtmh"]
 [ext_resource type="Texture2D" uid="uid://dvaebj72pr1pf" path="res://Timer.png" id="12_yyih5"]
+[ext_resource type="AudioStream" uid="uid://b475n88ro231i" path="res://Throw.wav" id="13_0yprl"]
 [ext_resource type="AudioStream" uid="uid://bt1h6q4w5i7mt" path="res://Disappear.wav" id="15_qjyg3"]
 [ext_resource type="AudioStream" uid="uid://dlm4ktjq3vflg" path="res://17- Dark Fantasy Studio- Graveyard.mp3" id="16_elkpi"]
 
@@ -275,6 +276,10 @@ fill_mode = 4
 texture_under = ExtResource("12_yyih5")
 texture_progress = ExtResource("12_yyih5")
 tint_progress = Color(1, 0.7301085, 0, 1)
+
+[node name="Throw" type="AudioStreamPlayer" parent="UI/Catcher" unique_id=211149654]
+unique_name_in_owner = true
+stream = ExtResource("13_0yprl")
 
 [node name="Timer" type="Label" parent="UI" unique_id=1635287469]
 unique_name_in_owner = true

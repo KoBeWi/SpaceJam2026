@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://btypyodrftaco"]
 
 [ext_resource type="Texture2D" uid="uid://dg7qbv3lr6typ" path="res://Box.png" id="1_0bkxv"]
+[ext_resource type="AudioStream" uid="uid://dkq3e5lcqtfa0" path="res://Cratefall.wav" id="2_jm3vu"]
 
 [sub_resource type="GDScript" id="GDScript_jm3vu"]
 script/source = "extends StaticBody3D
@@ -10,9 +11,14 @@ var velocity: Vector3
 func _physics_process(delta: float) -> void:
 	velocity += Vector3.DOWN * 9.8 * delta
 	var col := move_and_collide(velocity * delta)
-	if col and col.get_normal().y > 0:
-		$AnimationPlayer.play(&\"Unwrap\")
-		set_physics_process(false)
+	if col:
+		if col.get_normal().y > 0:
+			$AudioStreamPlayer3D.play()
+			$AnimationPlayer.play(&\"Unwrap\")
+			set_physics_process(false)
+		else:
+			velocity.x = 0
+			velocity.z = 0
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	body.get_parent().catch()
@@ -182,6 +188,9 @@ mesh = SubResource("BoxMesh_yebci")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1870756575]
 libraries/ = SubResource("AnimationLibrary_jm3vu")
 autoplay = &"Disable"
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1449945325]
+stream = ExtResource("2_jm3vu")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
