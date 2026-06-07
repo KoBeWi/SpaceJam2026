@@ -62,7 +62,9 @@ func set_item(in_id:int)->void:
 			pk_detector.hide()
 			pk_l_arm.hide()
 			pk_r_arm.hide()
-		
+			%AnimationPlayer.play("ChargeTrap")
+
+
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():

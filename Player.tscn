@@ -68,6 +68,33 @@ emission_operator = 1
 emission_texture = ExtResource("4_e80uo")
 metadata/_gltf_primary_texture_coord = 0
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wi0c6"]
+resource_name = "Lights"
+transparency = 4
+cull_mode = 2
+albedo_color = Color(1, 1, 1, 0.50453174)
+albedo_texture = ExtResource("4_e80uo")
+metallic = 0.570997
+roughness = 0.0
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 2.0
+emission_operator = 1
+emission_texture = ExtResource("4_e80uo")
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hp6x6"]
+resource_name = "Moving"
+cull_mode = 2
+albedo_texture = ExtResource("4_e80uo")
+metallic = 0.570997
+roughness = 0.0
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+emission_operator = 1
+emission_texture = ExtResource("4_e80uo")
+metadata/_gltf_primary_texture_coord = 0
+
 [sub_resource type="Environment" id="Environment_xhfnw"]
 background_mode = 1
 
@@ -120,6 +147,30 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0.033333335)
 }
 tracks/2/use_blend = true
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Camera3D/Scanner/Trap:surface_material_override/1:emission_energy_multiplier")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2.6999993, 3.2999997, 3.6999993, 4.1, 4.2999997, 4.4999995, 4.6999993, 4.8, 4.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0, 2.0, 0.0, 4.0, 1.0, 4.0, 1.0, 4.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Camera3D/Scanner/Trap:surface_material_override/5:uv1_offset")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.8, 0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_kne1u"]
 length = 0.001
@@ -178,6 +229,30 @@ tracks/4/path = NodePath("Camera3D/Scanner/Trap/Trap_handle:rotation")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Camera3D/Scanner/Trap:surface_material_override/1:emission_energy_multiplier")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Camera3D/Scanner/Trap:surface_material_override/5:uv1_offset")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -330,31 +405,33 @@ spot_angle = 33.09
 unique_name_in_owner = true
 transform = Transform3D(0.07449585, -0.018919678, 0.06397199, 0.002600727, 0.09664484, 0.0255541, -0.06666037, -0.017373003, 0.072488464, -0.5093568, -0.25812227, -0.61227757)
 
-[node name="Radar" parent="Camera3D/Scanner" index="0" unique_id=502753039]
+[node name="Radar" parent="Camera3D/Scanner" index="0" unique_id=1723900178]
 visible = false
 surface_material_override/1 = SubResource("StandardMaterial3D_e80uo")
 
-[node name="PK_Detector" parent="Camera3D/Scanner" index="1" unique_id=1387790739]
+[node name="PK_Detector" parent="Camera3D/Scanner" index="1" unique_id=1268347054]
 surface_material_override/1 = SubResource("StandardMaterial3D_dtqjt")
 surface_material_override/2 = SubResource("StandardMaterial3D_5ncpa")
 
-[node name="PK_L_arm" parent="Camera3D/Scanner/PK_Detector" index="0" unique_id=570124216]
+[node name="PK_L_arm" parent="Camera3D/Scanner/PK_Detector" index="0" unique_id=747139150]
 surface_material_override/0 = SubResource("StandardMaterial3D_cxr5p")
 
-[node name="PK_R_arm" parent="Camera3D/Scanner/PK_Detector" index="1" unique_id=1504595088]
+[node name="PK_R_arm" parent="Camera3D/Scanner/PK_Detector" index="1" unique_id=2092001693]
 surface_material_override/0 = SubResource("StandardMaterial3D_tdg3f")
 
-[node name="Trap" parent="Camera3D/Scanner" index="2" unique_id=1719639026]
+[node name="Trap" parent="Camera3D/Scanner" index="2" unique_id=1654693677]
 transform = Transform3D(0.91348046, -0.17479554, -0.36742324, -0.05433032, 0.84253377, -0.5358965, 0.4032386, 0.50949293, 0.76014143, 0.9172628, -1.0183592, 0.6721616)
 visible = false
+surface_material_override/1 = SubResource("StandardMaterial3D_wi0c6")
+surface_material_override/5 = SubResource("StandardMaterial3D_hp6x6")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Camera3D/Scanner" unique_id=1861691340]
-volume_db = -10.0
+volume_db = -30.0
 pitch_scale = 1.61
 bus = &"LessSFX"
 
 [node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="Camera3D/Scanner" unique_id=1103285117]
-volume_db = -10.0
+volume_db = -30.0
 bus = &"LessSFX"
 
 [node name="SubViewport" type="SubViewport" parent="." unique_id=1521101797]
