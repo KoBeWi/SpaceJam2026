@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://c4dct0i4fupm4" path="res://Mouse_Left_Key_Light.png" id="11_lvtmh"]
 [ext_resource type="Texture2D" uid="uid://dvaebj72pr1pf" path="res://Timer.png" id="12_yyih5"]
 [ext_resource type="AudioStream" uid="uid://bt1h6q4w5i7mt" path="res://Disappear.wav" id="15_qjyg3"]
+[ext_resource type="AudioStream" uid="uid://dlm4ktjq3vflg" path="res://17- Dark Fantasy Studio- Graveyard.mp3" id="16_elkpi"]
 
 [sub_resource type="Environment" id="Environment_0xref"]
 background_mode = 1
@@ -330,3 +331,8 @@ stream = ExtResource("15_qjyg3")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=174042842]
 environment = SubResource("Environment_5l23l")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1127300391]
+stream = ExtResource("16_elkpi")
+volume_db = -20.0
+autoplay = true
