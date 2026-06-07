@@ -143,8 +143,9 @@ script = ExtResource("1_u44n3")
 level = ExtResource("2_t88pq")
 metadata/_edit_horizontal_guides_ = [1051.0]
 
-[node name="Player" parent="." unique_id=1441229512 instance=ExtResource("3_t88pq")]
+[node name="Player" parent="." unique_id=1441229512 node_paths=PackedStringArray("duch") instance=ExtResource("3_t88pq")]
 collision_layer = 0
+duch = NodePath("../Ghost")
 
 [node name="RayDraw" type="Node3D" parent="." unique_id=1062892962 node_paths=PackedStringArray("trail_mesh_instance", "player_handle")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37548137, 0)

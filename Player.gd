@@ -10,6 +10,8 @@ var lerp_target := 0.0
 @onready var camera_3d: Camera3D = %Camera3D
 @onready var flashlight: SpotLight3D = %Flashlight
 
+@export var duch: Node3D
+
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
@@ -47,6 +49,13 @@ func _physics_process(delta: float) -> void:
 		
 	flashlight.position.y = sin(cumulator)*0.1
 	flashlight.position.x = abs(cos(cumulator)*0.1)
+	
+	var dist := duch.global_position.distance_to(global_position)
+	if dist < 3:
+		flashlight.visible = randf_range(0, 3) < dist
+	else:
+		flashlight.visible = true
+	
 	move_and_slide()
 
 func _input(event: InputEvent) -> void:
