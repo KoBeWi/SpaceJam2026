@@ -5,7 +5,23 @@
 [ext_resource type="PackedScene" uid="uid://b1mxpq4vryceb" path="res://AreaLight.tscn" id="3_mah8k"]
 [ext_resource type="PackedScene" uid="uid://c7x2bwkqkmdds" path="res://Decon.tscn" id="4_trtwh"]
 
+[sub_resource type="GDScript" id="GDScript_bvhbk"]
+script/source = "extends Node3D
+
+var radiation: Label
+var radiance: float
+
+func _ready() -> void:
+	radiation = get_parent().get_node(^\"%Radiation\")
+	radiation.show()
+
+func _physics_process(delta: float) -> void:
+	radiance -= delta
+	radiation.text = \"Poziom napromieniowania %d%%\" % radiance
+"
+
 [node name="Level" type="Node3D" unique_id=1474157983]
+script = SubResource("GDScript_bvhbk")
 
 [node name="Geometry" type="Node3D" parent="." unique_id=1946301714]
 

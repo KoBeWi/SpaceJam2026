@@ -2,6 +2,20 @@
 
 [ext_resource type="Texture2D" uid="uid://b221lku3skr24" path="res://Decon.png" id="1_8uy55"]
 
+[sub_resource type="GDScript" id="GDScript_bvhbk"]
+script/source = "extends RigidBody3D
+
+@onready var player: Node3D = owner.get_parent().get_node(\"Player\")
+
+func _physics_process(delta: float) -> void:
+	var radiance := 3.0 / player.global_position.distance_to(global_position)
+	if radiance >= 0.8:
+		owner.radiance += radiance * delta
+	
+	if owner.radiance >= 100:
+		owner.get_parent().over_game()
+"
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_foauw"]
 albedo_texture = ExtResource("1_8uy55")
 
@@ -13,6 +27,7 @@ size = Vector3(0.5, 0.5, 0.5)
 
 [node name="Deco" type="RigidBody3D" unique_id=823489778]
 collision_layer = 3
+script = SubResource("GDScript_bvhbk")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1239838832]
 material_override = SubResource("StandardMaterial3D_foauw")

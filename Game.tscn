@@ -329,13 +329,15 @@ stream = ExtResource("13_0yprl")
 
 [node name="Timer" type="Label" parent="UI" unique_id=1635287469]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 1042.0
-offset_top = 25.0
-offset_right = 1154.0
-offset_bottom = 80.0
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 35.0
+offset_bottom = 90.0
+grow_horizontal = 2
 theme_override_font_sizes/font_size = 40
 text = "Timer"
+horizontal_alignment = 1
 script = SubResource("GDScript_qjyg3")
 
 [node name="Winlabel" type="Label" parent="UI" unique_id=1094956388]
@@ -353,6 +355,35 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 40
 text = "Duch złapany!
 Twój czas: %02d:%02d"
+horizontal_alignment = 1
+
+[node name="Trup" type="Label" parent="UI" unique_id=1415898111]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -56.5
+offset_bottom = 56.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "Nie żyjesz 💀"
+horizontal_alignment = 1
+
+[node name="Radiation" type="Label" parent="UI" unique_id=1526787785]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 100.0
+offset_bottom = 142.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 30
+text = "Radiation Level"
 horizontal_alignment = 1
 
 [node name="Ghost" type="CharacterBody3D" parent="." unique_id=2062454181 node_paths=PackedStringArray("player_handle", "bodies")]

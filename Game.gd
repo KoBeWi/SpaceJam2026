@@ -85,7 +85,7 @@ func _process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	var k := event as InputEventKey
 	if k and k.pressed and not k.echo:
-		if %Winlabel.visible:
+		if %Winlabel.visible or %Trup.visible:
 			if k.keycode == KEY_ESCAPE:
 				get_tree().change_scene_to_file("uid://bvsjr5kk2hsxi")
 			return
@@ -140,3 +140,8 @@ func win():
 	%Winlabel.show()
 	%Timer.hide()
 	%Winlabel.text %= [%Timer.time / 60, fmod(%Timer.time, 60)]
+
+func over_game():
+	%Trup.show()
+	set_process(false)
+	player.set_physics_process(false)
