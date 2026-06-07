@@ -58,6 +58,9 @@ func _fire_ray_and_record() -> void:
 		if not collision.is_empty():
 			if owner.current_item == 1:
 				var collider: Node = collision["collider"]
+				if collider.get_meta(&"erase", false):
+					return
+				
 				collider = collider.get_parent()
 				if collider:
 					collider = collider.get_parent()

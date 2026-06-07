@@ -33,6 +33,8 @@ func _physics_process(delta: float) -> void:
 		bodies[0].rotation.y = -Vector2(global_position.x, global_position.z).angle_to_point(player_v2)
 	elif is_instance_valid(bodies[1]):
 		bodies[1].rotation.y = -Vector2(global_position.x, global_position.z).angle_to_point(player_v2)
+	elif is_instance_valid(bodies[3]):
+		bodies[3].rotation.y = -Vector2(global_position.x, global_position.z).angle_to_point(player_v2)
 	elif is_instance_valid(bodies[2]):
 		bodies[2].rotation.y += PI * delta
 
