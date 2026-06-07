@@ -22,7 +22,7 @@ func _ready() -> void:
 	scores = ConfigFile.new()
 	scores.load(\"user://scores.cfg\")
 	
-	add_level(\"Mosaic\", \"Open Space\")
+	add_level(\"Mosaic\", \"Underground Parking\")
 	add_level(\"Floors\", \"Short Tower\")
 	add_level(\"Maze\", \"Abandoned Corridors\")
 	add_level(\"Worm\", \"Forgotten Basement\")
