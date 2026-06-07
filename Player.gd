@@ -143,7 +143,7 @@ func _input(event: InputEvent) -> void:
 		rotation.y -= mm.relative.x * (1.0 / TAU ** 3)
 		
 	var mb := event as InputEventMouseButton
-	if mb and mb.button_index == MOUSE_BUTTON_RIGHT:
+	if mb and mb.button_index == MOUSE_BUTTON_RIGHT and not cranging:
 		if mb.pressed:
 			is_scaner_in_face = not is_scaner_in_face
 	
