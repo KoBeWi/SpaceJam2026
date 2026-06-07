@@ -87,7 +87,7 @@ func _input(event: InputEvent) -> void:
 	if k and k.pressed and not k.echo:
 		if %Winlabel.visible or %Trup.visible:
 			if k.keycode == KEY_ESCAPE:
-				get_tree().change_scene_to_file("uid://bvsjr5kk2hsxi")
+				quot()
 			return
 		
 		match k.keycode:
@@ -99,6 +99,10 @@ func _input(event: InputEvent) -> void:
 				current_item = 2
 			KEY_T:
 				$TrailMeshInstance.visible = not $TrailMeshInstance.visible
+				return
+			KEY_ESCAPE:
+				%Menu.show()
+				Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 				return
 			_:
 				return
@@ -145,3 +149,10 @@ func over_game():
 	%Trup.show()
 	set_process(false)
 	player.set_physics_process(false)
+
+func contineu():
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+	%Menu.hide()
+
+func quot() -> void:
+	get_tree().change_scene_to_file("uid://bvsjr5kk2hsxi")

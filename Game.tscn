@@ -386,6 +386,32 @@ theme_override_font_sizes/font_size = 30
 text = "Radiation Level"
 horizontal_alignment = 1
 
+[node name="Menu" type="VBoxContainer" parent="UI" unique_id=653233338]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="UI/Menu" unique_id=269701306]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Kontynuuj"
+
+[node name="Button2" type="Button" parent="UI/Menu" unique_id=594984486]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Wyjdź"
+
 [node name="Ghost" type="CharacterBody3D" parent="." unique_id=2062454181 node_paths=PackedStringArray("player_handle", "bodies")]
 collision_layer = 0
 script = ExtResource("6_3mrqo")
@@ -462,3 +488,6 @@ environment = SubResource("Environment_5l23l")
 stream = ExtResource("16_elkpi")
 volume_db = -20.0
 autoplay = true
+
+[connection signal="pressed" from="UI/Menu/Button" to="." method="contineu"]
+[connection signal="pressed" from="UI/Menu/Button2" to="." method="quot"]
