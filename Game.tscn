@@ -426,14 +426,27 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Wyjdź"
 
-[node name="Ghost" type="CharacterBody3D" parent="." unique_id=2062454181 node_paths=PackedStringArray("player_handle", "bodies")]
+[node name="ProgressBar" type="ProgressBar" parent="UI" unique_id=285901546]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 61.0
+offset_top = 88.0
+offset_right = -61.0
+offset_bottom = 115.0
+grow_horizontal = 2
+max_value = 200.0
+
+[node name="Ghost" type="CharacterBody3D" parent="." unique_id=2062454181 node_paths=PackedStringArray("player_handle", "bodies", "angrygress")]
 collision_layer = 0
 script = ExtResource("6_3mrqo")
 player_handle = NodePath("../Player")
 bodies = [NodePath("Shapes/StaticBody3D"), NodePath("Shapes/StaticBody3D2"), NodePath("Shapes/StaticBody3D3"), NodePath("Shapes/StaticBody3D4")]
+angrygress = NodePath("../UI/ProgressBar")
 
 [node name="Sprite3D" type="Sprite3D" parent="Ghost" unique_id=2081870197]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+visible = false
 billboard = 2
 texture = ExtResource("6_r0x5m")
 
