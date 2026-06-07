@@ -164,7 +164,7 @@ func over_game():
 	player.set_physics_process(false)
 
 func contineu():
-	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	%Menu.hide()
 
 func quot() -> void:
