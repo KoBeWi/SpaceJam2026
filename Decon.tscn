@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://c7x2bwkqkmdds"]
+
+[ext_resource type="Texture2D" uid="uid://b221lku3skr24" path="res://Decon.png" id="1_8uy55"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_foauw"]
+albedo_texture = ExtResource("1_8uy55")
+
+[sub_resource type="BoxMesh" id="BoxMesh_yebci"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yebci"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[node name="Deco" type="RigidBody3D" unique_id=823489778]
+collision_layer = 3
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1239838832]
+material_override = SubResource("StandardMaterial3D_foauw")
+mesh = SubResource("BoxMesh_yebci")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1607445049]
+shape = SubResource("BoxShape3D_yebci")

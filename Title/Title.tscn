@@ -21,6 +21,7 @@ func _ready() -> void:
 	add_level(\"Mosaic\", \"Open Space\")
 	add_level(\"Maze\", \"Abandoned Corridors\")
 	add_level(\"Worm\", \"Forgotten Basement\")
+	add_level(\"Radiation\", \"Waste Storage\")
 	#add_level(\"Rings\", \"Underground Spiral\")
 	#add_level(\"Tworooms\", \"Double Rooms\")
 	#add_level(\"Mess\", \"Cave\")
