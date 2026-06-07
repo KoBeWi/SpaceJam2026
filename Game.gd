@@ -87,6 +87,8 @@ func _input(event: InputEvent) -> void:
 				current_item = 1
 			KEY_3:
 				current_item = 2
+			KEY_T:
+				$TrailMeshInstance.visible = not $TrailMeshInstance.visible
 			_:
 				return
 		

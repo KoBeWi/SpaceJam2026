@@ -227,7 +227,6 @@ texture = SubResource("ViewportTexture_r0x5m")
 unique_name_in_owner = true
 stream = ExtResource("7_gwjdr")
 max_polyphony = 1024
-bus = &"SFX"
 
 [node name="Proximer" type="TextureProgressBar" parent="UI" unique_id=2044026025]
 unique_name_in_owner = true
@@ -245,7 +244,6 @@ texture_progress = ExtResource("8_yhmtn")
 [node name="Beeper" type="AudioStreamPlayer" parent="UI/Proximer" unique_id=1436811264]
 unique_name_in_owner = true
 max_polyphony = 2
-bus = &"SFX"
 
 [node name="Proximanimator" type="AnimationPlayer" parent="UI/Proximer" unique_id=145594384]
 unique_name_in_owner = true
@@ -350,4 +348,3 @@ environment = SubResource("Environment_5l23l")
 stream = ExtResource("16_elkpi")
 volume_db = -20.0
 autoplay = true
-bus = &"Music"

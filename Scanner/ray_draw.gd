@@ -28,7 +28,7 @@ func _ready() -> void:
 	_setup_material()
 
 func _physics_process(delta: float) -> void:
-	#_update_trail(delta)
+	_update_trail(delta)
 	for i in 3:
 		array_iterator = (array_iterator+1) % 40
 		pitch_array[array_iterator] = 0
@@ -70,13 +70,13 @@ func _fire_ray_and_record() -> void:
 			segment_end = collision.position
 			ray = ray.bounce(collision.normal)
 			
-
-		#trail_segments.append({
-			#"start": ray_start,
-			#"end": segment_end,
-			#"age": 0.0,
-			#"idx": bounce
-		#})
+		if trail_mesh_instance.visible:
+			trail_segments.append({
+				"start": ray_start,
+				"end": segment_end,
+				"age": 0.0,
+				"idx": bounce
+			})
 		ray_start = segment_end
 		ray_end = ray_start + ray
 		bounce += 1
