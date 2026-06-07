@@ -20,10 +20,10 @@ func _ready() -> void:
 	
 	add_level(\"Mosaic\", \"Open Space\")
 	add_level(\"Maze\", \"Abandoned Corridors\")
-	add_level(\"Worm\", \"Common Basement\")
-	add_level(\"Rings\", \"Underground Spiral\")
-	add_level(\"Tworooms\", \"Double Rooms\")
-	add_level(\"Mess\", \"Cave\")
+	add_level(\"Worm\", \"Forgotten Basement\")
+	#add_level(\"Rings\", \"Underground Spiral\")
+	#add_level(\"Tworooms\", \"Double Rooms\")
+	#add_level(\"Mess\", \"Cave\")
 
 func _process(delta: float) -> void:
 	label.position = label_original + Vector2(randf_range(-1, 1), randf_range(-1, 1))
