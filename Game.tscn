@@ -153,6 +153,7 @@ func _process(delta: float) -> void:
 [sub_resource type="SphereShape3D" id="SphereShape3D_cauhl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5l23l"]
+size = Vector3(1.5, 1.5, 1.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yebci"]
 size = Vector3(1, 0.25439453, 1)
@@ -358,7 +359,6 @@ bodies = [NodePath("Shapes/StaticBody3D"), NodePath("Shapes/StaticBody3D2"), Nod
 
 [node name="Sprite3D" type="Sprite3D" parent="Ghost" unique_id=2081870197]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
-visible = false
 billboard = 2
 texture = ExtResource("6_r0x5m")
 
@@ -398,7 +398,7 @@ shape = SubResource("BoxShape3D_yebci")
 
 [node name="StaticBody3D3" type="StaticBody3D" parent="Ghost/Shapes" unique_id=1072586906]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
 collision_layer = 4
 collision_mask = 0
 
