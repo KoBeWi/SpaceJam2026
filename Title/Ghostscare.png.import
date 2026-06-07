@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ie3frpj06es8"
-path="res://.godot/imported/Ghostscare.png-a7039dfbeaff52dda3a84d72c1037b09.ctex"
+path="res://.godot/imported/Ghostscare.png-ba8928d771d31222228ae4c48bb44b20.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Ghostscare.png"
-dest_files=["res://.godot/imported/Ghostscare.png-a7039dfbeaff52dda3a84d72c1037b09.ctex"]
+source_file="res://Title/Ghostscare.png"
+dest_files=["res://.godot/imported/Ghostscare.png-ba8928d771d31222228ae4c48bb44b20.ctex"]
 
 [params]
 

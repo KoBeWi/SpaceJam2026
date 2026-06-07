@@ -3,7 +3,7 @@
 [ext_resource type="FontFile" uid="uid://dx0waiphhqys2" path="res://Title/GHOSTS ITALIC PERSONAL USE.ttf" id="1_c0y8y"]
 [ext_resource type="Texture2D" uid="uid://dt3fnvecekspq" path="res://Ghost.png" id="2_0we2p"]
 [ext_resource type="Texture2D" uid="uid://cm8n7mop024s5" path="res://t_flashlightpattern.png" id="2_57gjt"]
-[ext_resource type="Texture2D" uid="uid://ie3frpj06es8" path="res://Ghostscare.png" id="3_rl6dn"]
+[ext_resource type="Texture2D" uid="uid://ie3frpj06es8" path="res://Title/Ghostscare.png" id="3_rl6dn"]
 [ext_resource type="Texture2D" uid="uid://i57ofe5h800m" path="res://Ghost3.png" id="3_xxynw"]
 [ext_resource type="Texture2D" uid="uid://bfnoffvme3xhb" path="res://Ghost2.png" id="4_ehap8"]
 [ext_resource type="AudioStream" uid="uid://fdbgclifu65d" path="res://15- Dark Fantasy Studio- After dark.mp3" id="4_irgv8"]
