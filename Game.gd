@@ -99,6 +99,7 @@ func _input(event: InputEvent) -> void:
 				current_item = 2
 			KEY_T:
 				$TrailMeshInstance.visible = not $TrailMeshInstance.visible
+				return
 			_:
 				return
 		player.set_item(current_item)
