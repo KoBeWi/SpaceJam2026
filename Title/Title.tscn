@@ -1,9 +1,13 @@
 [gd_scene format=3 uid="uid://bvsjr5kk2hsxi"]
 
 [ext_resource type="FontFile" uid="uid://dx0waiphhqys2" path="res://Title/GHOSTS ITALIC PERSONAL USE.ttf" id="1_c0y8y"]
+[ext_resource type="Texture2D" uid="uid://dt3fnvecekspq" path="res://Ghost.png" id="2_0we2p"]
 [ext_resource type="Texture2D" uid="uid://cm8n7mop024s5" path="res://t_flashlightpattern.png" id="2_57gjt"]
 [ext_resource type="Texture2D" uid="uid://ie3frpj06es8" path="res://Ghostscare.png" id="3_rl6dn"]
+[ext_resource type="Texture2D" uid="uid://i57ofe5h800m" path="res://Ghost3.png" id="3_xxynw"]
+[ext_resource type="Texture2D" uid="uid://bfnoffvme3xhb" path="res://Ghost2.png" id="4_ehap8"]
 [ext_resource type="AudioStream" uid="uid://fdbgclifu65d" path="res://15- Dark Fantasy Studio- After dark.mp3" id="4_irgv8"]
+[ext_resource type="Texture2D" uid="uid://12frpuotdemc" path="res://Ghost4.png" id="5_awgf4"]
 
 [sub_resource type="GDScript" id="GDScript_c0y8y"]
 script/source = "extends Control
@@ -177,8 +181,11 @@ layout_mode = 2
 layout_mode = 2
 text = "Pomoc"
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer" unique_id=256323942]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=2001832933]
 visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/VBoxContainer" unique_id=256323942]
 custom_maximum_size = Vector2(600, -1)
 layout_mode = 2
 text = "Twoje zadanie to złapać ducha.
@@ -189,6 +196,55 @@ WSAD - ruch.
 3 = Łapacz duchów.
 PPM - Przybliż narzędzie."
 autowrap_mode = 2
+
+[node name="Label2" type="Label" parent="PanelContainer/VBoxContainer/VBoxContainer" unique_id=1494119645]
+layout_mode = 2
+text = "Rodzaje duchów (wybierane losowo)"
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer/VBoxContainer/VBoxContainer" unique_id=910101863]
+layout_mode = 2
+columns = 2
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/VBoxContainer/GridContainer" unique_id=116095212]
+layout_mode = 2
+texture = ExtResource("2_0we2p")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/VBoxContainer/GridContainer" unique_id=1321278044]
+layout_mode = 2
+text = "Zwykły duch"
+
+[node name="TextureRect2" type="TextureRect" parent="PanelContainer/VBoxContainer/VBoxContainer/GridContainer" unique_id=98899598]
+layout_mode = 2
+texture = ExtResource("4_ehap8")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Label2" type="Label" parent="PanelContainer/VBoxContainer/VBoxContainer/GridContainer" unique_id=1139652145]
+layout_mode = 2
+text = "Dziurawy duch (trudniej go trafić promieniem)"
+
+[node name="TextureRect3" type="TextureRect" parent="PanelContainer/VBoxContainer/VBoxContainer/GridContainer" unique_id=2087683581]
+layout_mode = 2
+texture = ExtResource("3_xxynw")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Label3" type="Label" parent="PanelContainer/VBoxContainer/VBoxContainer/GridContainer" unique_id=1824572734]
+layout_mode = 2
+text = "Kręcący duch (rozprasza promienie)"
+
+[node name="TextureRect4" type="TextureRect" parent="PanelContainer/VBoxContainer/VBoxContainer/GridContainer" unique_id=847894599]
+layout_mode = 2
+texture = ExtResource("5_awgf4")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Label4" type="Label" parent="PanelContainer/VBoxContainer/VBoxContainer/GridContainer" unique_id=909573844]
+layout_mode = 2
+text = "Pożerający duch (pochłania promienie)"
 
 [node name="TFlashlightpattern" type="Sprite2D" parent="." unique_id=1367730225]
 modulate = Color(0, 1, 0.38550162, 1)
@@ -222,4 +278,4 @@ autoplay = true
 
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="quit"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Button" to="PanelContainer/VBoxContainer/Button" method="hide"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/Button" to="PanelContainer/VBoxContainer/Label" method="show"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Button" to="PanelContainer/VBoxContainer/VBoxContainer" method="show"]

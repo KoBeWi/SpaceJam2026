@@ -12,6 +12,8 @@ func _ready() -> void:
 	tween.tween_property($Orbit, ^"rotation:y", TAU, 10.0).from(0)
 	
 	var mybody = bodies.pick_random()
+	$Sprite3D.texture = [preload("uid://dt3fnvecekspq"), preload("uid://bfnoffvme3xhb"), preload("uid://i57ofe5h800m"), preload("uid://12frpuotdemc")][bodies.find(mybody)]
+	
 	for body in bodies:
 		if body != mybody:
 			body.queue_free()
