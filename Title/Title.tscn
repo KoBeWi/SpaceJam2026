@@ -185,7 +185,8 @@ WSAD - ruch.
 1/2/3 - wybór narzędzia.
 1 = Wykrywacz duchów (sprawdza czy blisko).
 2 = Skaner duchów (wyszukuje ducha za pomocą promieni, aka promieniuje).
-3 = Łapacz duchów."
+3 = Łapacz duchów.
+PPM - Przybliż narzędzie."
 autowrap_mode = 2
 
 [node name="TFlashlightpattern" type="Sprite2D" parent="." unique_id=1367730225]
