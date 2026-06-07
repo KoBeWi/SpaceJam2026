@@ -321,6 +321,7 @@ libraries/ = SubResource("AnimationLibrary_lvtmh")
 
 [node name="Catcher" type="HBoxContainer" parent="UI" unique_id=373025646]
 unique_name_in_owner = true
+visible = false
 layout_mode = 0
 offset_left = 992.49347
 offset_top = 890.71155

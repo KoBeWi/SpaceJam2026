@@ -62,7 +62,7 @@ func set_item(in_id:int)->void:
 			pk_detector.hide()
 			pk_l_arm.hide()
 			pk_r_arm.hide()
-			%AnimationPlayer.play("ChargeTrap")
+			#%AnimationPlayer.play("ChargeTrap")
 
 
 func _physics_process(delta: float) -> void:
@@ -116,9 +116,13 @@ func _physics_process(delta: float) -> void:
 		var box = get_slide_collision(0).get_collider()
 		if box.get(&"can_pickup"):
 			set_physics_process(false)
-			await box.pickup()
-			set_physics_process(true)
+			box.queue_free()
 			has_box = true
+			set_item(2)
+			owner.current_item = 2
+			$AnimationPlayer.play(&"ChargeTrap")
+			await $AnimationPlayer.animation_finished
+			set_physics_process(true)
 			if owner.current_item == 2:
 				trap.show()
 			gotbox.emit()

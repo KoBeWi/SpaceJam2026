@@ -32,11 +32,6 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == &\"Unwrap\":
 		can_pickup = true
 		collision_layer |= 1
-
-func pickup():
-	$AnimationPlayer.play(&\"Pickup\")
-	await $AnimationPlayer.animation_finished
-	queue_free()
 "
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yebci"]
@@ -211,13 +206,13 @@ bus = &"SFX"
 [node name="Scanner" parent="." unique_id=93882829 instance=ExtResource("4_bybq8")]
 transform = Transform3D(0.193, 0, 0, 0, 0.193, 0, 0, 0, 0.193, 0, -0.2647299, 0)
 
-[node name="Radar" parent="Scanner" index="0" unique_id=502753039]
+[node name="Radar" parent="Scanner" index="0" unique_id=1388820251]
 visible = false
 
-[node name="PK_Detector" parent="Scanner" index="1" unique_id=1387790739]
+[node name="PK_Detector" parent="Scanner" index="1" unique_id=316539085]
 visible = false
 
-[node name="Trap_handle" parent="Scanner/Trap" parent_id_path=PackedInt32Array(93882829, 1719639026) index="0" unique_id=2108653865]
+[node name="Trap_handle" parent="Scanner/Trap" parent_id_path=PackedInt32Array(93882829, 1385612159) index="0" unique_id=1635069908]
 transform = Transform3D(1, 0, 3.496911e-07, 0, 1, 0, -3.496911e-07, 0, 1, 1.1092055, 0.5352556, 0.0015350599)
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=959687660]
