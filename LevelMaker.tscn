@@ -28,10 +28,10 @@ func _on_panel_gui_input(event: InputEvent) -> void:
 			set_tile(coords, mm.button_mask & MOUSE_BUTTON_LEFT)
 
 func draw_level() -> void:
-	panel.draw_rect(Rect2(get_cursor_coords() * TILE_SIZE, Vector2.ONE * TILE_SIZE), Color(1, 1, 1, 0.5))
-	
 	for coords in level:
 		panel.draw_rect(Rect2(coords * TILE_SIZE, Vector2.ONE * TILE_SIZE), Color.BLUE)
+	
+	panel.draw_rect(Rect2(get_cursor_coords() * TILE_SIZE, Vector2.ONE * TILE_SIZE), Color(1, 1, 1, 0.5))
 
 func set_tile(coords: Vector2i, exist: bool):
 	if exist and not coords in level:
