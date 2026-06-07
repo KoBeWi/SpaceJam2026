@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b678d5g64yx35"
-path.s3tc="res://.godot/imported/Tabliczka.png-c74c8dbbbf3c2559defa4e157db84cef.s3tc.ctex"
+uid="uid://6nwfjh84facl"
+path.s3tc="res://.godot/imported/stripes.png-7e83205fd613246433a2e282075b1711.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://textures/Tabliczka.png"
-dest_files=["res://.godot/imported/Tabliczka.png-c74c8dbbbf3c2559defa4e157db84cef.s3tc.ctex"]
+source_file="res://textures/stripes.png"
+dest_files=["res://.godot/imported/stripes.png-7e83205fd613246433a2e282075b1711.s3tc.ctex"]
 
 [params]
 

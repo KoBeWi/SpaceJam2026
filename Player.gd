@@ -18,6 +18,8 @@ var has_box: bool = true
 
 @onready var pk_l_arm: MeshInstance3D = $Camera3D/Scanner/PK_Detector/PK_L_arm
 @onready var pk_r_arm: MeshInstance3D = $Camera3D/Scanner/PK_Detector/PK_R_arm
+@onready var trap: MeshInstance3D = $Camera3D/Scanner/Trap
+@onready var trap_handle: MeshInstance3D = $Camera3D/Scanner/Trap/Trap_handle
 
 @export var detector_vp:SubViewport
 @export var minimap_vp:SubViewport
@@ -43,16 +45,19 @@ func _ready() -> void:
 func set_item(in_id:int)->void:
 	match in_id:
 		0:
+			trap.hide()
 			radar.hide()
 			pk_detector.show()
 			pk_l_arm.show()
 			pk_r_arm.show()
 		1:
+			trap.hide()
 			radar.show()
 			pk_detector.hide()
 			pk_l_arm.hide()
 			pk_r_arm.hide()
 		2:
+			trap.show()
 			radar.hide()
 			pk_detector.hide()
 			pk_l_arm.hide()
