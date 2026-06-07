@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://cm8n7mop024s5" path="res://t_flashlightpattern.png" id="2_kpjcp"]
 [ext_resource type="PackedScene" uid="uid://dtugd4ujp1uc" path="res://Scanner.blend" id="3_kne1u"]
 [ext_resource type="Texture2D" uid="uid://dqi4vxun6dbxq" path="res://textures/texture.png" id="4_e80uo"]
+[ext_resource type="AudioStream" uid="uid://cicbah7hi628n" path="res://carank_2.wav" id="5_tdg3f"]
+[ext_resource type="AudioStream" uid="uid://b5o4cxieortsu" path="res://charge.wav" id="6_dtqjt"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yebci"]
 
@@ -72,6 +74,53 @@ background_mode = 1
 [sub_resource type="World3D" id="World3D_nigug"]
 environment = SubResource("Environment_xhfnw")
 
+[sub_resource type="Animation" id="Animation_5ncpa"]
+resource_name = "ChargeTrap"
+length = 5.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D/Scanner/Trap/Trap_handle:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5, 8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 37.699112, 0), Vector3(0, 62.831852, 0)]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D/Scanner/AudioStreamPlayer3D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_tdg3f")
+}],
+"times": PackedFloat32Array(0.033333335)
+}
+tracks/1/use_blend = true
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera3D/Scanner/AudioStreamPlayer3D2")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("6_dtqjt")
+}],
+"times": PackedFloat32Array(0.033333335)
+}
+tracks/2/use_blend = true
+
 [sub_resource type="Animation" id="Animation_kne1u"]
 length = 0.001
 tracks/0/type = "value"
@@ -121,6 +170,18 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(-0.2617994, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Camera3D/Scanner/Trap/Trap_handle:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_e80uo"]
@@ -232,6 +293,7 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tdg3f"]
 _data = {
+&"ChargeTrap": SubResource("Animation_5ncpa"),
 &"RESET": SubResource("Animation_kne1u"),
 &"in_face": SubResource("Animation_e80uo"),
 &"rest_pose": SubResource("Animation_cxr5p")
@@ -284,6 +346,15 @@ surface_material_override/0 = SubResource("StandardMaterial3D_tdg3f")
 
 [node name="Trap" parent="Camera3D/Scanner" index="2" unique_id=1148729363]
 transform = Transform3D(0.91348046, -0.17479554, -0.36742324, -0.05433032, 0.84253377, -0.5358965, 0.4032386, 0.50949293, 0.76014143, 0.9172628, -1.0183592, 0.6721616)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Camera3D/Scanner" unique_id=1861691340]
+volume_db = -10.0
+pitch_scale = 1.61
+bus = &"LessSFX"
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="Camera3D/Scanner" unique_id=1103285117]
+volume_db = -10.0
+bus = &"LessSFX"
 
 [node name="SubViewport" type="SubViewport" parent="." unique_id=1521101797]
 unique_name_in_owner = true
