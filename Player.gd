@@ -15,8 +15,8 @@ var pk_emiter_mat2:Material
 
 @onready var pk_detector: MeshInstance3D = $Camera3D/Scanner/PK_Detector
 
-@onready var pk_l_arm: MeshInstance3D = $Camera3D/Scanner/PK_L_arm
-@onready var pk_r_arm: MeshInstance3D = $Camera3D/Scanner/PK_R_arm
+@onready var pk_l_arm: MeshInstance3D = $Camera3D/Scanner/PK_Detector/PK_L_arm
+@onready var pk_r_arm: MeshInstance3D = $Camera3D/Scanner/PK_Detector/PK_R_arm
 
 @export var detector_vp:SubViewport
 @export var minimap_vp:SubViewport
@@ -29,10 +29,10 @@ var pk_emiter_mat2:Material
 
 func _ready() -> void:
 	var mat :Material= radar.get_surface_override_material(1)
-	pk_emiter_mat1 = %Scanner.get_node("PK_L_arm").get_surface_override_material(0)
-	pk_emiter_mat2 = %Scanner.get_node("PK_R_arm").get_surface_override_material(0)
+	pk_emiter_mat1 = pk_l_arm.get_surface_override_material(0)
+	pk_emiter_mat2 = pk_r_arm.get_surface_override_material(0)
 
-	var pk_emiter_mat_body = %Scanner.get_node("PK_Detector").get_surface_override_material(1)
+	var pk_emiter_mat_body = pk_detector.get_surface_override_material(1)
 	pk_emiter_mat_body.albedo_texture = minimap_vp.get_texture()
 	pk_emiter_mat_body.emission_texture = minimap_vp.get_texture()
 	mat.albedo_texture = detector_vp.get_texture()
