@@ -29,7 +29,7 @@ func _enter_tree() -> void:
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
-	while true:
+	for i in 1000:
 		var dp: Vector2 = %Minimap.level.pick_random() * 2
 		duch.position = Vector3(dp.x + 1, 0.5, dp.y + 1)
 		

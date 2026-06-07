@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b5hp5r2gpuwqx"]
 
 [ext_resource type="Script" uid="uid://ds1avvrty5dnh" path="res://Game.gd" id="1_u44n3"]
-[ext_resource type="PackedScene" uid="uid://bx7gpljnxkffx" path="res://Levels/Mosaic.tscn" id="2_t88pq"]
+[ext_resource type="PackedScene" uid="uid://dqum8tsfpeum0" path="res://Levels/Floors.tscn" id="2_bvhbk"]
 [ext_resource type="PackedScene" uid="uid://c36s3q3kmioys" path="res://Player.tscn" id="3_t88pq"]
 [ext_resource type="Script" uid="uid://bvnh68cf5qw5d" path="res://Scanner/ray_draw.gd" id="4_r0x5m"]
 [ext_resource type="Script" uid="uid://c1alsqdsejge6" path="res://Minimap.gd" id="4_sb48q"]
@@ -174,7 +174,7 @@ glow_hdr_scale = 4.0
 
 [node name="Game" type="Node3D" unique_id=1578990498]
 script = ExtResource("1_u44n3")
-level = ExtResource("2_t88pq")
+level = ExtResource("2_bvhbk")
 metadata/_edit_horizontal_guides_ = [1051.0]
 
 [node name="Player" parent="." unique_id=1441229512 node_paths=PackedStringArray("detector_vp", "minimap_vp", "duch") instance=ExtResource("3_t88pq")]
@@ -363,6 +363,7 @@ bodies = [NodePath("Shapes/StaticBody3D"), NodePath("Shapes/StaticBody3D2"), Nod
 
 [node name="Sprite3D" type="Sprite3D" parent="Ghost" unique_id=2081870197]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+visible = false
 billboard = 2
 texture = ExtResource("6_r0x5m")
 
