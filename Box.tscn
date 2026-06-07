@@ -94,6 +94,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GPUParticlesAttractorSphere3D:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_0bkxv"]
 resource_name = "Unwrap"
@@ -130,7 +142,7 @@ tracks/2/path = NodePath("GPUParticles3D:emitting")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 2.5),
+"times": PackedFloat32Array(0, 1.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -150,6 +162,18 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0.4)
 }
 tracks/3/use_blend = true
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("GPUParticlesAttractorSphere3D:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jm3vu"]
 _data = {
@@ -158,25 +182,38 @@ _data = {
 &"Unwrap": SubResource("Animation_0bkxv")
 }
 
+[sub_resource type="Curve" id="Curve_wybss"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_bybq8"]
+curve = SubResource("Curve_wybss")
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yebci"]
+emission_shape_scale = Vector3(1, 0.2, 1)
 emission_shape = 1
 emission_sphere_radius = 1.0
 direction = Vector3(0, -1, 0)
-spread = 0.0
-initial_velocity_min = 1.0
-initial_velocity_max = 1.0
+spread = 180.0
+initial_velocity_min = 0.099999994
+initial_velocity_max = 0.5
 gravity = Vector3(0, 0, 0)
+alpha_curve = SubResource("CurveTexture_bybq8")
+collision_mode = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_speaj"]
 transparency = 1
-albedo_color = Color(0.24000001, 1, 0.9239999, 0.7058824)
+albedo_color = Color(0.53333336, 1, 0.9764706, 1)
 emission_enabled = true
 emission = Color(0.5328826, 1, 0.9772138, 1)
+emission_energy_multiplier = 3.0
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_06q6m"]
+[sub_resource type="SphereMesh" id="SphereMesh_wybss"]
 material = SubResource("StandardMaterial3D_speaj")
-radius = 0.02
-height = 0.4
+radius = 0.05
+height = 0.1
+radial_segments = 6
+rings = 3
 
 [node name="Box" type="StaticBody3D" unique_id=1661716638]
 collision_layer = 0
@@ -199,36 +236,41 @@ libraries/ = SubResource("AnimationLibrary_jm3vu")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1449945325]
 stream = ExtResource("2_jm3vu")
+volume_db = -20.0
 
 [node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="." unique_id=1846857002]
+volume_db = -20.0
 bus = &"SFX"
 
 [node name="Scanner" parent="." unique_id=93882829 instance=ExtResource("4_bybq8")]
 transform = Transform3D(0.193, 0, 0, 0, 0.193, 0, 0, 0, 0.193, 0, -0.2647299, 0)
 
-[node name="Radar" parent="Scanner" index="0" unique_id=1388820251]
+[node name="Radar" parent="Scanner" index="0" unique_id=1723900178]
 visible = false
 
-[node name="PK_Detector" parent="Scanner" index="1" unique_id=316539085]
+[node name="PK_Detector" parent="Scanner" index="1" unique_id=1268347054]
 visible = false
 
-[node name="Trap_handle" parent="Scanner/Trap" parent_id_path=PackedInt32Array(93882829, 1385612159) index="0" unique_id=1635069908]
+[node name="Trap_handle" parent="Scanner/Trap" parent_id_path=PackedInt32Array(93882829, 1654693677) index="0" unique_id=893797865]
 transform = Transform3D(1, 0, 3.496911e-07, 0, 1, 0, -3.496911e-07, 0, 1, 1.1092055, 0.5352556, 0.0015350599)
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=959687660]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.28746957, 3.6706057, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.28746957, 1.5955794, 0)
 emitting = false
-amount = 20
+amount = 200
 amount_ratio = 0.0
-lifetime = 2.0
-speed_scale = 8.0
+lifetime = 1.5
 process_material = SubResource("ParticleProcessMaterial_yebci")
-draw_pass_1 = SubResource("CapsuleMesh_06q6m")
+draw_pass_1 = SubResource("SphereMesh_wybss")
 
 [node name="GPUParticlesAttractorSphere3D" type="GPUParticlesAttractorSphere3D" parent="." unique_id=1690049165]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.29050344, 0.6972704, 0)
-strength = 4.0
-radius = 2.2404084
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1483063, -0.21304907, 0)
+strength = 8.0
+radius = 3.0
+
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="." unique_id=1418976942]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0028076172, -0.60491943, -0.00015258789)
+size = Vector3(0.8508301, 0.79016113, 0.27593994)
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
