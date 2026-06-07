@@ -29,8 +29,12 @@ func _enter_tree() -> void:
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
-	var dp: Vector2 = %Minimap.level.pick_random() * 2
-	duch.position = Vector3(dp.x + 1, 0.5, dp.y + 1)
+	while true:
+		var dp: Vector2 = %Minimap.level.pick_random() * 2
+		duch.position = Vector3(dp.x + 1, 0.5, dp.y + 1)
+		
+		if duch.position.distance_to($Player.position) > 20:
+			break
 	
 	detector_display.hide()
 	catcher.hide()
