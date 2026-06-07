@@ -126,7 +126,7 @@ func _input(event: InputEvent) -> void:
 			return
 		
 		%Throw.play()
-		player.is_in_face = false
+		player.is_scaner_in_face = false
 		player.animation_player.play("rest_pose")
 		%CTextureRect.hide()
 		%CLabel.hide()
