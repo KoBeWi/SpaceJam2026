@@ -105,7 +105,7 @@ func _input(event: InputEvent) -> void:
 		
 		#proximer.visible = current_item == 0
 		#detector_display.visible = current_item == 1
-		#catcher.visible = current_item == 2
+		catcher.visible = current_item == 2
 	
 	if current_item != 2:
 		return
