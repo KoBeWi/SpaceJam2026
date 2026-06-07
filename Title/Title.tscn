@@ -11,8 +11,12 @@ script/source = "extends Control
 @onready var label: Label = $Label
 @onready var label_original: Vector2 = $Label.position
 
+var scores: ConfigFile
+
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	scores = ConfigFile.new()
+	scores.load(\"user://scores.cfg\")
 	
 	add_level(\"Mosaic\", \"Open Space\")
 	add_level(\"Maze\", \"Abandoned Corridors\")
@@ -25,10 +29,21 @@ func _process(delta: float) -> void:
 	label.position = label_original + Vector2(randf_range(-1, 1), randf_range(-1, 1))
 
 func add_level(plik_nazwa: String, true_nazwa: String):
+	var hb := HBoxContainer.new()
+	hb.alignment = BoxContainer.ALIGNMENT_CENTER
+	%Levels.add_child(hb)
+	
 	var button := Button.new()
 	button.text = true_nazwa
-	%Levels.add_child(button)
+	hb.add_child(button)
 	button.pressed.connect(start_level.bind(plik_nazwa))
+	
+	if scores.has_section_key(\"best\", plik_nazwa):
+		var time = scores.get_value(\"best\", plik_nazwa)
+		
+		var labl := Label.new()
+		labl.text = \"Best: %02d:%02d\" % [time / 60, fmod(time, 60)]
+		hb.add_child(labl)
 
 func start_level(plik: String):
 	var game: Node = preload(\"uid://b5hp5r2gpuwqx\").instantiate()

@@ -114,6 +114,11 @@ func win():
 	detector_display.hide()
 	catcher.hide()
 	
+	var scores := ConfigFile.new()
+	scores.load("user://scores.cfg")
+	scores.set_value("best", level.resource_path.get_file().get_basename(), %Timer.time)
+	scores.save("user://scores.cfg")
+	
 	set_process(false)
 	player.set_physics_process(false)
 	%Winlabel.show()
