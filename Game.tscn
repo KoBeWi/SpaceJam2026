@@ -17,7 +17,6 @@
 [ext_resource type="AudioStream" uid="uid://bkawgcl6tjb4l" path="res://Noise.wav" id="10_wuoie"]
 [ext_resource type="Texture2D" uid="uid://c4dct0i4fupm4" path="res://Mouse_Left_Key_Light.png" id="11_lvtmh"]
 [ext_resource type="AudioStream" uid="uid://dkqoclnyaj4u5" path="res://Chirp.wav" id="12_bvhbk"]
-[ext_resource type="Texture2D" uid="uid://dvaebj72pr1pf" path="res://Timer.png" id="12_yyih5"]
 [ext_resource type="AudioStream" uid="uid://b475n88ro231i" path="res://Throw.wav" id="13_0yprl"]
 [ext_resource type="AudioStream" uid="uid://bt1h6q4w5i7mt" path="res://Disappear.wav" id="15_qjyg3"]
 [ext_resource type="AudioStream" uid="uid://dlm4ktjq3vflg" path="res://17- Dark Fantasy Studio- Graveyard.mp3" id="16_elkpi"]
@@ -328,25 +327,21 @@ offset_top = 890.71155
 offset_right = 1032.4934
 offset_bottom = 930.71155
 
-[node name="TextureRect" type="TextureRect" parent="UI/Catcher" unique_id=439839680]
+[node name="CTextureRect" type="TextureRect" parent="UI/Catcher" unique_id=439839680]
+unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("11_lvtmh")
 
-[node name="Label" type="Label" parent="UI/Catcher" unique_id=338775860]
-layout_mode = 2
-text = "Throw Box"
-
-[node name="CatcherTimeout" type="TextureProgressBar" parent="UI/Catcher" unique_id=1190019846]
+[node name="CLabel" type="Label" parent="UI/Catcher" unique_id=338775860]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_vertical = 4
-max_value = 10.0
-step = 0.0
-value = 10.0
-fill_mode = 4
-texture_under = ExtResource("12_yyih5")
-texture_progress = ExtResource("12_yyih5")
-tint_progress = Color(1, 0.7301085, 0, 1)
+text = "Throw Trap"
+
+[node name="CLabel2" type="Label" parent="UI/Catcher" unique_id=1953764411]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "Pickup Trap"
 
 [node name="Throw" type="AudioStreamPlayer" parent="UI/Catcher" unique_id=211149654]
 unique_name_in_owner = true
@@ -540,5 +535,6 @@ stream = ExtResource("16_elkpi")
 volume_db = -20.0
 autoplay = true
 
+[connection signal="gotbox" from="Player" to="." method="_on_player_gotbox"]
 [connection signal="pressed" from="UI/Menu/Button" to="." method="contineu"]
 [connection signal="pressed" from="UI/Menu/Button2" to="." method="quot"]

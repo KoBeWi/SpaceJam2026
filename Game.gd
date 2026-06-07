@@ -7,7 +7,6 @@ var level_instance: Node3D
 @onready var proximer: TextureProgressBar = %Proximer
 @onready var detector_display: TextureRect = %DetectorDisplay
 @onready var catcher: HBoxContainer = %Catcher
-@onready var catcher_timeout: TextureProgressBar = %CatcherTimeout
 
 @onready var player: CharacterBody3D = $Player
 @onready var duch_orbital: Marker3D = %DuchOrbital
@@ -48,8 +47,6 @@ var beeper_max: float
 var beeper_current: float
 
 func _process(delta: float) -> void:
-	catcher_timeout.value += delta
-	
 	if current_item != 0:
 		%Noiser.stop()
 		return
@@ -122,11 +119,15 @@ func _input(event: InputEvent) -> void:
 	
 	var mb := event as InputEventMouseButton
 	if mb and mb.pressed and mb.button_index == MOUSE_BUTTON_LEFT:
-		if not is_equal_approx(catcher_timeout.value, catcher_timeout.max_value):
+		if not player.has_box:
 			return
 		
 		%Throw.play()
-		catcher_timeout.value = 0
+		%CTextureRect.hide()
+		%CLabel.hide()
+		%CLabel2.show()
+		
+		player.has_box = false
 		var box := preload("uid://btypyodrftaco").instantiate()
 		box.position = player.position
 		box.velocity = -player.global_basis.z * 3 + Vector3.UP * 4
@@ -163,3 +164,8 @@ func contineu():
 
 func quot() -> void:
 	get_tree().change_scene_to_file("uid://bvsjr5kk2hsxi")
+
+func _on_player_gotbox() -> void:
+	%CTextureRect.show()
+	%CLabel.show()
+	%CLabel2.hide()

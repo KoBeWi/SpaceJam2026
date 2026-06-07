@@ -10,6 +10,7 @@ var is_scaner_in_face:= false
 var pk_emiter_lights_value:=0.0
 var pk_emiter_mat1:Material
 var pk_emiter_mat2:Material
+var has_box: bool = true
 
 @onready var radar: MeshInstance3D = $Camera3D/Scanner/Radar
 
@@ -26,6 +27,7 @@ var pk_emiter_mat2:Material
 
 @export var duch: Node3D
 
+signal gotbox
 
 func _ready() -> void:
 	var mat :Material= radar.get_surface_override_material(1)
@@ -103,6 +105,14 @@ func _physics_process(delta: float) -> void:
 		flashlight.visible = true
 	
 	move_and_slide()
+	if get_slide_collision_count() > 0:
+		var box = get_slide_collision(0).get_collider()
+		if box.get(&"can_pickup"):
+			set_physics_process(false)
+			await box.pickup()
+			set_physics_process(true)
+			has_box = true
+			gotbox.emit()
 	
 	pk_emiter_mat1.uv1_offset.x -= pk_emiter_lights_value * delta * 1.0
 	pk_emiter_mat2.uv1_offset.x -= pk_emiter_lights_value * delta * 1.0
