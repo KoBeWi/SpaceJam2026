@@ -137,16 +137,23 @@ func _process(delta: float) -> void:
 
 [sub_resource type="Environment" id="Environment_5l23l"]
 background_mode = 1
-tonemap_mode = 3
+tonemap_mode = 1
+ssao_enabled = true
+glow_enabled = true
+glow_normalized = true
+glow_bloom = 1.0
+glow_blend_mode = 0
+glow_hdr_scale = 4.0
 
 [node name="Game" type="Node3D" unique_id=1578990498]
 script = ExtResource("1_u44n3")
 level = ExtResource("2_t88pq")
 metadata/_edit_horizontal_guides_ = [1051.0]
 
-[node name="Player" parent="." unique_id=1441229512 node_paths=PackedStringArray("duch") instance=ExtResource("3_t88pq")]
+[node name="Player" parent="." unique_id=1441229512 node_paths=PackedStringArray("duch","detector_vp") instance=ExtResource("3_t88pq")]
 collision_layer = 0
 duch = NodePath("../Ghost")
+detector_vp = NodePath("../RayDraw/SubViewport")
 
 [node name="RayDraw" type="Node3D" parent="." unique_id=1062892962 node_paths=PackedStringArray("trail_mesh_instance", "player_handle")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37548137, 0)

@@ -6,18 +6,34 @@ var fleshlight_movement:Vector2
 var cumulator := 0.0
 var is_walking :bool = false
 var lerp_target := 0.0
+var is_scaner_in_face:= false
+
+@export var detector_vp:SubViewport
 
 @onready var camera_3d: Camera3D = %Camera3D
 @onready var flashlight: SpotLight3D = %Flashlight
 
 @export var duch: Node3D
 
+func _ready() -> void:
+	var scanner :MeshInstance3D= %Scanner.get_node("Cube")
+	var mat :Material= scanner.get_surface_override_material(1)
+	mat.albedo_texture = detector_vp.get_texture()
+	mat.emission_texture = detector_vp.get_texture()
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+		if not is_scaner_in_face:
+			is_scaner_in_face = true
+			%AnimationPlayer.play("in_face")
+	elif is_scaner_in_face:
+		is_scaner_in_face = false
+		%AnimationPlayer.play("rest_pose")
 		
+	
 
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
