@@ -13,8 +13,8 @@ const MARKER_3D = preload("res://Scanner/marker_3d.tscn")
 var trail_mesh:ImmediateMesh
 
 var ray_max_distance := 40.0
-var ray_dispersion := 0.1
-var ray_spread := 0.1
+var ray_dispersion := 0.025
+var ray_spread := 1.0
 var trail_segments: Array[Dictionary] = []
 var trail_material: StandardMaterial3D
 
@@ -48,7 +48,7 @@ func _physics_process(delta: float) -> void:
 func _fire_ray_and_record() -> void:
 	var vector_forward := -player_handle.global_basis.z
 	var ray_start :Vector3= player_handle.camera_3d.global_position 
-	ray_start += player_handle.global_basis.x * randf_range(-ray_spread, ray_spread) 
+	ray_start += player_handle.global_basis.x * randf_range(-ray_spread, ray_spread) *1.7777777777777777
 	ray_start += player_handle.global_basis.y * randf_range(-ray_spread, ray_spread)
 
 	var direction:= vector_forward + Vector3.UP.rotated(vector_forward, randf() * TAU) * randf() * ray_dispersion

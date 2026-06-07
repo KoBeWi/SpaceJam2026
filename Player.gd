@@ -21,6 +21,7 @@ var cranging: bool
 @onready var pk_r_arm: MeshInstance3D = $Camera3D/Scanner/PK_Detector/PK_R_arm
 @onready var trap: MeshInstance3D = $Camera3D/Scanner/Trap
 @onready var trap_handle: MeshInstance3D = $Camera3D/Scanner/Trap/Trap_handle
+@onready var animation_player: AnimationPlayer = %AnimationPlayer
 
 @export var detector_vp:SubViewport
 @export var minimap_vp:SubViewport
