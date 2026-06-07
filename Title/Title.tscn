@@ -202,7 +202,7 @@ layout_mode = 2
 custom_maximum_size = Vector2(600, -1)
 layout_mode = 2
 text = "Twoje zadanie to złapać ducha.
-WSAD - ruch.
+WSAD - ruch, Spacja skok.
 1/2/3 - wybór narzędzia.
 1 = Wykrywacz duchów (sprawdza czy blisko).
 2 = Skaner duchów (wyszukuje ducha za pomocą promieni, aka promieniuje).
