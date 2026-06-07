@@ -46,32 +46,36 @@ func _process(delta: float) -> void:
 	catcher_timeout.value += delta
 	
 	if not proximer.visible:
+		%Noiser.stop()
 		return
-	
-	var dist := player.global_position.distance_to(duch_orbital.global_position)
-	if dist < 3:
+	if not %Noiser.playing:
+		%Noiser.play()
+		
+	var dot_stuff = -player.global_basis.z.dot( player.global_position.direction_to(duch_orbital.global_position) )
+	var dist :float= minf(player.global_position.distance_to(duch_orbital.global_position), 29.0) 
+	dist +=  -dot_stuff * dist * 0.15
+	if dist < 5:
 		proximer.value = 5
-		beeper_max = 0.5
-	elif dist < 7:
-		proximer.value = 4
-		beeper_max = 1.0
 	elif dist < 10:
 		proximer.value = 4
-		beeper_max = 2.0
-	elif dist < 14:
+	elif dist < 15:
 		proximer.value = 3
-		beeper_max = 4.0
-	elif dist < 18:
+	elif dist < 20:
 		proximer.value = 2
-		beeper_max = 8.0
-	elif dist < 24:
+	elif dist < 25:
 		proximer.value = 1
-		beeper_max = 16.0
 	else:
 		proximer.value = 0
-		beeper_max = INF
 	
+	beeper_max = dist / 30.0
+	var log_stuff = log(dist) / log(10)
 	beeper_current += delta
+	%Beeper.pitch_scale = 2.2-log_stuff
+	%Beeper2.pitch_scale = 2.2-log_stuff
+	%Noiser.pitch_scale = 1.60-log_stuff
+	%Beeper.volume_db = - log_stuff*20.0
+	%Beeper2.volume_db = - log_stuff*20.0
+	%Noiser.volume_db = - (log_stuff*10.0+20)
 	if beeper_current >= beeper_max:
 		proximanimator.play(&"Beep")
 		beeper_current = 0
