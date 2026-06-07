@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://bvsjr5kk2hsxi"]
 
 [ext_resource type="FontFile" uid="uid://dx0waiphhqys2" path="res://Title/GHOSTS ITALIC PERSONAL USE.ttf" id="1_c0y8y"]
+[ext_resource type="Texture2D" uid="uid://cm8n7mop024s5" path="res://t_flashlightpattern.png" id="2_57gjt"]
+[ext_resource type="Texture2D" uid="uid://ie3frpj06es8" path="res://Ghostscare.png" id="3_rl6dn"]
 
 [sub_resource type="GDScript" id="GDScript_c0y8y"]
 script/source = "extends Control
@@ -34,25 +36,81 @@ func quit() -> void:
 	get_tree().quit()
 "
 
-[node name="Title" type="Control" unique_id=1237606815]
-layout_mode = 3
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_kpjcp"]
+blend_mode = 1
+
+[sub_resource type="GDScript" id="GDScript_57gjt"]
+script/source = "extends Sprite2D
+
+var dir: Vector2
+
+func _ready() -> void:
+	position.x = randf_range(0, 1408)
+	position.y = randf_range(0, 568)
+	dir = Vector2.from_angle(randf_range(0, TAU))
+
+func _physics_process(delta: float) -> void:
+	position += dir * 200 * delta
+	if position.y < 0:
+		position.y = 0
+		dir.y *= -1
+	elif position.y > 568:
+		position.y = 568
+		dir.y *= -1
+	
+	if position.x < 0:
+		position.x = 0
+		dir.x *= -1
+	elif position.x > 1408:
+		position.x = 1408
+		dir.x *= -1
+"
+
+[sub_resource type="GDScript" id="GDScript_rl6dn"]
+script/source = "extends Sprite2D
+
+@export var lights: Array[Sprite2D]
+
+func _process(delta: float) -> void:
+	var vis: bool
+	
+	var mr := global_transform * get_rect()
+	for light in lights:
+		var r := light.global_transform * light.get_rect()
+		if r.intersects(mr):
+			vis = true
+			break
+	
+	if vis:
+		visible = randf() < 0.1
+	else:
+		hide()
+		
+		if randf() < 0.1:
+			position.x = randf_range(50, 1870)
+			position.y = randf_range(100, 980)
+"
+
+[node name="Title" type="ColorRect" unique_id=652412045]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0, 0, 0, 1)
 script = SubResource("GDScript_c0y8y")
 metadata/_edit_lock_ = true
 
 [node name="Label" type="Label" parent="." unique_id=497399364]
-layout_mode = 0
-offset_left = 97.0
-offset_top = 86.0
-offset_right = 1806.0
-offset_bottom = 324.0
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 320.0
+grow_horizontal = 2
 theme_override_fonts/font = ExtResource("1_c0y8y")
 theme_override_font_sizes/font_size = 240
-text = "Promieniowanie"
+text = "Ghost Rays"
+horizontal_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2037125235]
 layout_mode = 0
@@ -77,5 +135,31 @@ layout_mode = 2
 modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 text = "QUIT"
+
+[node name="TFlashlightpattern" type="Sprite2D" parent="." unique_id=1367730225]
+modulate = Color(0, 1, 0.38550162, 1)
+material = SubResource("CanvasItemMaterial_kpjcp")
+position = Vector2(195, 382)
+scale = Vector2(0.24951172, 0.24951172)
+texture = ExtResource("2_57gjt")
+centered = false
+script = SubResource("GDScript_57gjt")
+
+[node name="TFlashlightpattern2" type="Sprite2D" parent="." unique_id=1993307439]
+modulate = Color(0, 1, 0.38550162, 1)
+material = SubResource("CanvasItemMaterial_kpjcp")
+position = Vector2(1261, 457)
+scale = Vector2(0.24951172, 0.24951172)
+texture = ExtResource("2_57gjt")
+centered = false
+script = SubResource("GDScript_57gjt")
+
+[node name="Ghostscare" type="Sprite2D" parent="." unique_id=375080447 node_paths=PackedStringArray("lights")]
+modulate = Color(1, 1, 1, 0.12941177)
+position = Vector2(812, 560)
+scale = Vector2(2.15, 2.15)
+texture = ExtResource("3_rl6dn")
+script = SubResource("GDScript_rl6dn")
+lights = [NodePath("../TFlashlightpattern"), NodePath("../TFlashlightpattern2")]
 
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="quit"]
