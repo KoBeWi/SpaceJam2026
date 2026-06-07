@@ -7,19 +7,53 @@ var cumulator := 0.0
 var is_walking :bool = false
 var lerp_target := 0.0
 var is_scaner_in_face:= false
+var pk_emiter_lights_value:=0.0
+var pk_emiter_mat:Material
+
+@onready var radar: MeshInstance3D = $Camera3D/Scanner/Radar
+
+@onready var pk_detector: MeshInstance3D = $Camera3D/Scanner/PK_Detector
+
+@onready var pk_l_arm: MeshInstance3D = $Camera3D/Scanner/PK_L_arm
+@onready var pk_r_arm: MeshInstance3D = $Camera3D/Scanner/PK_R_arm
 
 @export var detector_vp:SubViewport
+@export var minimap_vp:SubViewport
 
 @onready var camera_3d: Camera3D = %Camera3D
 @onready var flashlight: SpotLight3D = %Flashlight
 
 @export var duch: Node3D
 
+
 func _ready() -> void:
-	var scanner :MeshInstance3D= %Scanner.get_node("Cube")
-	var mat :Material= scanner.get_surface_override_material(1)
+	var mat :Material= radar.get_surface_override_material(1)
+	pk_emiter_mat = %Scanner.get_node("PK_L_arm").get_surface_override_material(1)
+	%Scanner.get_node("PK_R_arm").set_surface_override_material(1,pk_emiter_mat)
+	var pk_emiter_mat_body = %Scanner.get_node("PK_Detector").get_surface_override_material(1)
+	pk_emiter_mat_body.albedo_texture = minimap_vp.get_texture()
+	pk_emiter_mat_body.emission_texture = minimap_vp.get_texture()
 	mat.albedo_texture = detector_vp.get_texture()
 	mat.emission_texture = detector_vp.get_texture()
+
+func set_item(in_id:int)->void:
+	match in_id:
+		0:
+			radar.hide()
+			pk_detector.show()
+			pk_l_arm.show()
+			pk_r_arm.show()
+		1:
+			radar.show()
+			pk_detector.hide()
+			pk_l_arm.hide()
+			pk_r_arm.hide()
+		2:
+			radar.hide()
+			pk_detector.hide()
+			pk_l_arm.hide()
+			pk_r_arm.hide()
+		
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
@@ -73,6 +107,14 @@ func _physics_process(delta: float) -> void:
 		flashlight.visible = true
 	
 	move_and_slide()
+	
+	pk_emiter_mat.uv1_offset.x -= pk_emiter_lights_value * delta * 0.5
+	pk_l_arm.rotation.z = -min(pk_emiter_lights_value*0.2, 1.5)
+	pk_r_arm.rotation.z = pk_l_arm.rotation.z
+	
+func set_lights(in_value:float):
+	pk_emiter_lights_value = in_value
+	
 
 func _input(event: InputEvent) -> void:
 	var mm := event as InputEventMouseMotion

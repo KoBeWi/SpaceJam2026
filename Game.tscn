@@ -172,9 +172,10 @@ script = ExtResource("1_u44n3")
 level = ExtResource("2_t88pq")
 metadata/_edit_horizontal_guides_ = [1051.0]
 
-[node name="Player" parent="." unique_id=1441229512 node_paths=PackedStringArray("detector_vp", "duch") instance=ExtResource("3_t88pq")]
+[node name="Player" parent="." unique_id=1441229512 node_paths=PackedStringArray("detector_vp", "minimap_vp", "duch") instance=ExtResource("3_t88pq")]
 collision_layer = 0
 detector_vp = NodePath("../RayDraw/SubViewport")
+minimap_vp = NodePath("../MinimapSubViewport")
 duch = NodePath("../Ghost")
 
 [node name="RayDraw" type="Node3D" parent="." unique_id=1062892962 node_paths=PackedStringArray("trail_mesh_instance", "player_handle")]
@@ -200,6 +201,29 @@ visible = false
 cast_shadow = 0
 mesh = SubResource("ImmediateMesh_t88pq")
 
+[node name="MinimapSubViewport" type="SubViewport" parent="." unique_id=764965288]
+disable_3d = true
+size = Vector2i(200, 200)
+
+[node name="Minimap" type="Panel" parent="MinimapSubViewport" unique_id=36183961 node_paths=PackedStringArray("player")]
+unique_name_in_owner = true
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -200.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_yebci")
+script = ExtResource("4_sb48q")
+player = NodePath("../../Player")
+
+[node name="PlayerIcon" type="Sprite2D" parent="MinimapSubViewport/Minimap" unique_id=2138041697]
+position = Vector2(101, 113)
+texture = ExtResource("5_t88pq")
+
 [node name="UI" type="Control" parent="." unique_id=1508642237]
 layout_mode = 3
 anchors_preset = 15
@@ -207,28 +231,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Minimap" type="Panel" parent="UI" unique_id=36183961 node_paths=PackedStringArray("player")]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -224.0
-offset_top = -229.0
-offset_right = -24.0
-offset_bottom = -29.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_yebci")
-script = ExtResource("4_sb48q")
-player = NodePath("../../Player")
-
-[node name="PlayerIcon" type="Sprite2D" parent="UI/Minimap" unique_id=2138041697]
-position = Vector2(101, 113)
-texture = ExtResource("5_t88pq")
 
 [node name="DetectorDisplay" type="TextureRect" parent="UI" unique_id=608293155]
 unique_name_in_owner = true

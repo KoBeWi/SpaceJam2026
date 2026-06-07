@@ -3,30 +3,58 @@
 [ext_resource type="Script" uid="uid://qqorxc4ygjct" path="res://Player.gd" id="1_xhfnw"]
 [ext_resource type="Texture2D" uid="uid://cm8n7mop024s5" path="res://t_flashlightpattern.png" id="2_kpjcp"]
 [ext_resource type="PackedScene" uid="uid://dtugd4ujp1uc" path="res://Scanner.blend" id="3_kne1u"]
+[ext_resource type="Texture2D" uid="uid://dqi4vxun6dbxq" path="res://textures/texture.png" id="4_e80uo"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yebci"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_nigug"]
 points = PackedVector3Array(-1.92, 0, -1.08, -1.92, 0, 1.08, 1.92, 0, -1.08, 1.92, 0, 1.08)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kne1u"]
-load_path = "res://.godot/imported/texture.png-8fc0c94471e10c0098f5b9fc1969ee8d.s3tc.ctex"
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e80uo"]
-resource_name = "ScanerBody"
+resource_name = "Screen"
 cull_mode = 2
-diffuse_mode = 3
-specular_mode = 1
-albedo_texture = SubResource("CompressedTexture2D_kne1u")
-metallic_specular = 0.2
+albedo_color = Color(0.9063318, 0.9063318, 0.9063318, 1)
+roughness = 0.5
+emission_enabled = true
+emission_energy_multiplier = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dtqjt"]
+resource_name = "Screen"
+cull_mode = 2
+albedo_color = Color(0.9063318, 0.9063318, 0.9063318, 1)
+roughness = 0.5
+emission_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ncpa"]
+resource_name = "Lights"
+transparency = 4
+cull_mode = 2
+albedo_texture = ExtResource("4_e80uo")
+metallic = 0.49244714
+roughness = 0.0
+emission_enabled = true
+emission_texture = ExtResource("4_e80uo")
 metadata/_gltf_primary_texture_coord = 0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kne1u"]
-resource_local_to_scene = true
-disable_ambient_light = true
-disable_fog = true
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cxr5p"]
+resource_name = "ScanerBody"
+cull_mode = 2
+albedo_color = Color(0.9063318, 0.9063318, 0.9063318, 1)
+albedo_texture = ExtResource("4_e80uo")
+roughness = 0.5
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tdg3f"]
+resource_name = "Lights"
+transparency = 4
+cull_mode = 2
+albedo_color = Color(1, 1, 1, 0.35347432)
+albedo_texture = ExtResource("4_e80uo")
+metallic = 0.49244714
+roughness = 0.0
 emission_enabled = true
-emission_energy_multiplier = 16.0
+emission_texture = ExtResource("4_e80uo")
+metadata/_gltf_primary_texture_coord = 0
 
 [sub_resource type="Environment" id="Environment_xhfnw"]
 background_mode = 1
@@ -219,7 +247,7 @@ shape = SubResource("ConvexPolygonShape3D_nigug")
 
 [node name="Flashlight" type="SpotLight3D" parent="Camera3D" unique_id=280915744]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 0.96592575, 0.258819, 0, -0.258819, 0.96592575, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.96592563, 0.25881898, 0, -0.25881898, 0.96592563, 0, 0, 0)
 light_color = Color(0.94509804, 0.8901961, 0.6862745, 1)
 light_projector = ExtResource("2_kpjcp")
 shadow_enabled = true
@@ -230,9 +258,16 @@ spot_angle = 33.09
 unique_name_in_owner = true
 transform = Transform3D(0.07449585, -0.018919678, 0.06397199, 0.002600727, 0.09664484, 0.0255541, -0.06666037, -0.017373003, 0.072488464, -0.5093568, -0.25812227, -0.61227757)
 
-[node name="Cube" parent="Camera3D/Scanner" index="0" unique_id=2048798182]
-surface_material_override/0 = SubResource("StandardMaterial3D_e80uo")
-surface_material_override/1 = SubResource("StandardMaterial3D_kne1u")
+[node name="Radar" parent="Camera3D/Scanner" index="0" unique_id=15583849]
+surface_material_override/1 = SubResource("StandardMaterial3D_e80uo")
+
+[node name="PK_Detector" parent="Camera3D/Scanner" index="1" unique_id=133412447]
+surface_material_override/1 = SubResource("StandardMaterial3D_dtqjt")
+surface_material_override/2 = SubResource("StandardMaterial3D_5ncpa")
+
+[node name="PK_L_arm" parent="Camera3D/Scanner" index="2" unique_id=352804828]
+surface_material_override/0 = SubResource("StandardMaterial3D_cxr5p")
+surface_material_override/1 = SubResource("StandardMaterial3D_tdg3f")
 
 [node name="SubViewport" type="SubViewport" parent="." unique_id=1521101797]
 unique_name_in_owner = true

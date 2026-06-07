@@ -67,7 +67,7 @@ func _process(delta: float) -> void:
 	else:
 		proximer.value = 0
 	
-	beeper_max = dist / 30.0
+	beeper_max = dist / 20.0
 	var log_stuff = log(dist) / log(10)
 	beeper_current += delta
 	%Beeper.pitch_scale = 2.2-log_stuff
@@ -76,6 +76,8 @@ func _process(delta: float) -> void:
 	%Beeper.volume_db = - log_stuff*20.0
 	%Beeper2.volume_db = - log_stuff*20.0
 	%Noiser.volume_db = - (log_stuff*10.0+20)
+	player.set_lights(1.0/beeper_max)
+	
 	if beeper_current >= beeper_max:
 		proximanimator.play(&"Beep")
 		beeper_current = 0
@@ -99,6 +101,7 @@ func _input(event: InputEvent) -> void:
 				$TrailMeshInstance.visible = not $TrailMeshInstance.visible
 			_:
 				return
+		player.set_item(current_item)
 		
 		proximer.visible = current_item == 0
 		detector_display.visible = current_item == 1
