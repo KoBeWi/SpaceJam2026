@@ -56,6 +56,9 @@ func quit() -> void:
 	get_tree().quit()
 "
 
+[sub_resource type="Theme" id="Theme_kne1u"]
+default_font_size = 24
+
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_kpjcp"]
 blend_mode = 1
 
@@ -138,6 +141,7 @@ offset_left = 757.0
 offset_top = 505.0
 offset_right = 1218.0
 offset_bottom = 635.0
+theme = SubResource("Theme_kne1u")
 
 [node name="Label" type="Label" parent="VBoxContainer" unique_id=1982066854]
 layout_mode = 2
