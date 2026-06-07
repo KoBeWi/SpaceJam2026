@@ -4,6 +4,7 @@ extends CharacterBody3D
 @export var bodies: Array[Node3D]
 
 var poltergowalne: Array[RigidBody3D]
+var speed := 1.0
 
 var złapan: bool
 
@@ -24,7 +25,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if randi_range(0, 10) == 0:
-		velocity = Vector3.RIGHT.rotated(Vector3.UP, randi_range(0, 3) * (PI/2)) * 1.0
+		velocity = Vector3.RIGHT.rotated(Vector3.UP, randi_range(0, 3) * (PI/2)) * speed
 	
 	angry -= delta
 	
