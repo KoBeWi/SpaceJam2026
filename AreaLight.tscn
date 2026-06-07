@@ -66,9 +66,12 @@ left_to_right = 0.0
 size = Vector3(0.2, 0.15, 0.1)
 
 [node name="AreaLight3D" type="OmniLight3D" unique_id=849120087]
+layers = 3
 light_color = Color(1, 0.6627451, 0, 1)
 shadow_enabled = true
 distance_fade_enabled = true
+distance_fade_begin = 20.0
+distance_fade_shadow = 30.0
 script = ExtResource("1_813y1")
 
 [node name="Timer" type="Timer" parent="." unique_id=1900103729]

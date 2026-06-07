@@ -20,12 +20,17 @@
 [ext_resource type="AudioStream" uid="uid://b475n88ro231i" path="res://Throw.wav" id="13_0yprl"]
 [ext_resource type="AudioStream" uid="uid://bt1h6q4w5i7mt" path="res://Disappear.wav" id="15_qjyg3"]
 [ext_resource type="AudioStream" uid="uid://dlm4ktjq3vflg" path="res://17- Dark Fantasy Studio- Graveyard.mp3" id="16_elkpi"]
+[ext_resource type="Environment" uid="uid://clbfgyqv0nabj" path="res://new_environment.tres" id="20_hmewc"]
 
 [sub_resource type="Environment" id="Environment_0xref"]
 background_mode = 1
 
 [sub_resource type="World3D" id="World3D_r0x5m"]
 environment = SubResource("Environment_0xref")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tdg3f"]
+shading_mode = 0
+vertex_color_use_as_albedo = true
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_t88pq"]
 
@@ -174,16 +179,6 @@ size = Vector3(1, 0.25439453, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bvhbk"]
 
-[sub_resource type="Environment" id="Environment_5l23l"]
-background_mode = 1
-tonemap_mode = 1
-ssao_enabled = true
-glow_enabled = true
-glow_normalized = true
-glow_bloom = 1.0
-glow_blend_mode = 0
-glow_hdr_scale = 4.0
-
 [node name="Game" type="Node3D" unique_id=1578990498]
 script = ExtResource("1_u44n3")
 level = ExtResource("2_bvhbk")
@@ -221,7 +216,9 @@ texture = ExtResource("5_hmewc")
 
 [node name="TrailMeshInstance" type="MeshInstance3D" parent="." unique_id=1066208773]
 visible = false
+material_override = SubResource("StandardMaterial3D_tdg3f")
 cast_shadow = 0
+ignore_occlusion_culling = true
 mesh = SubResource("ImmediateMesh_t88pq")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=842139276]
@@ -529,7 +526,7 @@ shape = SubResource("BoxShape3D_bvhbk")
 stream = ExtResource("15_qjyg3")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=174042842]
-environment = SubResource("Environment_5l23l")
+environment = ExtResource("20_hmewc")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1127300391]
 stream = ExtResource("16_elkpi")
