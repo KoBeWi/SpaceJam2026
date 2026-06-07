@@ -104,8 +104,8 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	
-	pk_emiter_mat1.uv1_offset.x -= pk_emiter_lights_value * delta * 0.5
-	pk_emiter_mat2.uv1_offset.x -= pk_emiter_lights_value * delta * 0.5
+	pk_emiter_mat1.uv1_offset.x -= pk_emiter_lights_value * delta * 1.0
+	pk_emiter_mat2.uv1_offset.x -= pk_emiter_lights_value * delta * 1.0
 	pk_l_arm.rotation.z = -min(pk_emiter_lights_value*0.2, 1.5)
 	pk_r_arm.rotation.z = pk_l_arm.rotation.z
 	

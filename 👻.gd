@@ -2,7 +2,9 @@ extends CharacterBody3D
 
 @export var player_handle:CharacterBody3D
 @export var bodies: Array[Node3D]
-
+@export var angrygress: ProgressBar
+var angryness_buffores := 5.0
+var max_angrygress := 200.0
 var poltergowalne: Array[RigidBody3D]
 var speed := 1.0
 
@@ -20,7 +22,7 @@ func _ready() -> void:
 			body.queue_free()
 	
 	await owner.ready
-	
+	angrygress.max_value = max_angrygress * angryness_buffores
 	poltergowalne.assign(owner.find_children("*", "RigidBody3D", true, false))
 
 func _physics_process(delta: float) -> void:
@@ -28,6 +30,7 @@ func _physics_process(delta: float) -> void:
 		velocity = Vector3.RIGHT.rotated(Vector3.UP, randi_range(0, 3) * (PI/2)) * speed
 	
 	angry -= delta
+	angrygress.value = angry
 	
 	move_and_slide()
 	var player_v2 := Vector2(player_handle.global_position.x,player_handle.global_position.z) 
@@ -63,8 +66,10 @@ var angry: float
 func scanned():
 	angry += 1
 	
-	if angry >= 200:
-		angry -= 200
+	if angry >= max_angrygress * angryness_buffores:
+		angry -= max_angrygress * angryness_buffores
+		angryness_buffores = max(angryness_buffores-1.0, 1.0)
+		angrygress.max_value = max_angrygress * angryness_buffores
 		
 		for box in poltergowalne:
 			var dist := box.global_position.distance_to(player_handle.global_position)

@@ -51,7 +51,7 @@ func _process(delta: float) -> void:
 	if not %Noiser.playing:
 		%Noiser.play()
 		
-	var dot_stuff = -player.global_basis.z.dot( player.global_position.direction_to(duch_orbital.global_position) )
+	var dot_stuff = -player.global_basis.z.dot( player.global_position.direction_to(duch.global_position) )
 	var dist :float= minf(player.global_position.distance_to(duch_orbital.global_position), 29.0) 
 	dist +=  -dot_stuff * dist * 0.15
 	if dist < 5:
