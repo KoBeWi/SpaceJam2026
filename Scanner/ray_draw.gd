@@ -58,8 +58,11 @@ func _fire_ray_and_record() -> void:
 		if not collision.is_empty():
 			if detector_display.visible:
 				var collider: Node = collision["collider"]
-				if collider.get_parent() and collider.get_parent().has_method(&"scanned"):
-					collider.get_parent().scanned()
+				collider = collider.get_parent()
+				if collider:
+					collider = collider.get_parent()
+					if collider and collider.has_method(&"scanned"):
+						collider.scanned()
 			
 			distance += ray_start.distance_to(collision.position)
 			if distance > ray_max_distance:

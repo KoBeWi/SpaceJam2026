@@ -1,5 +1,7 @@
 extends CharacterBody3D
+
 @export var player_handle:CharacterBody3D
+@export var bodies: Array[Node3D]
 
 var poltergowalne: Array[RigidBody3D]
 
@@ -8,6 +10,11 @@ var złapan: bool
 func _ready() -> void:
 	var tween := create_tween().set_loops()
 	tween.tween_property($Orbit, ^"rotation:y", TAU, 10.0).from(0)
+	
+	var mybody = bodies.pick_random()
+	for body in bodies:
+		if body != mybody:
+			body.queue_free()
 	
 	await owner.ready
 	
@@ -21,7 +28,13 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	var player_v2 := Vector2(player_handle.global_position.x,player_handle.global_position.z) 
-	%StaticBody3D.rotation.y = -Vector2(global_position.x, global_position.z).angle_to_point(player_v2)
+	
+	if is_instance_valid(bodies[0]):
+		bodies[0].rotation.y = -Vector2(global_position.x, global_position.z).angle_to_point(player_v2)
+	elif is_instance_valid(bodies[1]):
+		bodies[1].rotation.y = -Vector2(global_position.x, global_position.z).angle_to_point(player_v2)
+	elif is_instance_valid(bodies[2]):
+		bodies[2].rotation.y += PI * delta
 
 func catch():
 	if złapan:

@@ -154,6 +154,9 @@ func _process(delta: float) -> void:
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5l23l"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_yebci"]
+size = Vector3(1, 0.25439453, 1)
+
 [sub_resource type="Environment" id="Environment_5l23l"]
 background_mode = 1
 tonemap_mode = 1
@@ -343,10 +346,11 @@ text = "Duch złapany!
 Twój czas: %02d:%02d"
 horizontal_alignment = 1
 
-[node name="Ghost" type="CharacterBody3D" parent="." unique_id=2062454181 node_paths=PackedStringArray("player_handle")]
+[node name="Ghost" type="CharacterBody3D" parent="." unique_id=2062454181 node_paths=PackedStringArray("player_handle", "bodies")]
 collision_layer = 0
 script = ExtResource("6_3mrqo")
 player_handle = NodePath("../Player")
+bodies = [NodePath("Shapes/StaticBody3D"), NodePath("Shapes/StaticBody3D2"), NodePath("Shapes/StaticBody3D3")]
 
 [node name="Sprite3D" type="Sprite3D" parent="Ghost" unique_id=2081870197]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
@@ -363,13 +367,38 @@ shape = SubResource("SphereShape3D_cauhl")
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Ghost" unique_id=846318902]
+[node name="Shapes" type="Node3D" parent="Ghost" unique_id=1409300588]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ghost/Shapes" unique_id=846318902]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
 collision_layer = 4
 collision_mask = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ghost/StaticBody3D" unique_id=678966686]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ghost/Shapes/StaticBody3D" unique_id=678966686]
+shape = SubResource("BoxShape3D_5l23l")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="Ghost/Shapes" unique_id=597312096]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ghost/Shapes/StaticBody3D2" unique_id=1524415462]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.36984786, 0)
+shape = SubResource("BoxShape3D_yebci")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Ghost/Shapes/StaticBody3D2" unique_id=276581397]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3705109, 0)
+shape = SubResource("BoxShape3D_yebci")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="Ghost/Shapes" unique_id=1072586906]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ghost/Shapes/StaticBody3D3" unique_id=191261844]
 shape = SubResource("BoxShape3D_5l23l")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Ghost" unique_id=66383543]
