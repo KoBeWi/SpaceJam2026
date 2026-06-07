@@ -37,22 +37,28 @@ emission_texture = ExtResource("4_e80uo")
 metadata/_gltf_primary_texture_coord = 0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cxr5p"]
-resource_name = "ScanerBody"
-cull_mode = 2
-albedo_color = Color(0.9063318, 0.9063318, 0.9063318, 1)
-albedo_texture = ExtResource("4_e80uo")
-roughness = 0.5
-metadata/_gltf_primary_texture_coord = 0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tdg3f"]
 resource_name = "Lights"
-transparency = 4
 cull_mode = 2
-albedo_color = Color(1, 1, 1, 0.35347432)
 albedo_texture = ExtResource("4_e80uo")
 metallic = 0.49244714
 roughness = 0.0
 emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 2.0
+emission_operator = 1
+emission_texture = ExtResource("4_e80uo")
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tdg3f"]
+resource_name = "Lights"
+cull_mode = 2
+albedo_texture = ExtResource("4_e80uo")
+metallic = 0.49244714
+roughness = 0.0
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 2.0
+emission_operator = 1
 emission_texture = ExtResource("4_e80uo")
 metadata/_gltf_primary_texture_coord = 0
 
@@ -258,17 +264,19 @@ spot_angle = 33.09
 unique_name_in_owner = true
 transform = Transform3D(0.07449585, -0.018919678, 0.06397199, 0.002600727, 0.09664484, 0.0255541, -0.06666037, -0.017373003, 0.072488464, -0.5093568, -0.25812227, -0.61227757)
 
-[node name="Radar" parent="Camera3D/Scanner" index="0" unique_id=15583849]
+[node name="Radar" parent="Camera3D/Scanner" index="0" unique_id=1594054983]
 visible = false
 surface_material_override/1 = SubResource("StandardMaterial3D_e80uo")
 
-[node name="PK_Detector" parent="Camera3D/Scanner" index="1" unique_id=133412447]
+[node name="PK_Detector" parent="Camera3D/Scanner" index="1" unique_id=1203571992]
 surface_material_override/1 = SubResource("StandardMaterial3D_dtqjt")
 surface_material_override/2 = SubResource("StandardMaterial3D_5ncpa")
 
-[node name="PK_L_arm" parent="Camera3D/Scanner" index="2" unique_id=352804828]
+[node name="PK_L_arm" parent="Camera3D/Scanner" index="2" unique_id=1151586536]
 surface_material_override/0 = SubResource("StandardMaterial3D_cxr5p")
-surface_material_override/1 = SubResource("StandardMaterial3D_tdg3f")
+
+[node name="PK_R_arm" parent="Camera3D/Scanner" index="3" unique_id=612010612]
+surface_material_override/0 = SubResource("StandardMaterial3D_tdg3f")
 
 [node name="SubViewport" type="SubViewport" parent="." unique_id=1521101797]
 unique_name_in_owner = true

@@ -8,7 +8,8 @@ var is_walking :bool = false
 var lerp_target := 0.0
 var is_scaner_in_face:= false
 var pk_emiter_lights_value:=0.0
-var pk_emiter_mat:Material
+var pk_emiter_mat1:Material
+var pk_emiter_mat2:Material
 
 @onready var radar: MeshInstance3D = $Camera3D/Scanner/Radar
 
@@ -28,8 +29,9 @@ var pk_emiter_mat:Material
 
 func _ready() -> void:
 	var mat :Material= radar.get_surface_override_material(1)
-	pk_emiter_mat = %Scanner.get_node("PK_L_arm").get_surface_override_material(1)
-	%Scanner.get_node("PK_R_arm").set_surface_override_material(1,pk_emiter_mat)
+	pk_emiter_mat1 = %Scanner.get_node("PK_L_arm").get_surface_override_material(0)
+	pk_emiter_mat2 = %Scanner.get_node("PK_R_arm").get_surface_override_material(0)
+
 	var pk_emiter_mat_body = %Scanner.get_node("PK_Detector").get_surface_override_material(1)
 	pk_emiter_mat_body.albedo_texture = minimap_vp.get_texture()
 	pk_emiter_mat_body.emission_texture = minimap_vp.get_texture()
@@ -108,7 +110,8 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	
-	pk_emiter_mat.uv1_offset.x -= pk_emiter_lights_value * delta * 0.5
+	pk_emiter_mat1.uv1_offset.x -= pk_emiter_lights_value * delta * 0.5
+	pk_emiter_mat2.uv1_offset.x -= pk_emiter_lights_value * delta * 0.5
 	pk_l_arm.rotation.z = -min(pk_emiter_lights_value*0.2, 1.5)
 	pk_r_arm.rotation.z = pk_l_arm.rotation.z
 	
