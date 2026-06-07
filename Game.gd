@@ -92,7 +92,7 @@ func _input(event: InputEvent) -> void:
 				quot()
 			return
 		
-		if not player.is_physics_processing():
+		if player.cranging:
 			return
 		
 		match k.keycode:
@@ -122,7 +122,7 @@ func _input(event: InputEvent) -> void:
 	
 	var mb := event as InputEventMouseButton
 	if mb and mb.pressed and mb.button_index == MOUSE_BUTTON_LEFT:
-		if not player.has_box:
+		if not player.has_box or player.cranging:
 			return
 		
 		%Throw.play()

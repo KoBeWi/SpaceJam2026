@@ -11,6 +11,7 @@ var pk_emiter_lights_value:=0.0
 var pk_emiter_mat1:Material
 var pk_emiter_mat2:Material
 var has_box: bool = true
+var cranging: bool
 
 @onready var radar: MeshInstance3D = $Camera3D/Scanner/Radar
 
@@ -115,16 +116,16 @@ func _physics_process(delta: float) -> void:
 	if get_slide_collision_count() > 0:
 		var box = get_slide_collision(0).get_collider()
 		if box.get(&"can_pickup"):
-			set_physics_process(false)
 			box.queue_free()
 			has_box = true
 			set_item(2)
+			cranging = true
 			owner.current_item = 2
 			$AnimationPlayer.play(&"ChargeTrap")
 			await $AnimationPlayer.animation_finished
-			set_physics_process(true)
 			if owner.current_item == 2:
 				trap.show()
+			cranging = false
 			gotbox.emit()
 	
 	pk_emiter_mat1.uv1_offset.x -= pk_emiter_lights_value * delta * 1.0
