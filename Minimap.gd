@@ -1,4 +1,4 @@
-extends Panel
+extends TextureRect
 
 const TILE_SIZE = 10
 
