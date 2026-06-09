@@ -81,11 +81,10 @@ func _on_easy_mode_gui_input(event):
 func _on_easy_mode_check_button_toggled(toggled_on):
 	is_easy_mode = toggled_on
 
+	scores = ConfigFile.new()
 	if is_easy_mode:
-		scores = ConfigFile.new()
 		scores.load(\"user://scores_easy.cfg\")
 	else:
-		scores = ConfigFile.new()
 		scores.load(\"user://scores.cfg\")
 
 	add_all_levels()
