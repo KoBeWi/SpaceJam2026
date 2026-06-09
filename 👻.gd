@@ -6,8 +6,8 @@ extends CharacterBody3D
 
 static var ostatni_duch: int = -1
 
-var angryness_buffores := 5.0
-var max_angrygress := 200.0
+var angryness_buffores := 3.0
+var max_angrygress := 20.0
 var poltergowalne: Array[RigidBody3D]
 var speed := 1.0
 
@@ -84,7 +84,7 @@ func catch():
 var angry: float
 
 func scanned():
-	angry += 1
+	angry += 0.06
 	
 	if angry >= max_angrygress * angryness_buffores:
 		angry -= max_angrygress * angryness_buffores

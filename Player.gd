@@ -8,15 +8,19 @@ var is_walking :bool = false
 var lerp_target := 0.0
 var is_scaner_in_face:= false
 var pk_emiter_lights_value:=0.0
+var pk_emiter_mat:Material
 var pk_emiter_mat1:Material
 var pk_emiter_mat2:Material
+var radar_slider_mat:Material
 var has_box: bool = true
 var cranging: bool
+var current_item_id :int = 0
 
 
 @onready var items_camera_3d: Camera3D = %ItemsCamera3D
 
 @onready var radar: MeshInstance3D = $CanvasLayer/SubVpContainer/ItemViewport/ItemsCamera3D/Scanner/Radar
+@onready var radar_slider := $CanvasLayer/SubVpContainer/ItemViewport/ItemsCamera3D/Scanner/Radar/Radar_slider
 @onready var pk_detector: MeshInstance3D = $CanvasLayer/SubVpContainer/ItemViewport/ItemsCamera3D/Scanner/PK_Detector
 
 @onready var pk_l_arm: MeshInstance3D = $CanvasLayer/SubVpContainer/ItemViewport/ItemsCamera3D/Scanner/PK_Detector/PK_L_arm
@@ -24,6 +28,7 @@ var cranging: bool
 
 @onready var trap: MeshInstance3D = $CanvasLayer/SubVpContainer/ItemViewport/ItemsCamera3D/Scanner/Trap
 @onready var trap_handle: MeshInstance3D = $CanvasLayer/SubVpContainer/ItemViewport/ItemsCamera3D/Scanner/Trap/Trap_handle
+@onready var trap_switch := $CanvasLayer/SubVpContainer/ItemViewport/ItemsCamera3D/Scanner/Trap/Trap_switch
 
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 
@@ -39,8 +44,11 @@ signal gotbox
 
 func _ready() -> void:
 	var mat :Material= radar.get_surface_override_material(1)
+	pk_emiter_mat = pk_detector.get_surface_override_material(2)
 	pk_emiter_mat1 = pk_l_arm.get_surface_override_material(0)
 	pk_emiter_mat2 = pk_r_arm.get_surface_override_material(0)
+	
+	radar_slider_mat = radar_slider.get_surface_override_material(0)
 
 	var pk_emiter_mat_body = pk_detector.get_surface_override_material(1)
 	pk_emiter_mat_body.albedo_texture = minimap_vp.get_texture()
@@ -49,6 +57,7 @@ func _ready() -> void:
 	mat.emission_texture = detector_vp.get_texture()
 
 func set_item(in_id:int)->void:
+	current_item_id = in_id
 	match in_id:
 		0:
 			trap.hide()
@@ -75,10 +84,6 @@ func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-
-
-		
-	
 
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
@@ -133,31 +138,55 @@ func _physics_process(delta: float) -> void:
 			cranging = false
 			gotbox.emit()
 	
-	pk_emiter_mat1.uv1_offset.x -= pk_emiter_lights_value * delta * 1.0
-	pk_emiter_mat2.uv1_offset.x -= pk_emiter_lights_value * delta * 1.0
-	pk_l_arm.rotation.z = -min(pk_emiter_lights_value*0.2, 1.5)
-	pk_r_arm.rotation.z = pk_l_arm.rotation.z
-	
+	pk_emiter_mat1.uv1_offset.x -= pk_emiter_lights_value * delta
+	pk_emiter_mat2.uv1_offset.x -= pk_emiter_lights_value * delta
+
 	items_camera_3d.global_transform = camera_3d.global_transform
 	
-func set_lights(in_value:float):
-	pk_emiter_lights_value = in_value
+func set_lights(in_value:float, in_dot_to_ghost:float):
+	pk_emiter_lights_value = 5.0 * in_value
+	pk_emiter_mat1.emission_energy_multiplier = pk_emiter_lights_value
+	pk_emiter_mat2.emission_energy_multiplier = pk_emiter_lights_value
+	pk_l_arm.rotation.z = -pk_emiter_lights_value*0.3
+	pk_r_arm.rotation.z = pk_emiter_lights_value*0.3 
+	pk_emiter_mat.uv1_offset.y = ((in_dot_to_ghost*0.1+0.1)+pk_emiter_lights_value*0.36)*0.09	
 	
 
 func _input(event: InputEvent) -> void:
 	var mm := event as InputEventMouseMotion
 	if mm:
 		rotation.y -= mm.relative.x * (1.0 / TAU ** 3)
-		
-	var mb := event as InputEventMouseButton
-	if mb and mb.button_index == MOUSE_BUTTON_RIGHT and not cranging:
-		if mb.pressed:
-			is_scaner_in_face = not is_scaner_in_face
+		%Camera3D.rotation.x = clampf(%Camera3D.rotation.x - mm.relative.y * (1.0 / TAU ** 3),-PI * 0.49,PI * 0.49)
 	
-		if is_scaner_in_face:
-			%AnimationPlayer.play("in_face")
-		else:
-			%AnimationPlayer.play("rest_pose")
+	var mb := event as InputEventMouseButton
+	if mb: 
+		if mb.button_index == MOUSE_BUTTON_RIGHT and not cranging:
+			if mb.pressed:
+				is_scaner_in_face = not is_scaner_in_face
+		
+			if is_scaner_in_face:
+				%AnimationPlayer.play("in_face")
+			else:
+				%AnimationPlayer.play("rest_pose")
+	
+		if current_item_id == 1:
+			if mb.button_index == MOUSE_BUTTON_WHEEL_UP:
+				update_slider(1)
+			elif mb.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+				update_slider(-1)
+				
+				
+
+func update_slider(in_value:int):
+	var new_ray_max_distance :int= get_parent().ray_draw.ray_max_distance +  in_value
+	new_ray_max_distance = clampi(new_ray_max_distance, 10, 40)
+	if not get_parent().ray_draw.ray_max_distance == new_ray_max_distance:
+		%ClicksStreamPlayer3D.pitch_scale = 0.85 + new_ray_max_distance / 15.0
+		%ClicksStreamPlayer3D.play()
+		get_parent().ray_draw.update_ray_max_distance(new_ray_max_distance)
+		%Label3D.text = str("Range: ",new_ray_max_distance,"m")
+		radar_slider.position.x = get_parent().ray_draw.ray_max_distance * 0.03 - 0.3
+		radar_slider_mat.uv1_offset.x = radar_slider.position.x
 
 func throwbox():
 	has_box = false

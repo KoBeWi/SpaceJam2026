@@ -3,6 +3,8 @@ extends Node3D
 @export var level: PackedScene
 var level_instance: Node3D
 
+@onready var ray_draw = $RayDraw
+
 @onready var duch: Node3D = $Ghost
 @onready var proximer: TextureProgressBar = %Proximer
 @onready var detector_display: TextureRect = %DetectorDisplay
@@ -78,7 +80,7 @@ func _process(delta: float) -> void:
 	%Beeper.volume_db = - log_stuff*20.0
 	%Beeper2.volume_db = - log_stuff*20.0
 	%Noiser.volume_db = - (log_stuff*10.0+20)
-	player.set_lights(1.0/beeper_max)
+	player.set_lights(max(1.0-beeper_max,0.0), dot_stuff)
 	
 	if beeper_current >= beeper_max:
 		proximanimator.play(&"Beep")

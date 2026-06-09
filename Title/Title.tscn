@@ -208,7 +208,9 @@ WSAD - ruch, Spacja skok.
 1 = Wykrywacz duchów (sprawdza czy blisko).
 2 = Skaner duchów (wyszukuje ducha za pomocą promieni, aka promieniuje).
 3 = Łapacz duchów.
-PPM - Przybliż narzędzie."
+PPM - Przybliż narzędzie.
+Scroll - zmień zasięg skanera.
+"
 autowrap_mode = 2
 
 [node name="Label2" type="Label" parent="PanelContainer/VBoxContainer/VBoxContainer" unique_id=1494119645]

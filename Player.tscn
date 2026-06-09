@@ -2,7 +2,9 @@
 
 [ext_resource type="Script" uid="uid://qqorxc4ygjct" path="res://Player.gd" id="1_xhfnw"]
 [ext_resource type="Texture2D" uid="uid://cm8n7mop024s5" path="res://t_flashlightpattern.png" id="2_kpjcp"]
+[ext_resource type="AudioStream" uid="uid://chk1lcjjepwi0" path="res://Sfx/Scroll Foley Single 003.wav" id="3_5ncpa"]
 [ext_resource type="PackedScene" uid="uid://dtugd4ujp1uc" path="res://Scanner.blend" id="3_kne1u"]
+[ext_resource type="AudioStream" uid="uid://drgymd6haiicc" path="res://Sfx/Click04.wav" id="4_dtqjt"]
 [ext_resource type="Texture2D" uid="uid://dqi4vxun6dbxq" path="res://textures/texture.png" id="4_e80uo"]
 [ext_resource type="AudioStream" uid="uid://cicbah7hi628n" path="res://carank_2.wav" id="5_tdg3f"]
 [ext_resource type="AudioStream" uid="uid://b5o4cxieortsu" path="res://charge.wav" id="6_dtqjt"]
@@ -29,7 +31,7 @@ tracks/0/path = NodePath("CanvasLayer/SubVpContainer/ItemViewport/ItemsCamera3D/
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 5, 8),
+"times": PackedFloat32Array(0, 4.5, 8),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0, 37.699112, 0), Vector3(0, 62.831852, 0)]
@@ -42,11 +44,15 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "clips": [{
-"end_offset": 0.0,
+"end_offset": 6.78233,
 "start_offset": 0.0,
 "stream": ExtResource("5_tdg3f")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_dtqjt")
 }],
-"times": PackedFloat32Array(0.033333335)
+"times": PackedFloat32Array(0.033333335, 4.7)
 }
 tracks/1/use_blend = true
 tracks/2/type = "audio"
@@ -57,11 +63,15 @@ tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "clips": [{
-"end_offset": 0.0,
+"end_offset": 6.7697825,
 "start_offset": 0.0,
 "stream": ExtResource("6_dtqjt")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_dtqjt")
 }],
-"times": PackedFloat32Array(0.033333335)
+"times": PackedFloat32Array(0.033333335, 4.7)
 }
 tracks/2/use_blend = true
 tracks/3/type = "value"
@@ -71,10 +81,10 @@ tracks/3/path = NodePath("CanvasLayer/SubVpContainer/ItemViewport/ItemsCamera3D/
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 2.6999993, 3.2999997, 3.6999993, 4.1, 4.2999997, 4.4999995, 4.6999993, 4.8, 4.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 4.7, 4.9),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [0.0, 1.0, 0.0, 2.0, 0.0, 4.0, 1.0, 4.0, 1.0, 4.0]
+"values": [0.0, 0.0, 4.0]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -83,10 +93,22 @@ tracks/4/path = NodePath("CanvasLayer/SubVpContainer/ItemViewport/ItemsCamera3D/
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 5),
+"times": PackedFloat32Array(0, 4.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0.8, 0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CanvasLayer/SubVpContainer/ItemViewport/ItemsCamera3D/Scanner/Trap/Trap_switch:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 4.6, 4.7),
+"transitions": PackedFloat32Array(1, 2, 1),
+"update": 0,
+"values": [Vector3(0, 0, 1.2042772), Vector3(0, 0, 1.2042772), Vector3(0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_kne1u"]
@@ -175,6 +197,18 @@ tracks/6/keys = {
 "update": 0,
 "values": [Vector3(0, 0, 0)]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("CanvasLayer/SubVpContainer/ItemViewport/ItemsCamera3D/Scanner/Trap/Trap_switch:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_e80uo"]
 resource_name = "in_face"
@@ -190,7 +224,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0.3),
 "transitions": PackedFloat32Array(1),
 "update": 2,
-"values": [Vector3(-0.08726646, 0.21293017, 0)]
+"values": [Vector3(-0.085609, 0.40862474, -0.01694805)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -299,21 +333,31 @@ roughness = 0.5
 emission_enabled = true
 emission_energy_multiplier = 2.0
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3tkgg"]
+resource_name = "Emmisive"
+albedo_texture = ExtResource("4_e80uo")
+emission_enabled = true
+emission = Color(0.22430411, 0.22430411, 0.22430399, 1)
+emission_operator = 1
+emission_texture = ExtResource("4_e80uo")
+uv1_offset = Vector3(0.9, 0, 0)
+metadata/_gltf_primary_texture_coord = 0
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dtqjt"]
 resource_name = "Screen"
 cull_mode = 2
+shading_mode = 0
 albedo_color = Color(0.9063318, 0.9063318, 0.9063318, 1)
-roughness = 0.5
-emission_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ncpa"]
-resource_name = "Lights"
-transparency = 4
+resource_name = "Moving"
 cull_mode = 2
 albedo_texture = ExtResource("4_e80uo")
-metallic = 0.49244714
 roughness = 0.0
 emission_enabled = true
+emission = Color(0.3491902, 0.48677072, 1, 1)
+emission_energy_multiplier = 2.0
+emission_operator = 1
 emission_texture = ExtResource("4_e80uo")
 metadata/_gltf_primary_texture_coord = 0
 
@@ -321,7 +365,6 @@ metadata/_gltf_primary_texture_coord = 0
 resource_name = "Lights"
 transparency = 4
 cull_mode = 2
-albedo_color = Color(1, 1, 1, 0.50453174)
 albedo_texture = ExtResource("4_e80uo")
 metallic = 0.570997
 roughness = 0.0
@@ -336,7 +379,6 @@ metadata/_gltf_primary_texture_coord = 0
 resource_name = "Lights"
 transparency = 4
 cull_mode = 2
-albedo_color = Color(1, 1, 1, 0.50453174)
 albedo_texture = ExtResource("4_e80uo")
 metallic = 0.570997
 roughness = 0.0
@@ -413,6 +455,12 @@ transform = Transform3D(0.7449585, -0.18919678, 0.6397198, 0.026007269, 0.966448
 volume_db = -30.0
 bus = &"LessSFX"
 
+[node name="ClicksStreamPlayer3D" type="AudioStreamPlayer3D" parent="Camera3D" unique_id=370851928]
+unique_name_in_owner = true
+transform = Transform3D(0.7449585, -0.18919678, 0.6397198, 0.026007269, 0.9664484, 0.2555409, -0.6666037, -0.17373003, 0.7248844, -0.5093568, -0.25812227, -0.61227757)
+stream = ExtResource("3_5ncpa")
+bus = &"LessSFX"
+
 [node name="SubViewport" type="SubViewport" parent="." unique_id=1521101797]
 unique_name_in_owner = true
 own_world_3d = true
@@ -454,34 +502,50 @@ cull_mask = 2
 
 [node name="Scanner" parent="CanvasLayer/SubVpContainer/ItemViewport/ItemsCamera3D" unique_id=2038585642 instance=ExtResource("3_kne1u")]
 unique_name_in_owner = true
-transform = Transform3D(0.07449585, -0.018919678, 0.06397199, 0.002600727, 0.09664484, 0.0255541, -0.06666037, -0.017373003, 0.072488464, -0.5093568, -0.25812227, -0.61227757)
+transform = Transform3D(0.074495845, -0.018919678, 0.06397199, 0.0026007264, 0.09664484, 0.0255541, -0.06666035, -0.017373003, 0.072488464, -0.5093568, -0.25812227, -0.61227757)
 
-[node name="Radar" parent="CanvasLayer/SubVpContainer/ItemViewport/ItemsCamera3D/Scanner" index="0" unique_id=1723900178]
+[node name="Radar" parent="CanvasLayer/SubVpContainer/ItemViewport/ItemsCamera3D/Scanner" index="0" unique_id=1322371989]
 visible = false
 layers = 2
 surface_material_override/1 = SubResource("StandardMaterial3D_e80uo")
 
-[node name="PK_Detector" parent="CanvasLayer/SubVpContainer/ItemViewport/ItemsCamera3D/Scanner" index="1" unique_id=1268347054]
+[node name="Radar_slider" parent="CanvasLayer/SubVpContainer/ItemViewport/ItemsCamera3D/Scanner/Radar" index="0" unique_id=753063322]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0, 0)
+layers = 2
+surface_material_override/0 = SubResource("StandardMaterial3D_3tkgg")
+
+[node name="Label3D" type="Label3D" parent="CanvasLayer/SubVpContainer/ItemViewport/ItemsCamera3D/Scanner/Radar" index="1" unique_id=797861758]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.98601824, 0.16663732, 0, -0.16663732, 0.98601824, 8.265488e-09, -0.9038492, 0.23372023)
+layers = 2
+pixel_size = 0.0025
+modulate = Color(0, 1, 0, 1)
+text = "Range: 40m"
+
+[node name="PK_Detector" parent="CanvasLayer/SubVpContainer/ItemViewport/ItemsCamera3D/Scanner" index="1" unique_id=1369561251]
 layers = 2
 surface_material_override/1 = SubResource("StandardMaterial3D_dtqjt")
 surface_material_override/2 = SubResource("StandardMaterial3D_5ncpa")
 
-[node name="PK_L_arm" parent="CanvasLayer/SubVpContainer/ItemViewport/ItemsCamera3D/Scanner/PK_Detector" index="0" unique_id=747139150]
+[node name="PK_L_arm" parent="CanvasLayer/SubVpContainer/ItemViewport/ItemsCamera3D/Scanner/PK_Detector" index="0" unique_id=1295307765]
 layers = 2
 surface_material_override/0 = SubResource("StandardMaterial3D_cxr5p")
 
-[node name="PK_R_arm" parent="CanvasLayer/SubVpContainer/ItemViewport/ItemsCamera3D/Scanner/PK_Detector" index="1" unique_id=2092001693]
+[node name="PK_R_arm" parent="CanvasLayer/SubVpContainer/ItemViewport/ItemsCamera3D/Scanner/PK_Detector" index="1" unique_id=1031930823]
 layers = 2
 surface_material_override/0 = SubResource("StandardMaterial3D_tdg3f")
 
-[node name="Trap" parent="CanvasLayer/SubVpContainer/ItemViewport/ItemsCamera3D/Scanner" index="2" unique_id=1654693677]
+[node name="Trap" parent="CanvasLayer/SubVpContainer/ItemViewport/ItemsCamera3D/Scanner" index="2" unique_id=1779266981]
 transform = Transform3D(0.91348046, -0.17479554, -0.36742324, -0.05433032, 0.84253377, -0.5358965, 0.4032386, 0.50949293, 0.76014143, 0.9172628, -1.0183592, 0.6721616)
 visible = false
 layers = 2
 surface_material_override/1 = SubResource("StandardMaterial3D_wi0c6")
 surface_material_override/5 = SubResource("StandardMaterial3D_hp6x6")
 
-[node name="Trap_handle" parent="CanvasLayer/SubVpContainer/ItemViewport/ItemsCamera3D/Scanner/Trap" index="0" unique_id=893797865]
+[node name="Trap_handle" parent="CanvasLayer/SubVpContainer/ItemViewport/ItemsCamera3D/Scanner/Trap" index="0" unique_id=657305688]
+layers = 2
+
+[node name="Trap_switch" parent="CanvasLayer/SubVpContainer/ItemViewport/ItemsCamera3D/Scanner/Trap" index="1" unique_id=1579728366]
 layers = 2
 
 [editable path="CanvasLayer/SubVpContainer/ItemViewport/ItemsCamera3D/Scanner"]

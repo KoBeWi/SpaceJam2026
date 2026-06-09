@@ -257,7 +257,8 @@ transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 17.6
 
 [node name="Label3D" type="Label3D" parent="." unique_id=87183936]
 transform = Transform3D(0.7033004, 0, -0.71089274, 0, 1, 0, 0.71089274, 0, 0.7033004, 19.196682, 0.56573856, 20.040947)
-text = "Press 2 to switch to scanner and find fake wall."
+text = "Press 2 to switch to scanner and find fake wall./n
+Use scroll to adjust scanner range."
 
 [node name="Label3D2" type="Label3D" parent="." unique_id=1992849164]
 transform = Transform3D(-0.0053685904, 0, -0.9999856, 0, 1, 0, 0.9999856, 0, -0.0053685904, 26.987354, 1.2467906, 23.224695)

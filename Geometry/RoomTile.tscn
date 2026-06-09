@@ -14,6 +14,8 @@ albedo_texture = ExtResource("2_st36f")
 [node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=437384226]
 material_override = SubResource("StandardMaterial3D_r247h")
 use_collision = true
+collision_layer = 3
+collision_mask = 0
 collision_priority = 4.0
 size = Vector3(2, 0.1, 2)
 
@@ -21,4 +23,6 @@ size = Vector3(2, 0.1, 2)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 material_override = SubResource("StandardMaterial3D_6gmal")
 use_collision = true
+collision_layer = 3
+collision_mask = 0
 size = Vector3(2, 0.1, 2)

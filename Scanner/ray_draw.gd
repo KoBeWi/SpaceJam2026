@@ -12,7 +12,7 @@ const MARKER_3D = preload("res://Scanner/marker_3d.tscn")
 @export var player_handle:CharacterBody3D
 var trail_mesh:ImmediateMesh
 
-var ray_max_distance := 40.0
+var ray_max_distance :int = 40
 var ray_dispersion := 0.005
 var ray_spread := 1.0
 var trail_segments: Array[Dictionary] = []
@@ -21,6 +21,8 @@ var trail_material: StandardMaterial3D
 var pitch_array :PackedInt32Array
 var array_iterator := 0
 var is_in_face_pressed :bool = false
+
+var is_easy_mode:bool = false
 
 func _ready() -> void:
 	trail_mesh = trail_mesh_instance.mesh
@@ -45,8 +47,13 @@ func _physics_process(delta: float) -> void:
 			array_iterator = (array_iterator+1) % 40
 			pitch_array[array_iterator] = 0
 			_fire_ray_and_record()
+
+func update_ray_max_distance(in_new_range:int):
+	ray_max_distance = in_new_range
+	#pitch_array.resize(ray_max_distance)
+
 func _fire_ray_and_record() -> void:
-	var vector_forward := -player_handle.global_basis.z
+	var vector_forward :Vector3 = -player_handle.camera_3d.global_basis.z
 	var ray_start :Vector3= player_handle.camera_3d.global_position 
 	ray_start += player_handle.global_basis.x * randf_range(-ray_spread, ray_spread) *1.7777777777777777
 	ray_start += player_handle.global_basis.y * randf_range(-ray_spread, ray_spread)
@@ -64,7 +71,6 @@ func _fire_ray_and_record() -> void:
 		var segment_end := ray_end
 
 		if not collision.is_empty():
-			var is_ghost_hit := false
 			if owner.current_item == 1:
 				var collider: Node = collision["collider"]
 				if collider.get_meta(&"erase", false):
@@ -75,20 +81,18 @@ func _fire_ray_and_record() -> void:
 					collider = collider.get_parent()
 					if collider and collider.has_method(&"scanned"):
 						collider.scanned()
-						if not is_instance_valid(collider.bodies[2]):
-							is_ghost_hit = true
-			
+
 			distance += ray_start.distance_to(collision.position)
 			if distance > ray_max_distance:
 				return
-			if collision.collider.name == "Detector":
 				
+			if collision.collider.name == "Detector":
 				spawn_marker(collision.collider.to_local(collision.position), distance)
+				if is_easy_mode:
+					return
+				
 			segment_end = collision.position
-			if is_ghost_hit:
-				ray = -ray
-			else:
-				ray = ray.bounce(collision.normal)
+			ray = ray.bounce(collision.normal)
 			
 		if trail_mesh_instance.visible:
 			trail_segments.append({
@@ -98,7 +102,7 @@ func _fire_ray_and_record() -> void:
 				"idx": bounce
 			})
 		ray_start = segment_end
-		ray_end = ray_start + ray
+		ray_end = ray_start + ray.limit_length(ray_max_distance - distance)
 		bounce += 1
 
 	_rebuild_trail_mesh()
