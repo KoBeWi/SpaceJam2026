@@ -3,7 +3,7 @@ extends OmniLight3D
 
 var target_energy := 1.0
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	light_energy = move_toward(light_energy, target_energy, 0.3)
 
 

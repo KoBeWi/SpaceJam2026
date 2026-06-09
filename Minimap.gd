@@ -31,7 +31,7 @@ func _ready() -> void:
 	var sc := size / TILE_SIZE
 	level_shift = sc / 2 - (maxv - minv) * 0.5 - minv
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	player_icon.position = (Vector2(player.position.x, player.position.z) * 0.5 + level_shift) * TILE_SIZE
 	player_icon.rotation = -player.rotation.y
 

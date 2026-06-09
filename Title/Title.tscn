@@ -12,6 +12,7 @@
 [sub_resource type="GDScript" id="GDScript_c0y8y"]
 script/source = "extends Control
 
+@export var is_easy_mode :bool = false
 @onready var label: Label = $Label
 @onready var label_original: Vector2 = $Label.position
 
@@ -20,8 +21,46 @@ var scores: ConfigFile
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	scores = ConfigFile.new()
-	scores.load(\"user://scores.cfg\")
+	if is_easy_mode:
+		%EasyModeCheckButton.button_pressed = true
+		scores.load(\"user://scores_easy.cfg\")
+	else:
+		scores.load(\"user://scores.cfg\")
 	
+	add_all_levels()
+
+func _process(_delta: float) -> void:
+	label.position = label_original + Vector2(randf_range(-1, 1), randf_range(-1, 1))
+
+func add_level(plik_nazwa: String, true_nazwa: String):
+	var hb := HBoxContainer.new()
+	hb.alignment = BoxContainer.ALIGNMENT_CENTER
+	%Levels.add_child(hb)
+	
+	var button := Button.new()
+	button.text = true_nazwa
+	hb.add_child(button)
+	button.pressed.connect(start_level.bind(plik_nazwa))
+	if scores.has_section_key(\"best\", plik_nazwa):
+		var time = scores.get_value(\"best\", plik_nazwa)
+		var labl := Label.new()
+		labl.text = \"Best: %02d:%02d\" % [time / 60, fmod(time, 60)]
+		hb.add_child(labl)
+
+func start_level(plik: String):
+	var game: Node = preload(\"uid://b5hp5r2gpuwqx\").instantiate()
+	game.level = load(\"res://Levels/%s.tscn\" % plik)
+	game.is_easy_mode = is_easy_mode
+	get_tree().change_scene_to_node(game)
+
+func quit() -> void:
+	get_tree().quit()
+
+
+func add_all_levels():
+	for level in %Levels.get_children():
+		level.free()
+		
 	add_level(\"Tutorial\", \"Tutorial Cellar\")
 	add_level(\"Mosaic\", \"Underground Parking\")
 	add_level(\"Floors\", \"Short Tower\")
@@ -34,33 +73,29 @@ func _ready() -> void:
 	#add_level(\"Eggplant\", \"( ͡° ͜ʖ ͡°)\")
 	#add_level(\"Empty\", \"Isolation\")
 
-func _process(delta: float) -> void:
-	label.position = label_original + Vector2(randf_range(-1, 1), randf_range(-1, 1))
+func _on_easy_mode_gui_input(event):
+	if event is InputEventMouseButton and event.pressed:
+		%EasyModeCheckButton.button_pressed = not %EasyModeCheckButton.button_pressed
 
-func add_level(plik_nazwa: String, true_nazwa: String):
-	var hb := HBoxContainer.new()
-	hb.alignment = BoxContainer.ALIGNMENT_CENTER
-	%Levels.add_child(hb)
-	
-	var button := Button.new()
-	button.text = true_nazwa
-	hb.add_child(button)
-	button.pressed.connect(start_level.bind(plik_nazwa))
-	
-	if scores.has_section_key(\"best\", plik_nazwa):
-		var time = scores.get_value(\"best\", plik_nazwa)
-		
-		var labl := Label.new()
-		labl.text = \"Best: %02d:%02d\" % [time / 60, fmod(time, 60)]
-		hb.add_child(labl)
 
-func start_level(plik: String):
-	var game: Node = preload(\"uid://b5hp5r2gpuwqx\").instantiate()
-	game.level = load(\"res://Levels/%s.tscn\" % plik)
-	get_tree().change_scene_to_node(game)
+func _on_easy_mode_check_button_toggled(toggled_on):
+	is_easy_mode = toggled_on
 
-func quit() -> void:
-	get_tree().quit()
+	if is_easy_mode:
+		scores = ConfigFile.new()
+		scores.load(\"user://scores_easy.cfg\")
+	else:
+		scores = ConfigFile.new()
+		scores.load(\"user://scores.cfg\")
+
+	add_all_levels()
+"
+
+[sub_resource type="GDScript" id="GDScript_0we2p"]
+script/source = "extends Control
+
+func _process(_delta: float) -> void:
+	%EasyModeCheckButton.position = (get_global_mouse_position() + size*2)*0.1
 "
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0we2p"]
@@ -114,7 +149,7 @@ script/source = "extends Sprite2D
 
 @export var lights: Array[Sprite2D]
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var vis: bool
 	
 	var mr := global_transform * get_rect()
@@ -154,6 +189,37 @@ theme_override_fonts/font = ExtResource("1_c0y8y")
 theme_override_font_sizes/font_size = 240
 text = "Ghost Rays"
 horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=653903357]
+custom_minimum_size = Vector2(0, 66.06)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -265.75
+offset_top = -177.03003
+offset_right = 265.75
+offset_bottom = -110.96997
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+alignment = 1
+script = SubResource("GDScript_0we2p")
+
+[node name="EasyModeCheckButton" type="CheckButton" parent="HBoxContainer" unique_id=44890873]
+unique_name_in_owner = true
+modulate = Color(5.378291, 5.378291, 5.378291, 1)
+layout_mode = 2
+size_flags_horizontal = 4
+offset_transform_enabled = true
+offset_transform_visual_only = false
+tooltip_text = "Nie mam cierpliwośći i chcę łatwą dopaminkę."
+mouse_filter = 1
+text = "Easy Mode ?"
+autowrap_trim_flags = 0
+icon_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2037125235]
 layout_mode = 0
@@ -262,6 +328,12 @@ stretch_mode = 5
 layout_mode = 2
 text = "Pożerający duch (pochłania promienie)"
 
+[node name="Label3" type="Label" parent="PanelContainer/VBoxContainer/VBoxContainer" unique_id=1856055388]
+layout_mode = 2
+text = "
+Arcade mode - skaner jest prosty"
+horizontal_alignment = 1
+
 [node name="TFlashlightpattern" type="Sprite2D" parent="." unique_id=1367730225]
 modulate = Color(0, 1, 0.38550162, 1)
 material = SubResource("CanvasItemMaterial_kpjcp")
@@ -292,6 +364,7 @@ lights = [NodePath("../TFlashlightpattern"), NodePath("../TFlashlightpattern2")]
 stream = ExtResource("4_irgv8")
 autoplay = true
 
+[connection signal="toggled" from="HBoxContainer/EasyModeCheckButton" to="." method="_on_easy_mode_check_button_toggled"]
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="quit"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Button" to="PanelContainer/VBoxContainer/Button" method="hide"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Button" to="PanelContainer/VBoxContainer/VBoxContainer" method="show"]

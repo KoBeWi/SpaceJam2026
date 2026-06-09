@@ -1,5 +1,6 @@
 extends Node3D
 
+@export var is_easy_mode:bool = false
 @export var level: PackedScene
 var level_instance: Node3D
 
@@ -44,6 +45,7 @@ func _ready() -> void:
 	
 	detector_display.hide()
 	catcher.hide()
+	ray_draw.is_easy_mode = is_easy_mode
 
 var beeper_max: float
 var beeper_current: float
@@ -80,7 +82,8 @@ func _process(delta: float) -> void:
 	%Beeper.volume_db = - log_stuff*20.0
 	%Beeper2.volume_db = - log_stuff*20.0
 	%Noiser.volume_db = - (log_stuff*10.0+20)
-	player.set_lights(max(1.0-beeper_max,0.0), dot_stuff)
+	#print(log_stuff)
+	player.set_lights(clamp(1.5-log_stuff,0.0,1.2), dot_stuff)
 	
 	if beeper_current >= beeper_max:
 		proximanimator.play(&"Beep")
@@ -146,11 +149,18 @@ func win():
 	catcher.hide()
 	
 	var scores := ConfigFile.new()
-	scores.load("user://scores.cfg")
+	if is_easy_mode:
+		scores.load("user://scores_easy.cfg")
+	else:
+		scores.load("user://scores.cfg")
 	var old_best: float = scores.get_value("best", level.resource_path.get_file().get_basename(), INF)
 	if old_best > %Timer.time:
 		scores.set_value("best", level.resource_path.get_file().get_basename(), %Timer.time)
-		scores.save("user://scores.cfg")
+		if is_easy_mode:
+			scores.save("user://scores_easy.cfg")
+		else:
+			scores.save("user://scores.cfg")
+
 	
 	set_process(false)
 	player.set_physics_process(false)
@@ -169,8 +179,11 @@ func contineu():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	%Menu.hide()
 
+
 func quot() -> void:
-	get_tree().change_scene_to_file("uid://bvsjr5kk2hsxi")
+	var title: Node = load("res://Title/Title.tscn").instantiate()
+	title.is_easy_mode = is_easy_mode
+	get_tree().change_scene_to_node(title)
 
 func _on_player_gotbox() -> void:
 	%CTextureRect.show()

@@ -149,7 +149,7 @@ func set_lights(in_value:float, in_dot_to_ghost:float):
 	pk_emiter_mat2.emission_energy_multiplier = pk_emiter_lights_value
 	pk_l_arm.rotation.z = -pk_emiter_lights_value*0.3
 	pk_r_arm.rotation.z = pk_emiter_lights_value*0.3 
-	pk_emiter_mat.uv1_offset.y = ((in_dot_to_ghost*0.1+0.1)+pk_emiter_lights_value*0.36)*0.09	
+	pk_emiter_mat.uv1_offset.y = ((in_dot_to_ghost*0.1+0.1)+in_value)*0.1
 	
 
 func _input(event: InputEvent) -> void:
