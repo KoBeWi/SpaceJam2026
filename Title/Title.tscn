@@ -216,7 +216,7 @@ offset_transform_enabled = true
 offset_transform_visual_only = false
 tooltip_text = "Nie mam cierpliwośći i chcę łatwą dopaminkę."
 mouse_filter = 1
-text = "Easy Mode ?"
+text = "Tryb \"łatwy\" ?"
 autowrap_trim_flags = 0
 icon_alignment = 1
 
@@ -261,7 +261,6 @@ layout_mode = 2
 text = "Pomoc"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=2001832933]
-visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="PanelContainer/VBoxContainer/VBoxContainer" unique_id=256323942]
@@ -330,7 +329,7 @@ text = "Pożerający duch (pochłania promienie)"
 [node name="Label3" type="Label" parent="PanelContainer/VBoxContainer/VBoxContainer" unique_id=1856055388]
 layout_mode = 2
 text = "
-Arcade mode - skaner jest prosty"
+Tryb \"łatwy\" - skaner rejestruje mniej szumu."
 horizontal_alignment = 1
 
 [node name="TFlashlightpattern" type="Sprite2D" parent="." unique_id=1367730225]

@@ -13,7 +13,7 @@ config_version=5
 config/name="Duchy promienie"
 run/main_scene="uid://bvsjr5kk2hsxi"
 config/features=PackedStringArray("4.7", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://dt3fnvecekspq"
 run/main_scene.template="uid://bvsjr5kk2hsxi"
 
 [audio]
