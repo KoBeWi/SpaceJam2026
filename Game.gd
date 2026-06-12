@@ -140,7 +140,7 @@ func _input(event: InputEvent) -> void:
 		player.throwbox()
 		var box := preload("uid://btypyodrftaco").instantiate()
 		box.position = player.position
-		box.velocity = -player.global_basis.z * 3 + Vector3.UP * 4
+		box.velocity = -player.camera_3d.global_basis.z * 3 + Vector3.UP * 4
 		add_child(box)
 
 func win():
