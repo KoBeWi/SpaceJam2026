@@ -106,6 +106,18 @@ tracks/3/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("OmniLight3D:light_energy")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_0bkxv"]
 resource_name = "Unwrap"
@@ -174,6 +186,18 @@ tracks/4/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("OmniLight3D:light_energy")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.6, 1.5, 2.5),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [0.0, 1.0, 0.0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jm3vu"]
 _data = {
@@ -204,9 +228,11 @@ collision_mode = 2
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_speaj"]
 transparency = 1
 blend_mode = 1
-shading_mode = 0
 vertex_color_use_as_albedo = true
 albedo_color = Color(0.53333336, 1, 0.9764706, 1)
+emission_enabled = true
+emission = Color(0, 1, 1, 1)
+disable_receive_shadows = true
 
 [sub_resource type="SphereMesh" id="SphereMesh_wybss"]
 material = SubResource("StandardMaterial3D_speaj")
@@ -245,13 +271,13 @@ bus = &"SFX"
 [node name="Scanner" parent="." unique_id=93882829 instance=ExtResource("4_bybq8")]
 transform = Transform3D(0.193, 0, 0, 0, 0.193, 0, 0, 0, 0.193, 0, -0.2647299, 0)
 
-[node name="Radar" parent="Scanner" index="0" unique_id=1723900178]
+[node name="Radar" parent="Scanner" index="0" unique_id=1322371989]
 visible = false
 
-[node name="PK_Detector" parent="Scanner" index="1" unique_id=1268347054]
+[node name="PK_Detector" parent="Scanner" index="1" unique_id=1369561251]
 visible = false
 
-[node name="Trap_handle" parent="Scanner/Trap" parent_id_path=PackedInt32Array(93882829, 1654693677) index="0" unique_id=893797865]
+[node name="Trap_handle" parent="Scanner/Trap" parent_id_path=PackedInt32Array(93882829, 1779266981) index="0" unique_id=657305688]
 transform = Transform3D(1, 0, 3.496911e-07, 0, 1, 0, -3.496911e-07, 0, 1, 1.1092055, 0.5352556, 0.0015350599)
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=959687660]
@@ -271,6 +297,14 @@ radius = 3.0
 [node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="." unique_id=1418976942]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0028076172, -0.60491943, -0.00015258789)
 size = Vector3(0.8508301, 0.79016113, 0.27593994)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=2018915298]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.72227, 0)
+light_color = Color(0, 1, 1, 1)
+light_energy = 0.0
+light_size = 0.5
+omni_range = 3.0
+omni_attenuation = 2.0
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
