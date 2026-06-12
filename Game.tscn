@@ -33,6 +33,47 @@ environment = SubResource("Environment_0xref")
 [sub_resource type="ViewportTexture" id="ViewportTexture_5l23l"]
 viewport_path = NodePath("MinimapSubViewport")
 
+[sub_resource type="GDScript" id="GDScript_0lnsc"]
+script/source = "extends Control
+
+@export var player:Node3D
+
+func _physics_process(delta):
+	queue_redraw()
+
+func _draw():
+	var l_rect:Rect2 = get_viewport_rect()
+	l_rect.position = l_rect.size*0.4
+	l_rect.size *= 0.20
+	var lt :Vector2 = l_rect.position
+	var lb :Vector2 = l_rect.position + Vector2(0.0, l_rect.size.y)
+	var rt :Vector2 = l_rect.position + Vector2(l_rect.size.x, 0)
+	var rb :Vector2 = l_rect.position + Vector2(l_rect.size.x, l_rect.size.y)
+	var color := Color(1.0,1.0,1.0,0.2)
+	
+	
+	draw_line(lt, lt + Vector2.RIGHT*10.0, color, 2.0)
+	draw_line(lt, lt + Vector2.DOWN*10.0, color, 2.0)
+	
+	draw_line(lb, lb + Vector2.RIGHT*10.0, color, 2.0)
+	draw_line(lb, lb + Vector2.UP*10.0, color, 2.0)
+
+	draw_line(rt, rt + Vector2.LEFT*10.0, color, 2.0)
+	draw_line(rt, rt + Vector2.DOWN*10.0, color, 2.0)
+	
+	draw_line(rb, rb + Vector2.LEFT*10.0, color, 2.0)
+	draw_line(rb, rb + Vector2.UP*10.0, color, 2.0)
+	
+	var lm :Vector2 = (lt + lb) * 0.5
+	var rm :Vector2 = (rt + rb) * 0.5
+	
+	draw_line(lm, lm + Vector2.RIGHT * 5.0, color, 2.0)
+	draw_line(rm, rm + Vector2.LEFT * 5.0, color, 2.0)
+	
+	draw_line(lm, lm + Vector2.UP * player.camera_3d.rotation.x * 50.0, color, 2.0)
+	draw_line(rm, rm + Vector2.UP * player.camera_3d.rotation.x * 50.0, color, 2.0)
+"
+
 [sub_resource type="ViewportTexture" id="ViewportTexture_r0x5m"]
 viewport_path = NodePath("RayDraw/SubViewport")
 
@@ -250,7 +291,7 @@ texture = ExtResource("5_t88pq")
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=531190363]
 layer = 2
 
-[node name="UI" type="Control" parent="CanvasLayer" unique_id=1508642237]
+[node name="UI" type="Control" parent="CanvasLayer" unique_id=1508642237 node_paths=PackedStringArray("player")]
 z_index = 91
 layout_mode = 3
 anchors_preset = 15
@@ -258,6 +299,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = SubResource("GDScript_0lnsc")
+player = NodePath("../../Player")
 
 [node name="DetectorDisplay" type="TextureRect" parent="CanvasLayer/UI" unique_id=608293155]
 unique_name_in_owner = true
