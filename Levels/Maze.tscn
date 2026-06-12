@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://yj6kr7b8hjyc" path="res://Geometry/Wall.tscn" id="2_m15gq"]
 [ext_resource type="PackedScene" uid="uid://b1mxpq4vryceb" path="res://AreaLight.tscn" id="3_m15gq"]
 [ext_resource type="Texture2D" uid="uid://dip2nn0cbf6ll" path="res://Wall.png" id="3_nhnik"]
+[ext_resource type="VoxelGIData" uid="uid://bqvafuq4n1jxi" path="res://Levels/Maze.VoxelGI_data.res" id="4_6scfd"]
 [ext_resource type="PackedScene" uid="uid://bon12i5rrigud" path="res://Deco.tscn" id="4_qxwht"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uvg8f"]
@@ -909,9 +910,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 5)
 transform = Transform3D(-0.60234255, 0, -0.79823774, 0, 1, 0, 0.79823774, 0, -0.60234255, 8.867923, 0, 18.085958)
 
 [node name="VoxelGI" type="VoxelGI" parent="." unique_id=965481605]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 2, 20)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.993359, 2, 19.895416)
+layers = 3
 subdiv = 2
-size = Vector3(28.614197, 5, 29.243896)
+size = Vector3(33.888542, 5, 39.242004)
+data = ExtResource("4_6scfd")
 
 [node name="Light" type="Node3D" parent="." unique_id=1941360739]
 

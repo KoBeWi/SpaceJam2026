@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bl2xduwytgsau"]
 
 [ext_resource type="PackedScene" uid="uid://dxm2rnp1ecis7" path="res://Geometry/RoomTile.tscn" id="1_nhn8q"]
+[ext_resource type="VoxelGIData" uid="uid://buar4dqh1ylxx" path="res://Levels/Tutorial.VoxelGI_data.res" id="1_tuaq2"]
 [ext_resource type="PackedScene" uid="uid://yj6kr7b8hjyc" path="res://Geometry/Wall.tscn" id="2_n00sr"]
 [ext_resource type="PackedScene" uid="uid://b1mxpq4vryceb" path="res://AreaLight.tscn" id="3_n00sr"]
 
@@ -13,6 +14,12 @@ func _ready() -> void:
 
 [node name="Level" type="Node3D" unique_id=1272382316]
 script = SubResource("GDScript_n00sr")
+
+[node name="VoxelGI" type="VoxelGI" parent="." unique_id=1723252815]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 1.6317596, 23.16687)
+layers = 3
+size = Vector3(20, 4.31369, 11.479736)
+data = ExtResource("1_tuaq2")
 
 [node name="Geometry" type="Node3D" parent="." unique_id=2101818099]
 

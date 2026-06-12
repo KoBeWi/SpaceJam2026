@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dxm2rnp1ecis7" path="res://Geometry/RoomTile.tscn" id="1_c1psw"]
 [ext_resource type="PackedScene" uid="uid://yj6kr7b8hjyc" path="res://Geometry/Wall.tscn" id="2_mah8k"]
+[ext_resource type="VoxelGIData" uid="uid://ca6qsrcj3lb86" path="res://Levels/Radiation.VoxelGI_data.res" id="3_1bd5n"]
 [ext_resource type="PackedScene" uid="uid://b1mxpq4vryceb" path="res://AreaLight.tscn" id="3_mah8k"]
 [ext_resource type="PackedScene" uid="uid://c7x2bwkqkmdds" path="res://Decon.tscn" id="4_trtwh"]
 
@@ -812,9 +813,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 35)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.708315, 0, 33.639874)
 
 [node name="VoxelGI" type="VoxelGI" parent="." unique_id=1453713437]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.364273, 2, 18.255798)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.713142, 2, 18.91417)
+layers = 3
 subdiv = 2
-size = Vector3(33.342743, 5, 32.7323)
+size = Vector3(34.645004, 5, 36.495514)
+data = ExtResource("3_1bd5n")
 
 [node name="Lights" type="Node3D" parent="." unique_id=1593483794]
 

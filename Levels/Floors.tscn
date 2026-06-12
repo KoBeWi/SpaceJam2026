@@ -841,6 +841,7 @@ transform = Transform3D(-0.6180045, 0, -0.78617454, 0, 1, 0, 0.78617454, 0, -0.6
 
 [node name="VoxelGI" type="VoxelGI" parent="." unique_id=1905472233]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.810356, 4.7421265, 20.852661)
+layers = 3
 subdiv = 2
 size = Vector3(18.82872, 10.484253, 22.65625)
 data = ExtResource("3_00ok2")

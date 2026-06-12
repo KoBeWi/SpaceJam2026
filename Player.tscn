@@ -403,10 +403,12 @@ shape = SubResource("ConvexPolygonShape3D_nigug")
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.9999997, 0, 0, 0, 0.9999997, 0, 0, 0)
 light_color = Color(0.94509804, 0.8901961, 0.6862745, 1)
-light_energy = 2.0
+light_indirect_energy = 0.3
 light_projector = ExtResource("2_kpjcp")
 shadow_enabled = true
-spot_range = 15.0
+spot_range = 10.0
+spot_attenuation = 2.0
+spot_angle = 35.0
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Camera3D" unique_id=1861691340]
 transform = Transform3D(0.7449585, -0.18919678, 0.6397198, 0.026007269, 0.9664484, 0.2555409, -0.6666037, -0.17373003, 0.7248844, -0.5093568, -0.25812227, -0.61227757)
