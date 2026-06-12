@@ -113,8 +113,8 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 		
-	flashlight.position.y = sin(cumulator)*0.1
-	flashlight.position.x = abs(cos(cumulator)*0.1)
+	flashlight.position.y = abs(sin(cumulator))*0.1
+	flashlight.position.x = cos(cumulator)*0.1
 	
 	var dist := duch.global_position.distance_to(global_position)
 	if dist < 3:
@@ -156,7 +156,7 @@ func _input(event: InputEvent) -> void:
 	var mm := event as InputEventMouseMotion
 	if mm:
 		rotation.y -= mm.relative.x * (1.0 / TAU ** 3)
-		%Camera3D.rotation.x = clampf(%Camera3D.rotation.x - mm.relative.y * (1.0 / TAU ** 3),-PI * 0.49,PI * 0.49)
+		camera_3d.rotation.x = clampf(camera_3d.rotation.x - mm.relative.y * (1.0 / TAU ** 3),-PI * 0.49,PI * 0.49)
 	
 	var mb := event as InputEventMouseButton
 	if mb: 

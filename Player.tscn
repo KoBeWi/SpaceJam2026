@@ -152,58 +152,46 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Camera3D/Flashlight:rotation")
+tracks/3/path = NodePath("CanvasLayer/SubVpContainer/ItemViewport/ItemsCamera3D/Scanner/Trap/Trap_handle:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-0.2617994, 0, 0)]
+"values": [Vector3(0, 0, 0)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("CanvasLayer/SubVpContainer/ItemViewport/ItemsCamera3D/Scanner/Trap/Trap_handle:rotation")
+tracks/4/path = NodePath("CanvasLayer/SubVpContainer/ItemViewport/ItemsCamera3D/Scanner/Trap:surface_material_override/1:emission_energy_multiplier")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, 0)]
+"values": [2.0]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("CanvasLayer/SubVpContainer/ItemViewport/ItemsCamera3D/Scanner/Trap:surface_material_override/1:emission_energy_multiplier")
+tracks/5/path = NodePath("CanvasLayer/SubVpContainer/ItemViewport/ItemsCamera3D/Scanner/Trap:surface_material_override/5:uv1_offset")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [2.0]
+"values": [Vector3(0, 0, 0)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("CanvasLayer/SubVpContainer/ItemViewport/ItemsCamera3D/Scanner/Trap:surface_material_override/5:uv1_offset")
+tracks/6/path = NodePath("CanvasLayer/SubVpContainer/ItemViewport/ItemsCamera3D/Scanner/Trap/Trap_switch:rotation")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("CanvasLayer/SubVpContainer/ItemViewport/ItemsCamera3D/Scanner/Trap/Trap_switch:rotation")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -250,18 +238,6 @@ tracks/2/keys = {
 "update": 2,
 "values": [Vector3(0.28446048, 0, -0.37773725)]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Camera3D/Flashlight:rotation")
-tracks/3/interp = 2
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.3),
-"transitions": PackedFloat32Array(1),
-"update": 2,
-"values": [Vector3(-0.26179937, 0.07504636, 0)]
-}
 
 [sub_resource type="Animation" id="Animation_cxr5p"]
 resource_name = "rest_pose"
@@ -303,18 +279,6 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 2,
 "values": [Vector3(0, 0, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Camera3D/Flashlight:rotation")
-tracks/3/interp = 2
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.5),
-"transitions": PackedFloat32Array(1),
-"update": 2,
-"values": [Vector3(-0.2617994, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tdg3f"]
@@ -437,12 +401,12 @@ shape = SubResource("ConvexPolygonShape3D_nigug")
 
 [node name="Flashlight" type="SpotLight3D" parent="Camera3D" unique_id=280915744]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 0.9659255, 0.25881895, 0, -0.25881895, 0.9659255, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.9999997, 0, 0, 0, 0.9999997, 0, 0, 0)
 light_color = Color(0.94509804, 0.8901961, 0.6862745, 1)
+light_energy = 2.0
 light_projector = ExtResource("2_kpjcp")
 shadow_enabled = true
-spot_range = 10.384294
-spot_angle = 33.09
+spot_range = 15.0
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Camera3D" unique_id=1861691340]
 transform = Transform3D(0.7449585, -0.18919678, 0.6397198, 0.026007269, 0.9664484, 0.2555409, -0.6666037, -0.17373003, 0.7248844, -0.5093568, -0.25812227, -0.61227757)
